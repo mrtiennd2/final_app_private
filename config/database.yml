@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: myapp
+  password: password1
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: fotobook_development
+
+test:
+  <<: *default
+  database: fotobook_test
+
+production:
+  <<: *default
+  database: fotobook_production
+  username: myapp
+  password: <%= ENV['YOUR_APP_NAME_DATABASE_PASSWORD'] %>
+
+
