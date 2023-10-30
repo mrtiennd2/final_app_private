@@ -1,15 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  image: MyString
+  description: MyString
   title: MyString
-  description: MyText
-  visibility: MyString
-  user: one
+  album: one
 
 two:
-  image: MyString
+  description: MyString
   title: MyString
-  description: MyText
-  visibility: MyString
-  user: two
+  album: two

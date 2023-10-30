@@ -1,12 +1,30 @@
 Rails.application.routes.draw do
-  get "up" => "rails/health#show", as: :rails_health_check
+  root 'photos#index'
 
-  get 'signin', to: 'sessions#new'
-  post 'signin', to: 'sessions#create'
+  devise_for :users
 
-  get 'signup', to: 'users#new'
-  post 'signup', to: 'users#create'
-  get 'signup/success', to: 'users#create', as: 'user_create'
+  get '/u/albums', to: 'albums#user_index'
+  get '/u/photos', to: 'photos#user_index'
 
-  get 'users/:id', to: 'users#show', as: 'user'
+  resources :albums do
+    resources :photos
+  end
+
+  # resources :photos
+
+  get '/', to: 'photos#index'
+  get '/home', to: 'photos#index'
+  get '/photos', to: 'photos#index'
+
+
+  # get '/u/albums', to: 'albums#user_index'
+  # get '/u/photos', to: 'photos#user_index'
+  #
+  # resources :albums do
+  #   resources :photos
+  # end
+  #
+  # get '/', to: 'photos#index'
+  # get '/home', to: 'photos#index'
+  # get '/photos', to: 'photos#index'
 end

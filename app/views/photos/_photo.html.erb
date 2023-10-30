@@ -1,0 +1,18 @@
+<div class="card border-2 border-dark w-25 mx-2 my-2 custom-album-box-style">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+    <div class="card-body">
+        <div class='d-flex flex-column'>
+            <span class="card-text">by <strong><%= photo.album.user.email %></strong></span>
+            <span class="card-text"><small><%= photo.created_at %></small></span>
+        </div>
+        <hr />
+        <h5 class="card-title">
+            <%= photo.title %>
+        </h5>
+        <p class="card-text">
+            <%= photo.description %>
+        </p>
+
+        <%= link_to "Show in album", photo.album, class: 'btn btn-dark' %>
+    </div>
+</div>

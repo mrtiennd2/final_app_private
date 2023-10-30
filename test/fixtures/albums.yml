@@ -1,13 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  description: MyString
   title: MyString
-  description: MyText
-  visibility: MyString
   user: one
 
 two:
+  description: MyString
   title: MyString
-  description: MyText
-  visibility: MyString
   user: two

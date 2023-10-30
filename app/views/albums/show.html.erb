@@ -1,0 +1,29 @@
+<div class='h-100 w-75 bg-white mx-auto'>
+    <!-- <p style="color: green"><%= notice %></p> -->
+
+    <%= render @album %>
+
+    <br />
+
+    <h5>Photos of this album</h5>
+
+    <% if @album.photos.size == 0 %>
+        <p> No photos </p>
+    <% else  %>
+    <div class='d-flex flex-row'>
+        <%= render @album.photos %>
+    </div>
+    <% end %>
+
+    <hr />
+
+    <!-- <% if user_signed_in? && current_user.albums.find_by(id: params[:id]) %> -->
+    <!--     <%= render 'photos/form', album: @album %> -->
+    <!-- <% end  %> -->
+    <!-- <div> -->
+    <!--   <%= link_to "Edit this album", edit_album_path(@album) %> | -->
+    <!--   <%= link_to "Back to albums", albums_path %> -->
+    <!---->
+    <!--   <%= button_to "Destroy this album", @album, method: :delete %> -->
+    <!-- </div> -->
+</div>

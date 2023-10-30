@@ -1,0 +1,66 @@
+class AlbumsController < ApplicationController
+  before_action :set_album, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
+  def index
+    @albums = Album.all
+  end
+
+  def show
+  end
+
+  def new
+    @album = current_user.albums.build
+  end
+
+  # GET /albums/1/edit
+  def edit
+  end
+
+  def create
+    # @album = Album.new(album_params)
+    @album = current_user.albums.build(album_params)
+    if @album.save
+      redirect_to '/albums', notice: "Album was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @album.update(album_params)
+        format.html { redirect_to album_url(@album), notice: "Album was successfully updated." }
+        format.json { render :show, status: :ok, location: @album }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @album.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @album.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+  def set_album
+    @album = Album.find(params[:id])
+  end
+
+  def album_params
+    params.require(:album).permit(:title, :description)
+  end
+
+  def correct_user
+    @album = current_user.albums.find_by(id: params[:id])
+    redirect_to albums_path, notice: "Not Authorized" if @album.nil?
+  end
+
+end
