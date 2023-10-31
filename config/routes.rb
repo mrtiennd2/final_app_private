@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get '/u/albums', to: 'albums#user_index'
-  get '/u/photos', to: 'photos#user_index'
+  get '/u/albums', to: 'albums#user_albums'
+  get '/u/photos', to: 'photos#user_photos'
 
   resources :albums do
     resources :photos
@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get '/', to: 'photos#index'
   get '/home', to: 'photos#index'
   get '/photos', to: 'photos#index'
-
 
   # get '/u/albums', to: 'albums#user_index'
   # get '/u/photos', to: 'photos#user_index'

@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: myapp
-  password: password1
+  username: dtien
+  password: abcd1234
   host: localhost
   port: 5432
 
