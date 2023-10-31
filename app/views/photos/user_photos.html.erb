@@ -1,0 +1,38 @@
+<div class='h-100 w-75 bg-white mx-auto p-3'>
+    <div class='w-100 d-flex justify-content-between'>
+        <p class='h4'>
+            <strong>My Photos</strong>
+        </p>
+        <a href='/photos/new' class='ms-auto btn btn-success text text-white'>
+            <strong>
+                Add New Photo
+            </strong>
+        </a>
+    </div>
+
+    <hr />
+
+    <div class='d-flex flex-column flex-wrap' >
+        <!-- <p style="color: green"><%= notice %></p> -->
+        <div id="albums" class='d-flex flex-wrap justify-content-start'>
+            <%= render @photos  %>
+            <!-- <% @photos.each do |album| %> -->
+            <!-- <div class="p-2 mb-2 d-flex flex-column justify-content-center align-items-center"> -->
+            <!--     <div class='mb-2' style="width:200px; height: 200px"> -->
+            <!--         <img -->
+            <!--             class="border border-dark w-100 h-100" -->
+            <!--             src="/postboot/assets/img/thumbnail.jpg" -->
+            <!--         /> -->
+            <!--     </div> -->
+            <!--     <%= link_to "Show this album", album, class: 'btn btn-dark mx-auto' %> -->
+            <!-- </div> -->
+        </div>
+        <% end %>
+    </div>
+</div>
+
+<!-- <div class='absolute'> -->
+<!--     <%= link_to 'Add your new album', new_album_path, class: 'btn btn-dark'  %> -->
+<!-- </div> -->
+
+</div>

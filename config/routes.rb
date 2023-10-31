@@ -6,11 +6,8 @@ Rails.application.routes.draw do
   get '/u/albums', to: 'albums#user_albums'
   get '/u/photos', to: 'photos#user_photos'
 
-  resources :albums do
-    resources :photos
-  end
-
-  # resources :photos
+  resources :albums
+  resources :photos
 
   get '/', to: 'photos#index'
   get '/home', to: 'photos#index'
