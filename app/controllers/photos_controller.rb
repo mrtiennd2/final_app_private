@@ -3,11 +3,19 @@ class PhotosController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @photos = Photo.all
+    @photos = Photo.public_mode
   end
 
   def user_photos
-    @photos = current_user.photos
+    sharing_mode = params[:mode]
+    user_photos = current_user.photos
+    if sharing_mode == 'public'
+      @photos = user_photos.public_mode
+    elsif sharing_mode == 'private'
+      @photos = user_photos.private_mode
+    else
+      @photos = user_photos
+    end
   end
 
   def new
@@ -21,9 +29,8 @@ class PhotosController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
-    # @album = Album.find(params[:album_id])
     # @photo = @album.photos.create(photo_params)
+    # @album = Album.find(params[:album_id])
     # redirect_to album_path(@album)
   end
 
@@ -38,7 +45,7 @@ class PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:title, :description)
+    params.require(:photo).permit(:title, :description, :is_public)
   end
 
   def correct_user
