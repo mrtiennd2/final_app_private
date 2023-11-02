@@ -2,11 +2,11 @@
     type="button"
     class="border border-light position-relative shadow p-1 m-1 bg-light rounded"
     style="width: 200px; height: 200px;"
-    data-toggle="modal"
-    data-target="#exampleModalCenter<%= photo.id %>"
 >
     <img
         class="border border-dark w-100 h-100"
+        data-toggle="modal"
+        data-target="#exampleModalCenter<%= photo.id %>"
         src="<%= photo.image_url %>"
     />
 

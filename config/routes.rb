@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/home/index/', to: 'home#index'
 
-  get '/u/albums', to: 'albums#user_albums'
+  get '/u/albums(/m/:mode)', to: 'albums#user_albums'
   get '/u/photos(/m/:mode)', to: 'photos#user_photos'
 
   resources :albums

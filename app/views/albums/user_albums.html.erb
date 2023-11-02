@@ -1,34 +1,33 @@
 <div class='h-100 w-75 bg-white mx-auto p-3'>
-    <div class='w-100 d-flex justify-content-between'>
-        <p class='h4'>
-            <strong> My Albums </strong>
-        </p>
+  <div class='w-100 d-flex justify-content-between'>
+    <p class='h4'>
+    <strong> My Albums </strong>
+    </p>
 
-        <a href='/albums/new' class='ms-auto btn btn-success text text-white'>
-            <strong>
-                Add New Album
-            </strong>
-        </a>
-    </div>
+    <a href='/albums/new' class='ms-auto btn btn-success text text-white'>
+      <strong>
+        Add New Album
+      </strong>
+    </a>
+  </div>
 
-    <hr />
+  <hr />
 
-    <div class='d-flex flex-column flex-wrap' >
-        <!-- <p style="color: green"><%= notice %></p> -->
-        <div id="albums" class='d-flex flex-wrap justify-content-start'>
-            <% @albums.each do |album| %>
-            <div class="p-2 mb-2 d-flex flex-column justify-content-center align-items-center">
-                <div class='mb-2' style="width:200px; height: 200px">
-                    <img
-                        class="border border-dark w-100 h-100"
-                        src="/postboot/assets/img/thumbnail.jpg"
-                    />
-                </div>
-                <%= link_to "Show this album", album, class: 'btn btn-dark mx-auto' %>
-            </div>
+  <div class='d-flex flex-column flex-wrap' >
+    <div id="albums" class='d-flex flex-wrap justify-content-start'>
+      <% @albums.each do |album| %>
+        <div class='bg-light mx-2 p-2 shadow bg-light rounded' style="width:200px; height: 200px">
+          <%= link_to album do %>
+            <img
+            class="border border-dark w-100 h-100"
+            src="<%= album.photos.size > 0 && album.photos.first.image_url %>"
+            />
+          <% end %>
         </div>
-        <% end %>
+      <% end %>
     </div>
+  </div>
+
 </div>
 
 <!-- <div class='absolute'> -->

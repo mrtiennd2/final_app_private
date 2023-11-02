@@ -3,6 +3,7 @@ class Photo < ApplicationRecord
   belongs_to :album, optional: true
   before_create :add_template_image_url
 
+  default_scope { order(created_at: :desc) }
   scope :private_mode, -> { where(is_public: false) }
   scope :public_mode, -> { where(is_public: true) }
 

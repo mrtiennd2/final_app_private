@@ -17,13 +17,10 @@
 
     <hr />
 
-    <!-- <% if user_signed_in? && current_user.albums.find_by(id: params[:id]) %> -->
-    <!--     <%= render 'photos/form', album: @album %> -->
-    <!-- <% end  %> -->
-    <!-- <div> -->
-    <!--   <%= link_to "Edit this album", edit_album_path(@album) %> | -->
-    <!--   <%= link_to "Back to albums", albums_path %> -->
-    <!---->
-    <!--   <%= button_to "Destroy this album", @album, method: :delete %> -->
-    <!-- </div> -->
+    <div>
+      <%= link_to "Edit this album", edit_album_path(@album) %> |
+      <%= link_to "Back to albums", albums_path %>
+
+      <%= button_to "Destroy this album", @album, method: :delete %>
+    </div>
 </div>
