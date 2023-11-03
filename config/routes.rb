@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   get '/u/albums(/m/:mode)', to: 'albums#user_albums'
   get '/u/photos(/m/:mode)', to: 'photos#user_photos'
 
-  resources :albums
   resources :photos
+
+  resources :albums do
+    resources :photos, shallow: true
+  end
 
   get '/', to: 'photos#index'
   get '/home', to: 'photos#index'

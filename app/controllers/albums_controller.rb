@@ -8,6 +8,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @albums = Album.where(is_public: true)
   end
 
   def new

@@ -23,12 +23,12 @@
                 <% end %>
 
                 <%= yield %>
+
             </div>
 
-            <div class='w-100 mx-auto text-center text text-danger'>
-                <p class="notice"><%= notice %></p>
-                <p class="alert"><%= alert %></p>
-            </div>
+            <% if notice %>
+              <%= render 'layouts/alert' %>
+            <% end %>
         </div>
 
         <!-- Optional JavaScript -->
