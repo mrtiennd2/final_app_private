@@ -1,18 +1,24 @@
-<div class="card border-2 border-dark w-25 mx-2 my-2 custom-album-box-style">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
-    <div class="card-body">
-        <div class='d-flex flex-column'>
-            <span class="card-text">by <strong><%= photo.album.user.email %></strong></span>
-            <span class="card-text"><small><%= photo.created_at %></small></span>
-        </div>
-        <hr />
-        <h5 class="card-title">
-            <%= photo.title %>
-        </h5>
-        <p class="card-text">
-            <%= photo.description %>
-        </p>
+<div
+    type="button"
+    class="border border-light position-relative shadow p-1 m-1 bg-light rounded"
+    style="width: 200px; height: 200px;"
+>
+    <img
+        class="border border-dark w-100 h-100"
+        data-toggle="modal"
+        data-target="#exampleModalCenter<%= photo.id %>"
+        src="<%= photo.image_url %>"
+    />
 
-        <%= link_to "Show in album", photo.album, class: 'btn btn-dark' %>
+    <% if !photo.is_public %>
+    <div
+        class='border border-dark bg-light rounded-circle d-flex justify-content-center align-items-center text text-dark'
+        style='width: 30px; height: 30px; position: absolute; bottom: 1rem; right: 1rem'
+    >
+        <i class="fa-solid fa-lock"></i>
     </div>
+    <% end %>
+
+    <%= render 'photos/photo_model', model: photo  %>
 </div>
+

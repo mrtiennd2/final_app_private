@@ -3,19 +3,20 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get '/u/albums', to: 'albums#user_index'
-  get '/u/photos', to: 'photos#user_index'
+  get '/home/index/', to: 'home#index'
+
+  get '/u/albums(/m/:mode)', to: 'albums#user_albums'
+  get '/u/photos(/m/:mode)', to: 'photos#user_photos'
+
+  resources :photos
 
   resources :albums do
-    resources :photos
+    resources :photos, shallow: true
   end
-
-  # resources :photos
 
   get '/', to: 'photos#index'
   get '/home', to: 'photos#index'
   get '/photos', to: 'photos#index'
-
 
   # get '/u/albums', to: 'albums#user_index'
   # get '/u/photos', to: 'photos#user_index'

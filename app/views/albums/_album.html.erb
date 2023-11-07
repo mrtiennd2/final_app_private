@@ -1,16 +1,42 @@
-<div id="<%= dom_id album %>" class='custom-album-box-style p-2 mb-2'>
-    <p>
-        <strong>Title:</strong>
-        <%= album.title %>
-    </p>
+<div class="card d-flex flex-row mb-2 flex-wrap">
+    <div class="p-2", style="width:200px; height: 200px">
+        <img
+            class="border border-dark w-100 h-100"
+            src="<%= album.photos.size > 0 && album.photos.first.image_url %>"
+        />
+    </div>
 
-    <p>
-        <strong>Description:</strong>
-        <%= album.description %>
-    </p>
+    <div class="card-body">
+        <h5 class="text text-primary">
+            <%= album.user.email %>
+        </h5>
 
-    <p>
-        <strong>by </strong>
-        <%= album.user.email %>
-    </p>
+        <hr />
+
+        <h5>
+            <strong>
+                <%= album.title %>
+            </strong>
+        </h5>
+
+        <p>
+            <%= album.description %>
+        </p>
+
+        <hr />
+
+        <div class="d-flex flex-row justify-items-between">
+            <!-- <p class="ms-auto"> -->
+            <!--     <small> -->
+            <!--         <%= album.created_at %> -->
+            <!--     </small> -->
+            <!-- </p> -->
+            <p class="ms-auto">
+                <small>
+                    <%= album.created_at %>
+                </small>
+            </p>
+        </div>
+    </div>
 </div>
+

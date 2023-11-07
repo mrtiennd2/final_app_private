@@ -8,10 +8,15 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @albums = Album.where(is_public: true)
   end
 
   def new
     @album = current_user.albums.build
+  end
+
+  def user_albums
+    @albums = current_user.albums
   end
 
   # GET /albums/1/edit

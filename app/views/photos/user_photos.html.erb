@@ -1,0 +1,45 @@
+<div class='h-100 w-75 bg-white mx-auto p-3'>
+    <div class='w-100 d-flex justify-content-between'>
+        <p class='h4'>
+            <strong>My Photos</strong>
+        </p>
+
+        <div>
+            <a href='/u/photos/' class='ms-auto btn btn-primary text text-white'>
+                <strong>
+                    All
+                </strong>
+            </a>
+            <a href='/u/photos/m/public' class='ms-auto btn btn-primary text text-white'>
+                <strong>
+                    Public
+                </strong>
+            </a>
+            <a href='/u/photos/m/private' class='ms-auto btn btn-primary text text-white'>
+                <strong>
+                    Private
+                </strong>
+            </a>
+        </div>
+
+        <a href='/photos/new' class='ms-auto btn btn-success text text-white'>
+            <strong>
+                Add New Photo
+            </strong>
+        </a>
+    </div>
+
+    <hr />
+
+    <div class='d-flex flex-wrap justify-content-center'>
+        <%= render @photos  %>
+    </div>
+
+
+</div>
+
+<!-- <div class='absolute'> -->
+<!--     <%= link_to 'Add your new album', new_album_path, class: 'btn btn-dark'  %> -->
+<!-- </div> -->
+
+

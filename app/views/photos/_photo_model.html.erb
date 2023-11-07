@@ -1,0 +1,64 @@
+<div
+    class="modal fade"
+    id="exampleModalCenter<%= model.id %>"
+    tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenter<%= model.id %>"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered position-relative" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenter<%= model.id %>">
+                    <%= model.title %>
+                </h5>
+            </div>
+            <div class="modal-body position-relative">
+                <img
+                    class="border border-dark w-100 h-100"
+                    src="<%= model.image_url %>"
+                />
+
+                <!-- <button -->
+                <!--     class="btn btn-white text-white" -->
+                <!--     style="position: absolute; left: 1rem; top: 0; bottom: 0; margin: auto 0" -->
+                <!-- > -->
+                <!--     <p class='h2'> -->
+                <!--         <strong> -->
+                <!--             <i class="fa-solid fa-chevron-left"></i> -->
+                <!--         </strong> -->
+                <!--     </p> -->
+                <!-- </button> -->
+                <!---->
+                <!-- <button -->
+                <!--     class="btn btn-white text-white" -->
+                <!--     style="position: absolute; right: 1rem; top: 0; bottom: 0; margin: auto 0" -->
+                <!-- > -->
+                <!--     <p class='h2'> -->
+                <!--         <strong> -->
+                <!--             <i class="fa-solid fa-chevron-right"></i> -->
+                <!--         </strong> -->
+                <!--     </p> -->
+                <!-- </button> -->
+
+            </div>
+
+            <div class="modal-footer mr-auto">
+                <p><%= model.description %></p>
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+
+
+            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            <button
+                data-dismiss="modal"
+                class="btn btn-white"
+                style="position: absolute; top: 0; right: 0"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+        </div>
+    </div>
+</div>

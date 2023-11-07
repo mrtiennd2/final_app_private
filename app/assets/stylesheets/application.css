@@ -19,3 +19,8 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}

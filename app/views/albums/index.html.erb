@@ -1,23 +1,29 @@
-<div class='h-100 w-75 bg-white mx-auto'>
-    <div class='d-flex justify-content-center py-3'>
-        <a class="btn btn-secondary mx-2" href="/photos">Photo</a>
-        <a class="btn btn-primary mx-2" href="/albums">Album</a>
-    </div>
+<div class='h-100 w-75 mx-auto shadow-sm bg-white rounded'>
+  <div class='d-flex justify-content-center py-3'>
+    <a class="btn btn-secondary mx-2" href="/photos">Photo</a>
+    <a class="btn btn-primary mx-2" href="/albums">Album</a>
+  </div>
 
-    <div class='d-flex flex-column flex-wrap' >
-        <!-- <p style="color: green"><%= notice %></p> -->
-        <div id="albums" class='d-flex flex-wrap'>
-            <% @albums.each do |album| %>
-            <div class='mb-3 col-lg' style='max-width: 300px'>
-                <%= render album %>
-                <%= link_to "Show this album", album, class: 'btn btn-dark' %>
-            </div>
-            <% end %>
-        </div>
-    </div>
+  <hr />
 
-    <!-- <div class='absolute'> -->
-    <!--     <%= link_to 'Add your new album', new_album_path, class: 'btn btn-dark'  %> -->
-    <!-- </div> -->
+  <div class='d-flex w-100 flex-wrap justify-content-center'>
+    <% @albums.each do |album|  %>
+      <%= link_to album, class: 'text-decoration-none text text-dark' do %>
+        <%= render "/home/collection_item", model: album, :locals => {:model_image_url => album.photos.size > 0 && album.photos.first.image_url} %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- <nav aria-label="Page navigation example" class='d-flex justify-content-center align-items-center w-100 my-3'> -->
+  <!--     <ul class="pagination" style='margin: 0 auto'> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+  <!--     </ul> -->
+  <!-- </nav> -->
+
 
 </div>
+
