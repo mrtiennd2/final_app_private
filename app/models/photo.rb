@@ -7,6 +7,8 @@ class Photo < ApplicationRecord
   scope :private_mode, -> { where(is_public: false) }
   scope :public_mode, -> { where(is_public: true) }
 
+  validates :title, presence: true
+
   # testing
   private
   def add_template_image_url

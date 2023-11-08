@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_action :set_photo, only: %i[ edit update destroy ]
   before_action :authenticate_user!, except: [:index]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
@@ -23,12 +24,15 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = current_user.photos.build(photo_params)
-    if @photo.save
-      redirect_to '/u/photos', notice: "New photo added"
-    else
-      render :new, status: :unprocessable_entity
-    end
+    puts "=============="
+    puts photo_params
+
+    # @photo = current_user.photos.build(photo_params)
+    # if @photo.save
+    #   redirect_to '/u/photos', notice: "New photo added"
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
     # @photo = @album.photos.create(photo_params)
     # @album = Album.find(params[:album_id])
     # redirect_to album_path(@album)
@@ -38,9 +42,14 @@ class PhotosController < ApplicationController
   end
 
   def update
+    if @photo.update(photo_params)
+      redirect_to '/u/photos', notice: "Photo was successfully updated."
+    end
   end
 
   def destroy
+    @photo.destroy!
+    redirect_to '/u/photos', notice: "Photo was successfully destroyed."
   end
 
   private
@@ -48,8 +57,12 @@ class PhotosController < ApplicationController
     params.require(:photo).permit(:title, :description, :is_public)
   end
 
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
+
   def correct_user
-    @album = current_user.albums.find_by(id: params[:album_id])
-    redirect_to albums_path, notice: "Not Authorized" if @album.nil?
+    @photo = current_user.photos.find_by(id: params[:id])
+    redirect_to photos_path, notice: "Not Authorized" if @photo.nil?
   end
 end

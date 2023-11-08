@@ -1,6 +1,6 @@
 <%= form_with(
     model: photo,
-    class: 'p-4 mb-4'
+    class: 'mb-4'
 ) do |form| %>
 <div class='container-fluid d-flex justify-content-between'>
     <div class='w-40'>
@@ -35,7 +35,7 @@
 <hr />
 
 <div class='mx-3'>
-    <%= form.submit 'Add photo', class: 'btn btn-secondary' %>
+    <%= form.submit class: 'btn btn-info' %>
 </div>
 
 <% end %>

@@ -53,16 +53,10 @@
         <a  href="/users/edit" class="btn btn-primary mx-2">
             <strong>(you)</strong> <%= current_user.email %>
         </a>
-        <!-- <a href="/users/sign_out" method: :delete >Profile</a> -->
 
-        <a href="users/sign_out"
-            data-turbo-method="delete"
-            data-turbo-confirm="Signing out?"
-            class="btn btn-secondary"
-        >
-            Sign out
-        </a>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-dark' %>
     </div>
+
     <% else %>
         <a href="/users/sign_in" class="btn btn-primary">Login</a>
     <% end %>
