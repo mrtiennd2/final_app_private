@@ -24,15 +24,12 @@ class PhotosController < ApplicationController
   end
 
   def create
-    puts "=============="
-    puts photo_params
-
-    # @photo = current_user.photos.build(photo_params)
-    # if @photo.save
-    #   redirect_to '/u/photos', notice: "New photo added"
-    # else
-    #   render :new, status: :unprocessable_entity
-    # end
+    @photo = current_user.photos.build(photo_params)
+    if @photo.save
+      redirect_to '/u/photos', notice: "New photo added"
+    else
+      render :new, status: :unprocessable_entity, notice: "Something wrong!"
+    end
     # @photo = @album.photos.create(photo_params)
     # @album = Album.find(params[:album_id])
     # redirect_to album_path(@album)
@@ -44,6 +41,8 @@ class PhotosController < ApplicationController
   def update
     if @photo.update(photo_params)
       redirect_to '/u/photos', notice: "Photo was successfully updated."
+    else
+      redirect_to '/u/photos', notice: "Something wrong!"
     end
   end
 

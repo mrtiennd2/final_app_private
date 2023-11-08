@@ -5,10 +5,7 @@
   </div>
 
   <hr />
+
   <%= render "form", photo: @photo %>
 
-  <div class='mx-3 d-flex' style='gap: 2px'>
-    <%= button_to "Save", @photo, method: :put, class: 'btn btn-primary' %>
-    <%= button_to "Delete", @photo, method: :delete, class: 'btn btn-danger' %>
-  </div>
 </div>

@@ -1,42 +1,54 @@
-<%= form_with(
-    model: photo,
-    class: 'mb-4'
-) do |form| %>
-<div class='container-fluid d-flex justify-content-between'>
+<%= form_with(model: photo, class: 'mb-4') do |form| %>
+  <% if photo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+        <% photo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='container-fluid d-flex justify-content-between'>
     <div class='w-40'>
-        <div class="field form-group mb-3">
-            <strong>
-                <%= form.label :title %>
-            </strong>
-            <%= form.text_field :title, class: 'form-control form-control-lg' %>
-        </div>
+      <div class="field form-group mb-3">
+        <strong>
+          <%= form.label :title %>
+        </strong>
+        <%= form.text_field :title, class: 'form-control form-control-lg' %>
+      </div>
 
-        <div class="field form-group mb-3">
-            <strong>
-                <%= form.label :is_public, 'Sharing mode' %>
-            </strong>
-            <%= form.collection_select(:is_public, [['Private', false], ['Public', true]], :second, :first, {}, class: 'custom-select') %>
-        </div>
+      <div class="field form-group mb-3">
+        <strong>
+          <%= form.label :is_public, 'Sharing mode' %>
+        </strong>
+        <%= form.collection_select(:is_public, [['Private', false], ['Public', true]], :second, :first, {}, class: 'custom-select') %>
+      </div>
 
-        <div style='width: 200px; height: 200px' class='border border-secondary'>
-        </div>
+      <div style='width: 200px; height: 200px' class='border border-secondary'>
+      </div>
 
     </div>
 
     <div class="field form-group mb-3 w-50">
-        <strong>
-            <%= form.label :description %>
-        </strong>
-        <%= form.text_area :description, rows: 4, class: 'form-control form-control-lg' %>
+      <strong>
+        <%= form.label :description %>
+      </strong>
+      <%= form.text_area :description, rows: 4, class: 'form-control form-control-lg' %>
     </div>
 
-</div>
+  </div>
 
-<hr />
+  <hr />
 
-<div class='mx-3'>
-    <%= form.submit class: 'btn btn-info' %>
-</div>
+  <div class='mx-3'>
+    <%= form.submit 'Save', class: 'btn btn-info'%>
+    <% if controller_name == "photos" && action_name == "edit" %>
+      <%= link_to 'Delete', photo, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
 
 <% end %>
 

@@ -4,11 +4,10 @@ class AlbumsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @albums = Album.all
+    @albums = Album.where(is_public: true)
   end
 
   def show
-    @albums = Album.where(is_public: true)
   end
 
   def new
@@ -21,10 +20,10 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1/edit
   def edit
+    @correct_user = correct_user
   end
 
   def create
-    # @album = Album.new(album_params)
     @album = current_user.albums.build(album_params)
     if @album.save
       redirect_to '/albums', notice: "Album was successfully created."
