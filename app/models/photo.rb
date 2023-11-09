@@ -7,7 +7,11 @@ class Photo < ApplicationRecord
   scope :private_mode, -> { where(is_public: false) }
   scope :public_mode, -> { where(is_public: true) }
 
-  validates :title, presence: true
+  validates :title, presence: true, unless: :belongs_to_album?
+
+  def belongs_to_album?
+    self.album_id != nil
+  end
 
   # testing
   private
