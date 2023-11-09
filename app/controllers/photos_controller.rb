@@ -24,6 +24,12 @@ class PhotosController < ApplicationController
   end
 
   def create
+    # current_album = Album.find params[:album_id]
+    # @photo = Photo.new(album_id: current_album.id, user_id: current_album.user_id)
+    # if @photo.save
+    #   redirect_to edit_album_path(current_album), notice: "New photo added"
+    # end
+
     @photo = current_user.photos.build(photo_params)
     if @photo.save
       redirect_to '/u/photos', notice: "New photo added"
@@ -53,7 +59,7 @@ class PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:title, :description, :is_public)
+    params.require(:photo).permit(:album_id, :title, :description, :is_public)
   end
 
   def set_photo
