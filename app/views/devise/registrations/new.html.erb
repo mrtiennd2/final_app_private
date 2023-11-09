@@ -12,6 +12,20 @@
 
     <div class="field form-label mb-3">
         <!-- <strong> -->
+        <!--     <%= f.label :first_name %><br /> -->
+        <!-- </strong> -->
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",  class: 'form-control form-control-lg', placeholder: 'First name' %>
+    </div>
+
+    <div class="field form-label mb-3">
+        <!-- <strong> -->
+        <!--     <%= f.label :last_name %><br /> -->
+        <!-- </strong> -->
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",  class: 'form-control form-control-lg', placeholder: 'Last name' %>
+    </div>
+
+    <div class="field form-label mb-3">
+        <!-- <strong> -->
         <!--     <%= f.label :email %><br /> -->
         <!-- </strong> -->
         <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control form-control-lg', placeholder: 'Email' %>

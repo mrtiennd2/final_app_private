@@ -16,15 +16,23 @@
   <div class='d-flex flex-column flex-wrap' >
     <div id="albums" class='d-flex flex-wrap justify-content-start'>
       <% @albums.each do |album| %>
-        <div class='bg-light mx-2 p-2 shadow bg-light rounded' style="width:200px; height: 200px">
-          <%= link_to album do %>
-            <img
-            class="border border-dark w-100 h-100"
-            src="<%= album.photos.size > 0 && album.photos.first.image_url %>"
-            />
-          <% end %>
-        </div>
-      <% end %>
+      <div class='bg-light mx-2 p-3 shadow bg-light rounded' style="width:250px; height: 250px">
+        <%= link_to edit_album_path(album), class: 'position-relative' do %>
+          <div class='position-absolute top-0 left-0 d-flex justify-content-between bg-dark text-white w-100 mw-100 p-1' style='opacity: 0.65'>
+            <p class='m-0 p-0' style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis'>
+            <%= album.title  %>
+            </p>
+            <span>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </span>
+          </div>
+          <img
+          class="border border-dark w-100 h-100"
+          src="<%= album.photos.size > 0 && album.photos.first.image_url %>"
+          />
+        <% end %>
+      </div>
+    <% end %>
     </div>
   </div>
 
