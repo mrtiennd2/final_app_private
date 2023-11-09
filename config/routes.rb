@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :photos
 
   resources :albums do
-    resources :photos, shallow: true
+    resources :photos
   end
 
   get '/', to: 'photos#index'

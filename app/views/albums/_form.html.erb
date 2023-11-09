@@ -13,7 +13,8 @@
 
 <div class='container-fluid d-flex flex-column justify-content-between'>
     <div class='d-flex'>
-      <div class='d-flex flex-column w-50'>
+
+      <div class='d-flex flex-column w-50 mr-4'>
         <div class="field form-group mb-3">
           <strong>
             <%= form.label :title %>
@@ -35,22 +36,22 @@
         </strong>
         <%= form.text_area :description, rows: 4, class: 'form-control form-control-lg' %>
       </div>
+
     </div>
 
     <div class="d-flex flex-column">
-      <div class="d-flex">
+      <div class="d-flex mb-3">
         <% album.photos && album.photos.each do |photo| %>
           <div style='width: 200px; height: 200px' class='border border-secondary'>
             <img src="<%= photo.image_url %>" class="w-100 h-100" />
           </div>
         <% end %>
         <div style='width: 200px; height: 200px' class='border border-secondary ms-3'>
-          <%= form.file_field :image_url %>
         </div>
       </div>
 
       <div class='me-auto d-flex'>
-        <%= form.submit 'Save', class: 'btn btn-primary me-4' %>
+        <%= form.submit 'Save', class: 'btn btn-primary mr-2' %>
         <% if controller_name == "albums" && action_name == "edit" %>
           <%= link_to 'Delete', album, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
         <% end %>
@@ -62,5 +63,11 @@
 
 <hr />
 
-
 <% end %>
+
+<%= form_with model: [ @album, @album.photos.build ] do |form| %>
+  <p>
+  <%= form.submit 'Add image' %>
+  </p>
+<% end %>
+
