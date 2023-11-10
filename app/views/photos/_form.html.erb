@@ -27,9 +27,7 @@
         <%= form.collection_select(:is_public, [['Private', false], ['Public', true]], :second, :first, {}, class: 'custom-select') %>
       </div>
 
-      <div style='width: 200px; height: 200px' class='border border-secondary'>
-        <%= form.file_field :image_url %>
-      </div>
+      <%= render("shared/image_uploader", form: form, file_field_name: :image_url, photo: photo) %>
 
     </div>
 

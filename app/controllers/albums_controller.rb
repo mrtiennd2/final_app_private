@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_album, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :correct_user, only: %i[edit update destroy]
 
   def index
     @albums = Album.where(is_public: true)
@@ -34,7 +34,7 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        notice_msg = !built_photo.save ? 'Failed to save image' : 'Album was successfully updated.'
+        notice_msg = built_photo && !built_photo.save ? 'Failed to save image' : 'Album was successfully updated.'
         format.html { redirect_to edit_album_url(@album), notice: notice_msg }
       else
         format.html { render :edit, status: :unprocessable_entity, notice: 'Failed to save album' }
@@ -52,12 +52,14 @@ class AlbumsController < ApplicationController
   end
 
   private
+
   def set_album
     @album = Album.find(params[:id])
   end
 
   def built_photo
-    @album.photos.build(user_id: @album.user_id, image_url: params[:album][:photo_image])
+    photo_image = params[:album][:photo_image]
+    photo_image && @album.photos.build(user_id: @album.user_id, image_url: photo_image)
   end
 
   def album_params
@@ -68,5 +70,4 @@ class AlbumsController < ApplicationController
     @album = current_user.albums.find_by(id: params[:id])
     redirect_to albums_path, notice: 'Not Authorized' if @album.nil?
   end
-
 end

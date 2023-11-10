@@ -4,12 +4,12 @@ class PhotosController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @photos = Photo.public_mode
+    @photos = Photo.public_mode.where(album_id: nil)
   end
 
   def user_photos
     sharing_mode = params[:mode]
-    user_photos = current_user.photos
+    user_photos = current_user.photos.where(album_id: nil) # only get photos that don't exist in album
 
     @photos =
       if sharing_mode == 'public'

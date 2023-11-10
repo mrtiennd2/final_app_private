@@ -1,17 +1,17 @@
 <%= form_with(model: album, class: 'custom-album-box-style mb-4') do |form| %>
-<% if album.errors.any? %>
-<div style="color: red">
-    <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+  <% if album.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
 
-    <ul>
+      <ul>
         <% album.errors.each do |error| %>
-        <li><%= error.full_message %></li>
+          <li><%= error.full_message %></li>
         <% end %>
-    </ul>
-</div>
-<% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<div class='container-fluid d-flex flex-column justify-content-between'>
+  <div class='container-fluid d-flex flex-column justify-content-between'>
     <div class='d-flex'>
 
       <div class='d-flex flex-column w-50 mr-4'>
@@ -47,14 +47,7 @@
           </div>
         <% end %>
 
-        <div
-          style='width: 200px; color: gray; height: 200px; border: 3px dashed gray'
-          class='rounded-lg d-flex justify-content-center align-items-center position-relative'
-        >
-          <%= form.label :photo_image, "+", class: "h1 w-100 h-100 d-flex justify-content-center align-items-center", style: "cursor: pointer" %>
-          <%= form.file_field :photo_image, multiple: false, class: "sr-only file__input" %>
-          <img src="" class="preview__image w-100 h-100 d-none position-absolute" />
-        </div>
+        <%= render("shared/image_uploader", form: form, file_field_name: :photo_image) %>
 
       </div>
 
@@ -67,23 +60,9 @@
 
     </div>
 
-</div>
+  </div>
 
-<hr />
+  <hr />
 
 <% end %>
-
-<script>
-  const input = document.querySelector('.file__input');
-  const image = document.querySelector('.preview__image');
-
-  input.addEventListener('change', (e) => {
-    if (e.target.files.length) {
-      const src = URL.createObjectURL(e.target.files[0]);
-      image.src = src;
-      image.classList.toggle('d-none')
-    }
-  });
-
-</script>
 
