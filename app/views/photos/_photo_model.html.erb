@@ -13,10 +13,7 @@
                 </h5>
             </div>
             <div class="modal-body position-relative">
-                <img
-                    class="border border-dark w-100 h-100"
-                    src="<%= model.image_url %>"
-                />
+              <%= image_tag(model.image_url.url, alt: model.title || "Image of @album > #{model.album.title}", class: 'mw-100 mh-100 h-auto') if model.image_url? %>
 
                 <!-- <button -->
                 <!--     class="btn btn-white text-white" -->

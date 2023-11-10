@@ -18,17 +18,14 @@ class AlbumsController < ApplicationController
     @albums = current_user.albums
   end
 
-  # GET /albums/1/edit
   def edit
-    if correct_user && correct_user.id = @album.user_id
-      redirect_to :show
-    end
+    redirect_to :show if correct_user && correct_user.id == @album.user_id
   end
 
   def create
     @album = current_user.albums.build(album_params)
     if @album.save
-      redirect_to '/u/albums', notice: "Album was successfully created."
+      redirect_to edit_album_url(@album), notice: 'Album was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,12 +34,10 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        # format.html { redirect_to album_url(@album), notice: "Album was successfully updated." }
-        format.html { redirect_to '/u/albums', notice: "Album was successfully updated." }
-        format.json { render :show, status: :ok, location: @album }
+        notice_msg = !built_photo.save ? 'Failed to save image' : 'Album was successfully updated.'
+        format.html { redirect_to edit_album_url(@album), notice: notice_msg }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, notice: 'Failed to save album' }
       end
     end
   end
@@ -51,7 +46,7 @@ class AlbumsController < ApplicationController
     @album.destroy!
 
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
+      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -61,13 +56,17 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
+  def built_photo
+    @album.photos.build(user_id: @album.user_id, image_url: params[:album][:photo_image])
+  end
+
   def album_params
     params.require(:album).permit(:title, :description, :is_public)
   end
 
   def correct_user
     @album = current_user.albums.find_by(id: params[:id])
-    redirect_to albums_path, notice: "Not Authorized" if @album.nil?
+    redirect_to albums_path, notice: 'Not Authorized' if @album.nil?
   end
 
 end

@@ -40,14 +40,22 @@
     </div>
 
     <div class="d-flex flex-column">
-      <div class="d-flex mb-3">
+      <div class="d-flex mb-3 flex-wrap">
         <% album.photos && album.photos.each do |photo| %>
-          <div style='width: 200px; height: 200px' class='border border-secondary'>
+          <div style='width: 200px; height: 200px' class='border border-secondary mr-4 mb-4 shadow rounded-lg overflow-hidden'>
             <img src="<%= photo.image_url %>" class="w-100 h-100" />
           </div>
         <% end %>
-        <div style='width: 200px; height: 200px' class='border border-secondary ms-3'>
+
+        <div
+          style='width: 200px; color: gray; height: 200px; border: 3px dashed gray'
+          class='rounded-lg d-flex justify-content-center align-items-center position-relative'
+        >
+          <%= form.label :photo_image, "+", class: "h1 w-100 h-100 d-flex justify-content-center align-items-center", style: "cursor: pointer" %>
+          <%= form.file_field :photo_image, multiple: false, class: "sr-only file__input" %>
+          <img src="" class="preview__image w-100 h-100 d-none position-absolute" />
         </div>
+
       </div>
 
       <div class='me-auto d-flex'>
@@ -65,9 +73,17 @@
 
 <% end %>
 
-<%= form_with model: [ @album, @album.photos.build ] do |form| %>
-  <p>
-  <%= form.submit 'Add image' %>
-  </p>
-<% end %>
+<script>
+  const input = document.querySelector('.file__input');
+  const image = document.querySelector('.preview__image');
+
+  input.addEventListener('change', (e) => {
+    if (e.target.files.length) {
+      const src = URL.createObjectURL(e.target.files[0]);
+      image.src = src;
+      image.classList.toggle('d-none')
+    }
+  });
+
+</script>
 
