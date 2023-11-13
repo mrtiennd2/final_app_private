@@ -9,7 +9,7 @@
         <p> No photos </p>
     <% else  %>
     <div class='d-flex flex-row'>
-        <%= render @album.photos %>
+        <%= render @album.photos.where(is_public: true) %>
     </div>
     <% end %>
 

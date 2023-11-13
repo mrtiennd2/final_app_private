@@ -1,0 +1,35 @@
+fr:
+  devise:
+    sessions:
+      new:
+        title: "Fotobook Signin (fr)"
+    registrations:
+      new:
+        title: "Fotobook Signup (fr)"
+
+  # attributes:
+  #   email: Email (fr)
+  #   first_name: First Name (fr)
+  #   last_name: Last Name (fr)
+  #   password: Password (fr)
+  #   password_confirmation: Password confirmation (fr)
+
+  activerecord:
+    attributes:
+      user:
+        email: Email (fr)
+        first_name: First Name (fr)
+        last_name: Last Name (fr)
+        password: Password (fr)
+        password_confirmation: Password confirmation (fr)
+
+  errors:
+    messages:
+      blank: 'cannot be blank (fr)'
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+

@@ -3,5 +3,5 @@ class Album < ApplicationRecord
   has_many :photos, dependent: :destroy
 
   validates :title, presence: true
-  validates :photos, presence: { message: 'Album needs to have photo' }
+  # validates :photos, presence: { message: 'Album needs to have photo' }
 end

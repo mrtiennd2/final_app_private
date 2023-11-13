@@ -28,4 +28,38 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  devise:
+    sessions:
+      new:
+        title: "Fotobook Signin (en)"
+    registrations:
+      new:
+        title: "Fotobook Signup (en)"
+
+  # attributes:
+  #   email: Email (en)
+  #   first_name: First Name (en)
+  #   last_name: Last Name (en)
+  #   password: Password (en)
+  #   password_confirmation: Password confirmation (en)
+
+  activerecord:
+    attributes:
+      user:
+        email: Email (en)
+        first_name: First Name (en)
+        last_name: Last Name (en)
+        password: Password (en)
+        password_confirmation: Password confirmation (en)
+
+  errors:
+    messages:
+      blank: 'cannot be blank (en)'
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+
