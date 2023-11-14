@@ -1,15 +1,17 @@
 class PhotosController < ApplicationController
+  layout 'index_with_pagination', only: %i[index]
+
   before_action :set_photo, only: %i[edit update destroy]
   before_action :authenticate_user!, except: [:index]
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @photos = Photo.public_mode.where(album_id: nil)
+    @photos = Photo.public_mode.where(album_id: nil).page(params[:page])
   end
 
   def user_photos
     sharing_mode = params[:mode]
-    user_photos = current_user.photos.where(album_id: nil)
+    user_photos = current_user.photos.where(album_id: nil).page(params[:page])
 
     @photos =
       if sharing_mode == 'public'
@@ -22,7 +24,7 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @photo = Photo.new
+    @photo = current_user.photos.build
   end
 
   def create
@@ -35,6 +37,7 @@ class PhotosController < ApplicationController
   end
 
   def edit
+    redirect_to :index if correct_user && correct_user.id == @album.user_id
   end
 
   def update

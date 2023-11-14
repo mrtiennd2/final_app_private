@@ -1,10 +1,16 @@
 class AlbumsController < ApplicationController
+  layout 'index_with_pagination', only: %i[index]
+
   before_action :set_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @albums = Album.where(is_public: true)
+    @albums = Album.where(is_public: true).page(params[:page])
+  end
+
+  def user_albums
+    @albums = current_user.albums.page(params[:page])
   end
 
   def show
@@ -12,10 +18,6 @@ class AlbumsController < ApplicationController
 
   def new
     @album = current_user.albums.build
-  end
-
-  def user_albums
-    @albums = current_user.albums
   end
 
   def edit

@@ -43,6 +43,8 @@ en:
   #   password: Password (en)
   #   password_confirmation: Password confirmation (en)
 
+  search_box_placeholder: Search Photos / Albums
+
   my_photos: My Photos (en)
   my_albums: My Albums (en)
   photo: Photo (en)

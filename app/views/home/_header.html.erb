@@ -8,7 +8,7 @@
     </button>
 
     <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search photos and albums" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="<%= t('search_box_placeholder') %> " aria-label="Search">
         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
           <%= t('search')  %>
         </button>
@@ -24,7 +24,7 @@
     </div>
 
     <% else %>
-        <a href="/users/sign_in" class="btn btn-primary">Login</a>
+        <a href="/users/sign_in" class="ml-auto btn btn-primary">Login</a>
     <% end %>
 </nav>
 
