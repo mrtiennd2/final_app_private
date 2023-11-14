@@ -1,23 +1,10 @@
 <div class="card d-flex flex-row mb-2 flex-wrap">
-    <div class="p-2", style="width:200px; height: 200px">
-        <img
-            class="border border-dark w-100 h-100"
-            src="<%= album.photos.size > 0 && album.photos.first.image_url %>"
-        />
-    </div>
-
-    <div class="card-body">
-        <h5 class="text text-primary">
-            <%= album.user.email %>
-        </h5>
-
-        <hr />
-
-        <h5>
+    <div class="card-body border-0">
+        <h3>
             <strong>
                 <%= album.title %>
             </strong>
-        </h5>
+        </h3>
 
         <p>
             <%= album.description %>
@@ -25,18 +12,15 @@
 
         <hr />
 
-        <div class="d-flex flex-row justify-items-between">
-            <!-- <p class="ms-auto"> -->
-            <!--     <small> -->
-            <!--         <%= album.created_at %> -->
-            <!--     </small> -->
-            <!-- </p> -->
-            <p class="ms-auto">
-                <small>
-                    <%= album.created_at %>
-                </small>
-            </p>
-        </div>
+        <p class='text text-primary h4'>
+          <strong><%= album.user.email %></strong>
+        </p>
+
+        <p class='text text primary p-0 m-0'>
+          <small>
+            <%= album.created_at %>
+          </small>
+        </p>
     </div>
 </div>
 

@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
 
   def user_photos
     sharing_mode = params[:mode]
-    user_photos = current_user.photos.where(album_id: nil) # only get photos that don't exist in album
+    user_photos = current_user.photos.where(album_id: nil)
 
     @photos =
       if sharing_mode == 'public'
@@ -30,7 +30,7 @@ class PhotosController < ApplicationController
     if @photo.save
       redirect_to '/u/photos', notice: 'New photo added'
     else
-      render :new, status: :unprocessable_entity, notice: 'Something wrong!'
+      redirect_to new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
     end
   end
 
@@ -47,7 +47,11 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo.destroy!
-    redirect_to '/u/photos', notice: 'Photo was successfully destroyed.'
+    if @photo.album_id
+      redirect_to edit_album_path(@photo.album_id)
+    else
+      redirect_to '/u/photos', notice: 'Photo was successfully destroyed.'
+    end
   end
 
   private

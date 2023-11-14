@@ -1,27 +1,24 @@
 <div class='h-100 w-75 mx-auto shadow-sm bg-white rounded'>
-    <div class='d-flex justify-content-center py-3'>
-        <a class="btn btn-primary mx-2" href="/photos">Photo</a>
-        <a class="btn btn-secondary mx-2" href="/albums">Album</a>
-    </div>
+  <%= render('shared/upper_options') %>
 
-    <hr />
+  <hr />
 
-    <div class='d-flex w-100 flex-wrap justify-content-center'>
-        <% @photos.each do |photo|  %>
-            <%= render "/home/collection_item", model: photo, :locals => {:model_image_url => photo.image_url} %>
-            <%= render 'photos/photo_model', model: photo  %>
-        <% end %>
-    </div>
+  <div class='d-flex w-100 flex-wrap justify-content-center'>
+    <% @photos.each do |photo|  %>
+      <%= render "/home/collection_item", model: photo, :locals => {:model_image_url => photo.image_url} %>
+      <%= render 'photos/photo_model', model: photo  %>
+    <% end %>
+  </div>
 
-    <!-- <nav aria-label="Page navigation example" class='d-flex justify-content-center align-items-center w-100 my-3'> -->
-    <!--     <ul class="pagination" style='margin: 0 auto'> -->
-    <!--         <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
-    <!--         <li class="page-item"><a class="page-link" href="#">1</a></li> -->
-    <!--         <li class="page-item"><a class="page-link" href="#">2</a></li> -->
-    <!--         <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-    <!--         <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
-    <!--     </ul> -->
-    <!-- </nav> -->
+  <!-- <nav aria-label="Page navigation example" class='d-flex justify-content-center align-items-center w-100 my-3'> -->
+  <!--     <ul class="pagination" style='margin: 0 auto'> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+  <!--         <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+  <!--     </ul> -->
+  <!-- </nav> -->
 
 
 </div>

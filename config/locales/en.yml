@@ -43,6 +43,50 @@ en:
   #   password: Password (en)
   #   password_confirmation: Password confirmation (en)
 
+  my_photos: My Photos (en)
+  my_albums: My Albums (en)
+  photo: Photo (en)
+  album: Album (en)
+  feeds: Feeds (en)
+  search: Search (en)
+  add: Add (en)
+  edit: Edit (en)
+  update: Update (en)
+  delete: Delete (en)
+  remove: Remove (en)
+  add_new_photo: Add new photo (en)
+  add_new_album: Add new album (en)
+
+  my_photos: My photos (en)
+  my_albums: My albums (en)
+
+  all: All (en)
+  public_mode: Public (en)
+  private_mode: Private (en)
+  sharing_mode: Sharing mode (en)
+
+  albums:
+    user_albums:
+      title: My albums (en)
+    edit:
+      title: Edit albums (en)
+      sharing_mode: Sharing mode (en)
+    new:
+      title: New albums (en)
+      sharing_mode: Sharing mode (en)
+    show:
+      photos: Photos in this album (en)
+
+  photos:
+    user_photos:
+      title: My photos (en)
+    edit:
+      title: Edit photo (en)
+      sharing_mode: Sharing mode (en)
+    new:
+      title: New photo (en)
+      sharing_mode: Sharing mode (en)
+
   activerecord:
     attributes:
       user:
@@ -51,6 +95,12 @@ en:
         last_name: Last Name (en)
         password: Password (en)
         password_confirmation: Password confirmation (en)
+      photo:
+        title: Title (en)
+        description: Description (en)
+      album:
+        title: Title (en)
+        description: Description (en)
 
   errors:
     messages:

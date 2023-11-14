@@ -9,49 +9,15 @@
 
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search photos and albums" aria-label="Search">
-        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
+          <%= t('search')  %>
+        </button>
     </form>
 
-    <div class="navbar mr-auto" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item"> -->
-            <!--     <a class="nav-link" href="/photos">Photos</a> -->
-            <!-- </li> -->
-
-            <!-- <% if user_signed_in? %> -->
-            <!--     <li class="nav-item"> -->
-            <!--         <a class="nav-link" href="/users/edit">Profile</a> -->
-            <!--     </li> -->
-            <!-- <% end %> -->
-            <!-- <li class="nav-item"> -->
-            <!--     <a class="nav-link" href="/home">Feeds</a> -->
-            <!-- </li> -->
-            <!---->
-            <!-- <li class="nav-item"> -->
-            <!--     <a class="nav-link" href="/u/photos">My Photos</a> -->
-            <!-- </li> -->
-            <!---->
-            <!-- <li class="nav-item"> -->
-            <!--     <a class="nav-link" href="/u/albums">My Albums</a> -->
-            <!-- </li> -->
-            <!-- <li class="nav-item dropdown"> -->
-            <!--     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-            <!--         Dropdown -->
-            <!--     </a> -->
-            <!--     <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-            <!--         <a class="dropdown-item" href="#">Action</a> -->
-            <!--         <a class="dropdown-item" href="#">Another action</a> -->
-            <!--         <div class="dropdown-divider"></div> -->
-            <!--         <a class="dropdown-item" href="#">Something else here</a> -->
-            <!--     </div> -->
-            <!-- </li> -->
-        </ul>
-    </div>
-
     <% if user_signed_in? %>
-    <div class='d-flex align-items-center'>
-        <a  href="/users/edit" class="btn btn-primary mx-2">
-            <strong>(you)</strong> <%= current_user.email %>
+    <div class='d-flex align-items-center ml-auto'>
+        <a href="/users/edit" class="btn btn-primary mx-2">
+          <%= current_user.email %>
         </a>
 
         <%= button_to "Log out", destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-dark' %>

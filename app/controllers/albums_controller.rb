@@ -60,7 +60,7 @@ class AlbumsController < ApplicationController
 
   def built_photo
     photo_image = params[:album][:photo_image]
-    photo_image && @album.photos.build(user_id: @album.user_id, image_url: photo_image)
+    photo_image && @album.photos.build(user_id: @album.user_id, is_public: @album.is_public, image_url: photo_image)
   end
 
   def album_params

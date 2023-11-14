@@ -1,30 +1,30 @@
 <div class='h-100 w-75 bg-white mx-auto p-3'>
     <div class='w-100 d-flex justify-content-between'>
         <p class='h4'>
-            <strong>My Photos</strong>
+            <strong> <%= t('.title') %> </strong>
         </p>
 
         <div>
             <a href='/u/photos/' class='ms-auto btn btn-primary text text-white'>
                 <strong>
-                    All
+                  <%= t('all') %>
                 </strong>
             </a>
             <a href='/u/photos/m/public' class='ms-auto btn btn-primary text text-white'>
                 <strong>
-                    Public
+                  <%= t('public') %>
                 </strong>
             </a>
             <a href='/u/photos/m/private' class='ms-auto btn btn-primary text text-white'>
                 <strong>
-                    Private
+                  <%= t('private') %>
                 </strong>
             </a>
         </div>
 
         <a href='/photos/new' class='ms-auto btn btn-success text text-white'>
             <strong>
-                Add New Photo
+                <%= t('add_new_photo') %>
             </strong>
         </a>
     </div>

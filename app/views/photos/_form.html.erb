@@ -22,9 +22,9 @@
 
       <div class="field form-group mb-3">
         <strong>
-          <%= form.label :is_public, 'Sharing mode' %>
+          <%= form.label :is_public, t('sharing_mode') %>
         </strong>
-        <%= form.collection_select(:is_public, [['Private', false], ['Public', true]], :second, :first, {}, class: 'custom-select') %>
+        <%= form.collection_select(:is_public, [[t('private_mode'), false], [t('public_mode'), true]], :second, :first, {}, class: 'custom-select') %>
       </div>
 
       <%= render("shared/image_uploader", form: form, file_field_name: :image_url, photo: photo) %>
