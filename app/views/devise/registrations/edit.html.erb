@@ -1,12 +1,19 @@
 <div class='h-100 w-75 bg-white mx-auto p-3'>
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <p class='h4'><strong>Edit <%= resource_name.to_s.humanize %></strong></p>
 
     <hr />
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'mx-auto' }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="form-group row mx-auto">
+      <div class="form-group row">
+        <%= f.label :avatar, class: "col-sm-3 col-form-label fw-bold", style: 'text-align: end; font-weight: bold' %>
+        <div class="col-sm-5">
+          <%= f.text_field :avatar, autofocus: true, autocomplete: "first_name", class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row">
         <%= f.label :first_name, class: "col-sm-3 col-form-label fw-bold", style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'form-control' %>
@@ -24,6 +31,13 @@
         <%= f.label :email, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :email, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
+        <div class="col-sm-5">
+          <%= f.text_field :is_admin, autofocus: true, autocomplete: "email", class: 'form-control' %>
         </div>
       </div>
 

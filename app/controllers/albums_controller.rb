@@ -1,6 +1,5 @@
 class AlbumsController < ApplicationController
-  layout 'index_with_pagination', only: %i[index]
-
+  before_action :set_index_layout, only: %i[index]
   before_action :set_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]
@@ -13,8 +12,7 @@ class AlbumsController < ApplicationController
     @albums = current_user.albums.page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @album = current_user.albums.build
@@ -72,5 +70,13 @@ class AlbumsController < ApplicationController
   def correct_user
     @album = current_user.albums.find_by(id: params[:id])
     redirect_to albums_path, notice: 'Not Authorized' if @album.nil?
+  end
+
+  def set_index_layout
+    if current_user&.is_admin
+      self.class.layout 'admin/main'
+    else
+      self.class.layout 'index_with_pagination'
+    end
   end
 end

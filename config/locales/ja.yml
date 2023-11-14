@@ -14,6 +14,52 @@ ja:
   #   password: Password (ja)
   #   password_confirmation: Password confirmation (ja)
 
+  search_box_placeholder: Search Photos / Albums
+
+  my_photos: My Photos (ja)
+  my_albums: My Albums (ja)
+  photo: Photo (ja)
+  album: Album (ja)
+  feeds: Feeds (ja)
+  search: Search (ja)
+  add: Add (ja)
+  edit: Edit (ja)
+  update: Update (ja)
+  delete: Delete (ja)
+  remove: Remove (ja)
+  add_new_photo: Add new photo (ja)
+  add_new_album: Add new album (ja)
+
+  my_photos: My photos (ja)
+  my_albums: My albums (ja)
+
+  all: All (ja)
+  public_mode: Public (ja)
+  private_mode: Private (ja)
+  sharing_mode: Sharing mode (ja)
+
+  albums:
+    user_albums:
+      title: My albums (ja)
+    edit:
+      title: Edit albums (ja)
+      sharing_mode: Sharing mode (ja)
+    new:
+      title: New albums (ja)
+      sharing_mode: Sharing mode (ja)
+    show:
+      photos: Photos in this album (ja)
+
+  photos:
+    user_photos:
+      title: My photos (ja)
+    edit:
+      title: Edit photo (ja)
+      sharing_mode: Sharing mode (ja)
+    new:
+      title: New photo (ja)
+      sharing_mode: Sharing mode (ja)
+
   activerecord:
     attributes:
       user:
@@ -22,6 +68,12 @@ ja:
         last_name: Last Name (ja)
         password: Password (ja)
         password_confirmation: Password confirmation (ja)
+      photo:
+        title: Title (ja)
+        description: Description (ja)
+      album:
+        title: Title (ja)
+        description: Description (ja)
 
   errors:
     messages:
