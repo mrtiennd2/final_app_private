@@ -7,7 +7,10 @@
         style='width: 40px; height: 40px; border-radius: 100%; color: #3269a8'
         >
         <strong>
-          <%= current_user.first_name.first.upcase %><%= current_user.last_name.first.upcase %>
+          <%  fst_char = current_user.first_name? ? current_user.first_name.first.upcase : "" %>
+          <%  snd_char = current_user.last_name? ? current_user.last_name.first.upcase : "" %>
+          <%  alt_str = fst_char + snd_char %>
+          <%= alt_str %>
         </strong>
       </a>
     <% else %>
@@ -20,7 +23,8 @@
     <% end %>
     <a href="<%= edit_user_registration_path %>" class="btn mr-5 text-white">
       <strong>
-        <%= current_user.first_name %> <%= current_user.last_name %>
+        <% display_name = current_user.first_name + " " + current_user.last_name %>
+        <%= display_name %>
       </strong>
     </a>
     <%= button_to "Log out", destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn text text-white', style: 'font-weight: bold' %>
