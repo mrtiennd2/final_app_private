@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_index_layout, only: %i[index]
+  # before_action :set_index_layout, only: %i[index]
   before_action :set_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]

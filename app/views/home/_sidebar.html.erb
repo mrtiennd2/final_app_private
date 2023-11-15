@@ -1,27 +1,32 @@
-<nav id="sidebar" class="bg-light sidebar position-absolute top-0 start-0 bg-transparent text-dark">
+<% if user_signed_in? %>
+  <% at_feeds = controller_name.in?('photos') && action_name.in?('index') ? 'text-primary' : 'text-secondary' %>
+  <% at_my_photos = controller_name.in?('photos') && action_name.in?('user_photos') ? 'text-primary' : 'text-secondary' %>
+  <% at_my_albums = controller_name.in?('albums') && action_name.in?('user_albums') ? 'text-primary' : 'text-secondary' %>
+  <nav id="sidebar" class="bg-light sidebar position-absolute top-0 start-0 bg-transparent">
     <div class="position-sticky">
-        <ul class="nav flex-column p-3">
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    <strong>
-                      <%= t('feeds') %>
-                    </strong>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/u/photos">
-                    <strong>
-                      <%= t('my_photos') %>
-                    </strong>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/u/albums">
-                    <strong>
-                      <%= t('my_albums') %>
-                    </strong>
-                </a>
-            </li>
-        </ul>
+      <ul class="nav flex-column px-3">
+        <li class="nav-item">
+          <a class="nav-link text <%= at_feeds %>" href="/">
+            <strong>
+              <%= t('feeds') %>
+            </strong>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text <%= at_my_photos %>" href="/u/photos">
+            <strong>
+              <%= t('my_photos') %>
+            </strong>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text <%= at_my_albums %>" href="/u/albums">
+            <strong>
+              <%= t('my_albums') %>
+            </strong>
+          </a>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>
+<% end %>

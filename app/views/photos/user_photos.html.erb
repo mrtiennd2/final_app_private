@@ -4,23 +4,23 @@
             <strong> <%= t('.title') %> </strong>
         </p>
 
-        <div>
-            <a href='/u/photos/' class='ms-auto btn btn-primary text text-white'>
-                <strong>
-                  <%= t('all') %>
-                </strong>
-            </a>
-            <a href='/u/photos/m/public' class='ms-auto btn btn-primary text text-white'>
-                <strong>
-                  <%= t('public_mode') %>
-                </strong>
-            </a>
-            <a href='/u/photos/m/private' class='ms-auto btn btn-primary text text-white'>
-                <strong>
-                  <%= t('private_mode') %>
-                </strong>
-            </a>
-        </div>
+        <!-- <div> -->
+        <!--     <a href='/u/photos/' class='ms-auto btn btn-primary text text-white'> -->
+        <!--         <strong> -->
+        <!--           <%= t('all') %> -->
+        <!--         </strong> -->
+        <!--     </a> -->
+        <!--     <a href='/u/photos/m/public' class='ms-auto btn btn-primary text text-white'> -->
+        <!--         <strong> -->
+        <!--           <%= t('public_mode') %> -->
+        <!--         </strong> -->
+        <!--     </a> -->
+        <!--     <a href='/u/photos/m/private' class='ms-auto btn btn-primary text text-white'> -->
+        <!--         <strong> -->
+        <!--           <%= t('private_mode') %> -->
+        <!--         </strong> -->
+        <!--     </a> -->
+        <!-- </div> -->
 
         <a href='/photos/new' class='ms-auto btn btn-success text text-white'>
             <strong>
@@ -31,7 +31,7 @@
 
     <hr />
 
-    <div class='d-flex flex-wrap justify-content-center'>
+    <div class='d-flex flex-wrap justify-content-start'>
         <%= render @photos  %>
     </div>
 
