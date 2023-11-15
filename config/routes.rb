@@ -3,7 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  get '/test', to: 'home#index'
+  authenticate :user, ->(u) { u.is_admin } do
+    namespace :admin do
+      resources :dashboard, only: [:index]
+    end
+  end
+
+  get '/home/index/', to: 'home#index'
 
   get '/u/albums(/m/:mode)', to: 'albums#user_albums'
   get '/u/photos(/m/:mode)', to: 'photos#user_photos'

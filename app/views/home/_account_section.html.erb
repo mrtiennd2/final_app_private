@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class='d-flex align-items-center ml-auto'>
-    <% if !current_user.avatar %>
+    <% if current_user&.avatar %>
       <a
         href="<%= edit_user_registration_path %>",
         class='bg-white d-flex justify-content-center align-items-center text-decoration-none'
