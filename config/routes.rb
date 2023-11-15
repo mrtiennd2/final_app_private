@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   root 'photos#index'
 
-  # devise_for :users, controllers: { registrations: 'registrations' }
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
-  get '/home/index/', to: 'home#index'
+  get '/test', to: 'home#index'
 
   get '/u/albums(/m/:mode)', to: 'albums#user_albums'
   get '/u/photos(/m/:mode)', to: 'photos#user_photos'

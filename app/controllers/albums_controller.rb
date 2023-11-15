@@ -1,5 +1,7 @@
 class AlbumsController < ApplicationController
-  before_action :set_index_layout, only: %i[index]
+  layout 'index_with_pagination', only: :index
+
+  # before_action :set_index_layout, only: %i[index]
   before_action :set_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]
@@ -73,8 +75,12 @@ class AlbumsController < ApplicationController
   end
 
   def set_index_layout
-    if current_user&.is_admin?
-      self.class.layout 'admin/main'
+    if user_signed_in? == false
+      if current_user.is_admin
+        self.class.layout 'admin/main'
+      else
+        self.class.layout 'index_with_pagination'
+      end
     else
       self.class.layout 'index_with_pagination'
     end

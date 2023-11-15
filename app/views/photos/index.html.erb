@@ -1,6 +1,6 @@
 <div class='d-flex w-100 flex-wrap justify-content-center'>
-  <% @photos.each do |photo|  %>
-    <%= render "/home/collection_item", model: photo, :locals => {:model_image_url => photo.image_url} %>
-    <%= render 'photos/photo_model', model: photo  %>
+  <% @photos.each do |photo| %>
+    <%= render "home/collection_item", model: photo, modal_data_target: "#photoModalCenter#{photo.id}", model_image_url: photo.image_url %>
+    <%= render 'photos/photo_modal', model: photo  %>
   <% end %>
 </div>

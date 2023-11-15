@@ -1,0 +1,33 @@
+<div
+  class="modal fade"
+  id="photoModalCenter<%= model.id %>"
+  tabindex="-1" role="dialog"
+  aria-labelledby="photoModalCenter<%= model.id %>"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered position-relative" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="photoModalCenter<%= model.id %>">
+          <%= model.title %>
+        </h5>
+      </div>
+      <div class="modal-body position-relative">
+        <%= image_tag(model.image_url.url, alt: model.title || "Image of @album > #{model.album.title}", class: 'mw-100 mh-100 h-auto') if model.image_url? %>
+      </div>
+
+      <div class="modal-footer w-100">
+        <p class='mr-auto'><%= model.description %></p>
+      </div>
+
+      <button
+        data-dismiss="modal"
+        class="btn btn-white"
+        style="position: absolute; top: 0; right: 0"
+        >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+  </div>
+</div>

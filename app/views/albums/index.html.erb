@@ -1,8 +1,7 @@
 <div class='d-flex w-100 flex-wrap justify-content-center'>
   <% @albums.each do |album|  %>
-    <%= link_to album, class: 'text-decoration-none text text-dark' do %>
-      <%= render "/home/collection_item", model: album, :locals => {:model_image_url => album.photos.size > 0 && album.photos.first.image_url} %>
-    <% end %>
+    <%= render "home/collection_item", model: album, modal_data_target: "#albumModalCenter#{album.id}", model_image_url: album.photos.size > 0 && album.photos.first.image_url %>
+    <%= render 'albums/album_modal', model: album %>
   <% end %>
 </div>
 
