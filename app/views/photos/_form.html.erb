@@ -43,9 +43,9 @@
   <hr />
 
   <div class='mx-3'>
-    <%= form.submit 'Save', class: 'btn btn-info'%>
+    <%= form.submit t('save'), class: 'btn btn-primary'%>
     <% if controller_name == "photos" && action_name == "edit" %>
-      <%= link_to 'Delete', photo, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
+      <%= link_to t('delete'), photo, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
     <% end %>
   </div>
 

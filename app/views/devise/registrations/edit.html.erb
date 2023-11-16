@@ -1,5 +1,5 @@
 <div class='h-100 w-75 bg-white mx-auto p-3'>
-    <p class='h5'><strong>Edit <%= resource_name.to_s.humanize.downcase + ' profile '%></strong></p>
+    <p class='h5'><strong> <%= t('edit_user_profile')  %> </strong></p>
 
     <hr />
 
@@ -72,7 +72,7 @@
       <div class="form-group row d-flex justify-content-center">
         <div class="col-sm-3 col-form-label text-end"></div>
         <div class="col-sm-5">
-          <%= f.submit "Update", class: 'btn btn-primary mx-auto' %>
+          <%= f.submit t('update'), class: 'btn btn-primary mx-auto' %>
         </div>
       </div>
     <% end %>

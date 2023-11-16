@@ -61,9 +61,9 @@
       </div>
 
       <div class='me-auto d-flex'>
-        <%= form.submit 'Save', class: 'btn btn-primary mr-2' %>
+        <%= form.submit t('save'), class: 'btn btn-primary mr-2' %>
         <% if controller_name == "albums" && action_name == "edit" %>
-          <%= link_to 'Delete', album, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
+          <%= link_to t('delete'), album, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn btn-danger' %>
         <% end %>
       </div>
 
