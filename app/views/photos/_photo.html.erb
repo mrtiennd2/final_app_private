@@ -17,7 +17,7 @@
   <img
   class="border border-dark w-100 h-100"
   data-toggle="modal"
-  data-target="#exampleModalCenter<%= photo.id %>"
+  data-target="#photoModalCenter<%= photo.id %>"
   src="<%= photo.image_url %>"
   />
 
@@ -30,6 +30,6 @@
     </div>
   <% end %>
 
-  <%= render 'photos/photo_model', model: photo  %>
+  <%= render 'photos/photo_modal', model: photo  %>
 </div>
 

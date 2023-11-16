@@ -1,21 +1,28 @@
 class AlbumsController < ApplicationController
+  layout 'index_with_pagination', only: %i[index user_albums]
+
+  # before_action :set_index_layout, only: %i[index]
   before_action :set_album, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @albums = Album.where(is_public: true)
-  end
-
-  def show
-  end
-
-  def new
-    @album = current_user.albums.build
+    @albums = Album.where(is_public: true).page(params[:page])
   end
 
   def user_albums
-    @albums = current_user.albums
+    @albums =
+      if current_user.is_admin
+        Album.all.page(params[:page])
+      else
+        current_user.albums.page(params[:page])
+      end
+  end
+
+  def show; end
+
+  def new
+    @album = current_user.albums.build
   end
 
   def edit
@@ -68,7 +75,19 @@ class AlbumsController < ApplicationController
   end
 
   def correct_user
-    @album = current_user.albums.find_by(id: params[:id])
+    @album = current_user.albums.find_by(id: params[:id]) unless current_user.is_admin
     redirect_to albums_path, notice: 'Not Authorized' if @album.nil?
+  end
+
+  def set_index_layout
+    if user_signed_in? == false
+      if current_user.is_admin
+        self.class.layout 'admin/main'
+      else
+        self.class.layout 'index_with_pagination'
+      end
+    else
+      self.class.layout 'index_with_pagination'
+    end
   end
 end

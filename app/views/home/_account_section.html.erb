@@ -1,0 +1,40 @@
+<% if user_signed_in? %>
+  <div class='d-flex align-items-center ml-auto'>
+    <% if !current_user&.avatar? %>
+      <a
+        href="<%= edit_user_registration_path %>",
+        class='bg-white d-flex justify-content-center align-items-center text-decoration-none'
+        style='width: 40px; height: 40px; border-radius: 100%; color: #3269a8'
+        >
+        <strong>
+          <%  fst_char = current_user.first_name? ? current_user.first_name.first.upcase : "" %>
+          <%  snd_char = current_user.last_name? ? current_user.last_name.first.upcase : "" %>
+          <%  alt_str = fst_char + snd_char %>
+          <%= alt_str %>
+        </strong>
+      </a>
+    <% else %>
+      <div style='width: 40px; height: 40px; border: 1px solid black; border-radius: 100%; overflow: hidden'>
+        <%= link_to edit_user_registration_path do %>
+          <img
+            class="w-100 h-100"
+            src="<%= current_user.avatar %>"
+          />
+        <% end %>
+      </div>
+    <% end %>
+    <a href="<%= edit_user_registration_path %>" class="btn mr-5 text-white">
+      <strong>
+        <% fname = current_user.first_name || " " %>
+        <% lname = current_user.last_name || " " %>
+        <% display_name = fname + " " + lname %>
+        <%= display_name %>
+      </strong>
+    </a>
+    <%= button_to t('logout'), destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn text text-white', style: 'font-weight: bold' %>
+  </div>
+<% else %>
+  <a href="/users/sign_in" class="ml-auto btn text-white" style='font-weight: bold'>
+    <%= t('login')  %>
+  </a>
+<% end %>

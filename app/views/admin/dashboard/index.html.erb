@@ -1,0 +1,8 @@
+<div class='h-100 w-75 bg-white mx-auto p-3'>
+  <div class='h-100 d-flex flex-column align-items-center'>
+    <%= render 'dashboard', collection: @users %>
+    <div class='mt-auto'>
+      <%= paginate @users %>
+    </div>
+  </div>
+</div>

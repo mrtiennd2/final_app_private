@@ -16,24 +16,24 @@
   </div>
 
   <div class="field form-label mb-3">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg', placeholder: 'Email' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg', placeholder: t('email') %>
   </div>
 
   <div class="field form-label mb-3">
     <strong>
-      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-lg', placeholder: 'Password' %>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-lg', placeholder: t('password') %>
     </strong>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field mb-3">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label t('remember_me') %>
     </div>
   <% end %>
 
   <div class="actions d-flex flex-column my-4 w-25 mx-auto">
-    <%= f.submit "Log in", class: 'btn btn-primary' %>
+    <%= f.submit t('login'), class: 'btn btn-primary' %>
   </div>
 
   <div class="mx-auto w-100 text-center">

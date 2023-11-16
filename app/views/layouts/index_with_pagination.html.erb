@@ -22,13 +22,29 @@
           <%= render 'home/sidebar' %>
         <% end %>
 
-        <%= yield %>
+        <div class='w-75 mx-auto shadow-sm bg-white rounded' style='height: 90%'>
+          <%= render('shared/upper_options') %>
+          <div class='d-flex flex-column w-100 h-100'>
+            <%= yield %>
+
+            <div class='d-flex justify-content-center align-items-center' style='margin-top: auto'>
+              <% if controller_name.in?(['albums']) && action_name.in?(['index', 'user_albums']) %>
+                <%= paginate @albums %>
+              <% elsif controller_name.in?(['photos']) && action_name.in?(['index', 'user_photos']) %>
+                <%= paginate @photos %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
 
       </div>
 
       <% if notice %>
         <%= render 'shared/alert' %>
       <% end %>
+
+      <%= render 'shared/locale_options' %>
     </div>
 
     <!-- Optional JavaScript -->

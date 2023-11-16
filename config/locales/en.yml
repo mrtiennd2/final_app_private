@@ -36,13 +36,22 @@ en:
       new:
         title: "Fotobook Signup (en)"
 
-  # attributes:
-  #   email: Email (en)
-  #   first_name: First Name (en)
-  #   last_name: Last Name (en)
-  #   password: Password (en)
-  #   password_confirmation: Password confirmation (en)
+  email: Email (en)
+  first_name: First Name (en)
+  last_name: Last Name (en)
+  last_login: Last login (en)
+  # password: Password (en)
+  # password_confirmation: Password confirmation (en)
 
+  admin:
+    manage_photos: Manage Photos (en)
+    manage_albums: Manage Albums (en)
+    manage_users: Manage Users (en)
+
+  search_box_placeholder: Search Photos / Albums (en)
+
+  photo: Photo (en)
+  album: Album (en)
   my_photos: My Photos (en)
   my_albums: My Albums (en)
   photo: Photo (en)
@@ -56,6 +65,12 @@ en:
   remove: Remove (en)
   add_new_photo: Add new photo (en)
   add_new_album: Add new album (en)
+
+  login: Login in (en)
+  logout: Login in (en)
+  signup: Sign up (en)
+  password: Password (en)
+  remember_me: Remember me (en)
 
   my_photos: My photos (en)
   my_albums: My albums (en)

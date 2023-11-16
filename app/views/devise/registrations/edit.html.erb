@@ -1,26 +1,43 @@
 <div class='h-100 w-75 bg-white mx-auto p-3'>
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <p class='h5'><strong>Edit <%= resource_name.to_s.humanize.downcase + ' profile '%></strong></p>
 
     <hr />
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'mx-auto' }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="form-group row mx-auto">
+      <div class="form-group row d-flex justify-content-center align-items-center">
+        <div class="col-sm-3 col-form-label fw-bold"></div>
+        <div class="col-sm-5">
+          <div
+            style='width: 150px; height: 150px; color: lightgray; border: 3px dashed gray;'
+            class='rounded-lg d-flex justify-content-center align-items-center position-relative bg-light'
+            >
+            <img
+              src="<%= current_user.avatar.url %>"
+              class="preview__image w-100 h-100 position-absolute"
+            />
+            <%= f.label :avatar, "", class: "position-absolute h1 w-100 h-100 d-flex justify-content-center align-items-center", style: "select: none; color: transparent; background: transparent; cursor: pointer; z-index: 2" %>
+            <%= f.file_field :avatar, multiple: false, class: "sr-only file__input" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row d-flex justify-content-center">
         <%= f.label :first_name, class: "col-sm-3 col-form-label fw-bold", style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'form-control' %>
         </div>
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row d-flex justify-content-center">
         <%= f.label :last_name, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'form-control' %>
         </div>
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row d-flex justify-content-center">
         <%= f.label :email, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
@@ -31,28 +48,28 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
-      <div class="form-group row">
+      <div class="form-group row d-flex justify-content-center">
         <%= f.label :password, 'New Password', class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
         </div>
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row d-flex justify-content-center">
         <%= f.label :password_confirmation, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
         <div class="col-sm-5">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
         </div>
       </div>
 
-      <div class="form-group row">
-        <%= f.label :current_password, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
-        <div class="col-sm-5">
-          <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
-        </div>
-      </div>
+      <!-- <div class="form-group row d-flex justify-content-center"> -->
+      <!--   <%= f.label :current_password, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %> -->
+      <!--   <div class="col-sm-5"> -->
+      <!--     <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %> -->
+      <!--   </div> -->
+      <!-- </div> -->
 
-      <div class="form-group row">
+      <div class="form-group row d-flex justify-content-center">
         <div class="col-sm-3 col-form-label text-end"></div>
         <div class="col-sm-5">
           <%= f.submit "Update", class: 'btn btn-primary mx-auto' %>
@@ -70,3 +87,18 @@
     <!-- </div> -->
 
 </div>
+
+<script defer>
+  (function() {
+    const fileInput = document.querySelector('.file__input');
+    const image = document.querySelector('.preview__image');
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) {
+        const src = URL.createObjectURL(e.target.files[0]);
+        image.src = src;
+        image.classList.remove('d-none');
+      }
+    });
+  })();
+</script>

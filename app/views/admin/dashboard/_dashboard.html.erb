@@ -1,0 +1,41 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= t('first_name') %>
+      </th>
+      <th scope="col">
+        <%= t('last_name') %>
+      </th>
+      <th scope="col">
+        <%= t('email') %>
+      </th>
+      <th scope="col">
+        <%= t('last_login') %>
+      </th>
+      <th scope="col">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% collection.each do |el| %>
+        <th scope="row">
+          <%= el.first_name %>
+        </th>
+        <td>
+          <%= el.last_name %>
+        </td>
+        <td>
+          <%= el.email %>
+        </td>
+        <td>
+          <%= el.last_sign_in_at %>
+        </td>
+        <td class='d-flex'>
+          <%= link_to "Edit", edit_admin_user_account_path(el.id), class: 'mr-2 btn btn-sm btn-success text text-white', style: 'font-weight: bold' %>
+          <%= button_to "Delete", '/', method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-sm btn-danger text text-white', style: 'font-weight: bold' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

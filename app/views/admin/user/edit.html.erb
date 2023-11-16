@@ -1,0 +1,89 @@
+<div class='h-100 w-75 bg-white mx-auto p-3 position-relative'>
+  <p class='h5'> <strong> Edit user account </strong> </p>
+
+  <hr />
+
+  <%= form_for @user, url: admin_user_account_path(@user.id) do |f| %>
+    <% if @user.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group row d-flex justify-content-center align-items-center">
+      <div class="col-sm-3 col-form-label fw-bold"></div>
+      <div class="col-sm-5">
+        <div
+          style='width: 150px; height: 150px; color: lightgray; border: 3px dashed gray;'
+          class='rounded-lg d-flex justify-content-center align-items-center position-relative bg-light'
+          >
+          <img
+          src="<%= current_user.avatar.url %>"
+          class="preview__image w-100 h-100 position-absolute"
+          />
+          <%= f.label :avatar, "", class: "position-absolute h1 w-100 h-100 d-flex justify-content-center align-items-center", style: "select: none; color: transparent; background: transparent; cursor: pointer; z-index: 2" %>
+          <%= f.file_field :avatar, multiple: false, class: "sr-only file__input" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+      <%= f.label :first_name, class: "col-sm-3 col-form-label fw-bold", style: 'text-align: end; font-weight: bold' %>
+      <div class="col-sm-5">
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+      <%= f.label :last_name, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
+      <div class="col-sm-5">
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+      <%= f.label :email, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
+      <div class="col-sm-5">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+      <%= f.label :password, class: 'col-sm-3 col-form-label text-end' , style: 'text-align: end; font-weight: bold' %>
+      <div class="col-sm-5">
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+      <div class="col-sm-3 col-form-label text-end"></div>
+      <div class="col-sm-5">
+        <%= f.submit "Update", class: 'btn btn-primary mx-auto' %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to "Back", :back, class: 'btn btn-primary', style: 'position: absolute; top: 0.75rem; right: 0.75rem' %>
+
+</div>
+
+<script defer>
+  (function() {
+    const fileInput = document.querySelector('.file__input');
+    const image = document.querySelector('.preview__image');
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) {
+        const src = URL.createObjectURL(e.target.files[0]);
+        image.src = src;
+        image.classList.remove('d-none');
+      }
+    });
+  })();
+</script>
