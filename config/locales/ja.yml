@@ -7,15 +7,22 @@ ja:
       new:
         title: "Fotobook Signup (ja)"
 
-  # attributes:
-  #   email: Email (ja)
-  #   first_name: First Name (ja)
-  #   last_name: Last Name (ja)
-  #   password: Password (ja)
-  #   password_confirmation: Password confirmation (ja)
+  email: Email (ja)
+  first_name: First Name (ja)
+  last_name: Last Name (ja)
+  last_login: Last login (ja)
+  # password: Password (ja)
+  # password_confirmation: Password confirmation (ja)
 
-  search_box_placeholder: Search Photos / Albums
+  admin:
+    manage_photos: Manage Photos (ja)
+    manage_albums: Manage Albums (ja)
+    manage_users: Manage Users (ja)
 
+  search_box_placeholder: Search Photos / Albums (ja)
+
+  photo: Photo (ja)
+  album: Album (ja)
   my_photos: My Photos (ja)
   my_albums: My Albums (ja)
   photo: Photo (ja)
@@ -24,11 +31,23 @@ ja:
   search: Search (ja)
   add: Add (ja)
   edit: Edit (ja)
+  save: Save (ja)
   update: Update (ja)
   delete: Delete (ja)
   remove: Remove (ja)
+  back: Back (ja)
   add_new_photo: Add new photo (ja)
+  edit_user_profile: Edit user profile (ja)
   add_new_album: Add new album (ja)
+
+  login: Login in (ja)
+  logout: Log out (ja)
+  signup: Sign up (ja)
+  password: Password (ja)
+  remember_me: Remember me (ja)
+  confirm_your_password: Confirm your password (ja)
+  create_an_account: Create an account (ja)
+  edit_user_account: Edit user account (ja)
 
   my_photos: My photos (ja)
   my_albums: My albums (ja)
@@ -67,6 +86,8 @@ ja:
         first_name: First Name (ja)
         last_name: Last Name (ja)
         password: Password (ja)
+        new_password: New password (ja)
+        currjat_password: Currjat password (ja)
         password_confirmation: Password confirmation (ja)
       photo:
         title: Title (ja)

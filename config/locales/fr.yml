@@ -7,15 +7,22 @@ fr:
       new:
         title: "Fotobook Signup (fr)"
 
-  # attributes:
-  #   email: Email (fr)
-  #   first_name: First Name (fr)
-  #   last_name: Last Name (fr)
-  #   password: Password (fr)
-  #   password_confirmation: Password confirmation (fr)
+  email: Email (fr)
+  first_name: First Name (fr)
+  last_name: Last Name (fr)
+  last_login: Last login (fr)
+  # password: Password (fr)
+  # password_confirmation: Password confirmation (fr)
 
-  search_box_placeholder: Search Photos / Albums
+  admin:
+    manage_photos: Manage Photos (fr)
+    manage_albums: Manage Albums (fr)
+    manage_users: Manage Users (fr)
 
+  search_box_placeholder: Search Photos / Albums (fr)
+
+  photo: Photo (fr)
+  album: Album (fr)
   my_photos: My Photos (fr)
   my_albums: My Albums (fr)
   photo: Photo (fr)
@@ -24,11 +31,23 @@ fr:
   search: Search (fr)
   add: Add (fr)
   edit: Edit (fr)
+  save: Save (fr)
   update: Update (fr)
   delete: Delete (fr)
   remove: Remove (fr)
+  back: Back (fr)
   add_new_photo: Add new photo (fr)
+  edit_user_profile: Edit user profile (fr)
   add_new_album: Add new album (fr)
+
+  login: Login in (fr)
+  logout: Log out (fr)
+  signup: Sign up (fr)
+  password: Password (fr)
+  remember_me: Remember me (fr)
+  confirm_your_password: Confirm your password (fr)
+  create_an_account: Create an account (fr)
+  edit_user_account: Edit user account (fr)
 
   my_photos: My photos (fr)
   my_albums: My albums (fr)
@@ -67,6 +86,8 @@ fr:
         first_name: First Name (fr)
         last_name: Last Name (fr)
         password: Password (fr)
+        new_password: New password (fr)
+        currfrt_password: Currfrt password (fr)
         password_confirmation: Password confirmation (fr)
       photo:
         title: Title (fr)

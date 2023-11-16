@@ -16,21 +16,21 @@
     <strong>
         <%= f.label :first_name %><br />
     </strong>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",  class: 'form-control form-control-lg', placeholder: 'First name' %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",  class: 'form-control form-control-lg', placeholder: t('first_name') %>
   </div>
 
   <div class="field form-label mb-3">
     <strong>
         <%= f.label :last_name %><br />
     </strong>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",  class: 'form-control form-control-lg', placeholder: 'Last name' %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",  class: 'form-control form-control-lg', placeholder: t('last_name') %>
   </div>
 
   <div class="field form-label mb-3">
     <strong>
         <%= f.label :email %><br />
     </strong>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control form-control-lg', placeholder: 'Email' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control form-control-lg', placeholder: t('email') %>
   </div>
 
   <div class="field form-label mb-3">
@@ -40,18 +40,18 @@
     <!-- <% if @minimum_password_length %> -->
       <!--     <em>(<%= @minimum_password_length %> characters minimum)</em> -->
       <!-- <% end %> -->
-    <%= f.password_field :password, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: 'Password' %>
+    <%= f.password_field :password, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('password') %>
   </div>
 
   <div class="field form-label mb-3">
     <strong>
         <%= f.label :password_confirmation %><br />
     </strong>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: 'Confirm your password' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('confirm_your_password') %>
   </div>
 
   <div class="actions d-flex flex-column mx-auto w-25">
-    <%= f.submit "Sign up", class: 'btn btn-primary' %>
+    <%= f.submit t('signup'), class: 'btn btn-primary' %>
   </div>
 <% end %>
 </div>
