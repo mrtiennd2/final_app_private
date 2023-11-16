@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/u/albums(/m/:mode)', to: 'albums#user_albums'
   get '/u/photos(/m/:mode)', to: 'photos#user_photos'
 
-  resources :photos
+  resources :photos do
+    post 'like', member: true
+  end
 
   resources :albums do
     resources :photos

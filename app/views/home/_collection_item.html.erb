@@ -1,10 +1,12 @@
 <div
   class="card d-flex flex-row flex-wrap bg-light shadow p-0 rounded m-2 me-auto"
-  data-toggle="modal"
-  data-target="<%= modal_data_target %>"
 >
   <div class="p-2", style="width: 200px; height: 200px; cursor: pointer">
-    <div class="w-100 h-100 border border-secondary">
+    <div
+      data-toggle="modal"
+      data-target="<%= modal_data_target %>"
+      class="w-100 h-100 border border-secondary"
+    >
       <% if model_image_url %>
         <img
         class="w-100 h-100"
@@ -63,12 +65,24 @@
         </div>
       </div>
 
-      <div class="d-flex flex-row justify-content-end align-items-end">
+      <div class="d-flex flex-row justify-content-between align-items-center">
+        <% liked = (Like.where(user_id: model.user_id, likeable_id: model.id).length > 0) && 'text-primary' %>
+        <%= button_to raw('<i class="fa-solid fa-heart"></i>'), photo_like_path(model), remote: true, method: :post, class:"like__btn btn bg-light p-0 text #{liked}" %>
         <small>
           <%= model.created_at %>
         </small>
       </div>
+
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    const likeBtn = document.querySelector('.like__btn');
+    likeBtn.addEventListener('click', (e) => {
+      likeBtn.classList.toggle('text-primary');
+    });
+  })();
+</script>
 

@@ -36,10 +36,21 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if @photo.update(photo_params) && params[:photo][:image_url]
+    if @photo.update(photo_params)
       redirect_to '/u/photos', notice: 'Photo was successfully updated.'
     else
       redirect_to edit_photo_path, notice: 'Something wrong!'
+    end
+  end
+
+  def like
+    photo = Photo.find params[:photo_id]
+    puts photo.inspect
+    like = current_user.likes.build(likeable: photo)
+    if like.save
+      puts like.errors.full_messages
+    else
+      puts like.inspect
     end
   end
 
