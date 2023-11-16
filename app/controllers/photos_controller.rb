@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  layout 'index_with_pagination', only: %i[index]
+  layout 'index_with_pagination', only: %i[index user_photos]
 
   before_action :set_photo, only: %i[edit update destroy]
   before_action :authenticate_user!, except: [:index]
@@ -10,16 +10,11 @@ class PhotosController < ApplicationController
   end
 
   def user_photos
-    sharing_mode = params[:mode]
-    user_photos = current_user.photos.where(album_id: nil).page(params[:page])
-
     @photos =
-      if sharing_mode == 'public'
-        user_photos.public_mode
-      elsif sharing_mode == 'private'
-        user_photos.private_mode
+      if current_user.is_admin
+        Photo.where(album_id: nil).page(params[:page])
       else
-        user_photos
+        current_user.albums.page(params[:page])
       end
   end
 
@@ -68,7 +63,7 @@ class PhotosController < ApplicationController
   end
 
   def correct_user
-    @photo = current_user.photos.find_by(id: params[:id])
+    @photo = current_user.photos.find_by(id: params[:id]) unless current_user.is_admin
     redirect_to photos_path, notice: 'Not Authorized' if @photo.nil?
   end
 end
