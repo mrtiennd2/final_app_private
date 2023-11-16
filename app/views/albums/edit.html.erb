@@ -1,8 +1,15 @@
-<h1>Editing album</h1>
+<div class='h-100 w-75 bg-white mx-auto p-3'>
+  <div class='d-flex justify-content-between'>
+    <p class='h4'>
+      <strong>
+        <%= t('.title') %>
+      </strong>
+    </p>
 
-<%= render "form", album: @album %>
+    <%= link_to t('back'), :back, class: 'btn btn-primary' %>
+  </div>
 
-<div>
-  <%= link_to "Show this album", @album, class: 'btn btn-dark' %>
-  <%= link_to "Back to albums", albums_path, class: 'btn btn-dark' %>
+  <hr />
+
+  <%= render "form", album: @album %>
 </div>

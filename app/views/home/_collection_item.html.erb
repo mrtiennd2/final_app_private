@@ -1,14 +1,14 @@
 <div
   class="card d-flex flex-row flex-wrap bg-light shadow p-0 rounded m-2 me-auto"
   data-toggle="modal"
-  data-target="#exampleModalCenter<%= model.id %>"
-  >
+  data-target="<%= modal_data_target %>"
+>
   <div class="p-2", style="width: 200px; height: 200px; cursor: pointer">
     <div class="w-100 h-100 border border-secondary">
-      <% if locals[:model_image_url] %>
+      <% if model_image_url %>
         <img
         class="w-100 h-100"
-        src="<%= locals[:model_image_url] %>"
+        src="<%= model_image_url %>"
         />
       <% end %>
     </div>

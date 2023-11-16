@@ -1,28 +1,25 @@
-<div class='h-100 w-75 bg-white mx-auto'>
-    <!-- <p style="color: green"><%= notice %></p> -->
-
+<div class='h-100 w-75 bg-white mx-auto position-relative'>
     <%= render @album %>
 
-    <br />
+    <strong>
+      <h5 class='mx-3'>Photos of this album</h5>
+    </strong>
 
-    <h5>Photos of this album</h5>
-
-    <% if @album.photos.size == 0 %>
-        <p> No photos </p>
-    <% else  %>
-    <div class='d-flex flex-row'>
-        <%= render @album.photos %>
-    </div>
-    <% end %>
-
-    <hr />
-
-    <div>
-      <% if current_user.id == @album.user.id  %>
-        <%= link_to "Edit this album", edit_album_path(@album) %> |
-        <%= button_to "Desty this album", @album, method: :delete %>
+    <div class='w-100 mx-3'>
+      <% if @album.photos.where(is_public: true).size == 0 %>
+          <p> No photos to show here</p>
+      <% else  %>
+        <div class='d-flex flex-row'>
+            <%= render @album.photos.where(is_public: true) %>
+        </div>
       <% end %>
-
-      <%= link_to "Back to albums", albums_path %>
     </div>
+
+    <div class='d-flex mx-3 mt-3'>
+      <% if current_user && (current_user.id == @album.user_id) %>
+        <%= link_to "Edit", edit_album_path(@album), class: 'btn btn-info mr-3', style: 'width: 6rem' %>
+      <% end %>
+    </div>
+
+    <%= link_to "Back", :back, class: 'btn btn-primary', style: 'position: absolute; top: 0.75rem; right: 0.75rem' %>
 </div>

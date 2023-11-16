@@ -1,0 +1,108 @@
+ja:
+  devise:
+    sessions:
+      new:
+        title: "Fotobook Signin (ja)"
+    registrations:
+      new:
+        title: "Fotobook Signup (ja)"
+
+  email: Email (ja)
+  first_name: First Name (ja)
+  last_name: Last Name (ja)
+  last_login: Last login (ja)
+  # password: Password (ja)
+  # password_confirmation: Password confirmation (ja)
+
+  admin:
+    manage_photos: Manage Photos (ja)
+    manage_albums: Manage Albums (ja)
+    manage_users: Manage Users (ja)
+
+  search_box_placeholder: Search Photos / Albums (ja)
+
+  photo: Photo (ja)
+  album: Album (ja)
+  my_photos: My Photos (ja)
+  my_albums: My Albums (ja)
+  photo: Photo (ja)
+  album: Album (ja)
+  feeds: Feeds (ja)
+  search: Search (ja)
+  add: Add (ja)
+  edit: Edit (ja)
+  save: Save (ja)
+  update: Update (ja)
+  delete: Delete (ja)
+  remove: Remove (ja)
+  back: Back (ja)
+  add_new_photo: Add new photo (ja)
+  edit_user_profile: Edit user profile (ja)
+  add_new_album: Add new album (ja)
+
+  login: Login in (ja)
+  logout: Log out (ja)
+  signup: Sign up (ja)
+  password: Password (ja)
+  remember_me: Remember me (ja)
+  confirm_your_password: Confirm your password (ja)
+  create_an_account: Create an account (ja)
+  edit_user_account: Edit user account (ja)
+
+  my_photos: My photos (ja)
+  my_albums: My albums (ja)
+
+  all: All (ja)
+  public_mode: Public (ja)
+  private_mode: Private (ja)
+  sharing_mode: Sharing mode (ja)
+
+  albums:
+    user_albums:
+      title: My albums (ja)
+    edit:
+      title: Edit albums (ja)
+      sharing_mode: Sharing mode (ja)
+    new:
+      title: New albums (ja)
+      sharing_mode: Sharing mode (ja)
+    show:
+      photos: Photos in this album (ja)
+
+  photos:
+    user_photos:
+      title: My photos (ja)
+    edit:
+      title: Edit photo (ja)
+      sharing_mode: Sharing mode (ja)
+    new:
+      title: New photo (ja)
+      sharing_mode: Sharing mode (ja)
+
+  activerecord:
+    attributes:
+      user:
+        email: Email (ja)
+        first_name: First Name (ja)
+        last_name: Last Name (ja)
+        password: Password (ja)
+        new_password: New password (ja)
+        currjat_password: Currjat password (ja)
+        password_confirmation: Password confirmation (ja)
+      photo:
+        title: Title (ja)
+        description: Description (ja)
+      album:
+        title: Title (ja)
+        description: Description (ja)
+
+  errors:
+    messages:
+      blank: 'cannot be blank (ja)'
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+

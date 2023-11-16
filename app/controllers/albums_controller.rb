@@ -1,33 +1,39 @@
 class AlbumsController < ApplicationController
-  before_action :set_album, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  layout 'index_with_pagination', only: %i[index user_albums]
+
+  # before_action :set_index_layout, only: %i[index]
+  before_action :set_album, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @albums = Album.all
+    @albums = Album.where(is_public: true).page(params[:page])
   end
 
-  def show
-    @albums = Album.where(is_public: true)
+  def user_albums
+    @albums =
+      if current_user.is_admin
+        Album.all.page(params[:page])
+      else
+        current_user.albums.page(params[:page])
+      end
   end
+
+  def show; end
 
   def new
     @album = current_user.albums.build
   end
 
-  def user_albums
-    @albums = current_user.albums
-  end
-
-  # GET /albums/1/edit
   def edit
+    redirect_to :show if correct_user && correct_user.id == @album.user_id
   end
 
   def create
-    # @album = Album.new(album_params)
     @album = current_user.albums.build(album_params)
     if @album.save
-      redirect_to '/albums', notice: "Album was successfully created."
+      notice_msg = built_photo && !built_photo.save ? 'Failed to save image' : 'Album was successfully created.'
+      redirect_to edit_album_url(@album), notice: notice_msg
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,11 +42,10 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to album_url(@album), notice: "Album was successfully updated." }
-        format.json { render :show, status: :ok, location: @album }
+        notice_msg = built_photo && !built_photo.save ? 'Failed to save image' : 'Album was successfully updated.'
+        format.html { redirect_to edit_album_url(@album), notice: notice_msg }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, notice: 'Failed to save album' }
       end
     end
   end
@@ -49,23 +54,40 @@ class AlbumsController < ApplicationController
     @album.destroy!
 
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
+      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
   def set_album
     @album = Album.find(params[:id])
   end
 
+  def built_photo
+    photo_image = params[:album][:photo_image]
+    photo_image && @album.photos.build(user_id: @album.user_id, is_public: @album.is_public, image_url: photo_image)
+  end
+
   def album_params
-    params.require(:album).permit(:title, :description)
+    params.require(:album).permit(:title, :description, :is_public)
   end
 
   def correct_user
-    @album = current_user.albums.find_by(id: params[:id])
-    redirect_to albums_path, notice: "Not Authorized" if @album.nil?
+    @album = current_user.albums.find_by(id: params[:id]) unless current_user.is_admin
+    redirect_to albums_path, notice: 'Not Authorized' if @album.nil?
   end
 
+  def set_index_layout
+    if user_signed_in? == false
+      if current_user.is_admin
+        self.class.layout 'admin/main'
+      else
+        self.class.layout 'index_with_pagination'
+      end
+    else
+      self.class.layout 'index_with_pagination'
+    end
+  end
 end

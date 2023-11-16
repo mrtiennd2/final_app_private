@@ -1,59 +1,61 @@
 <div class='container d-flex flex-column justify-items-center align-items-center'>
-    <h1 class='text text-secondary my-4'>Fotobook Login</h1>
+  <h1 class='text text-secondary my-4'>
+    <%= t('.title') %>
+  </h1>
 
-    <%= form_for(
-        resource, as: resource_name,
-        url: session_path(resource_name),
-        html: {
-            class: 'w-50 py-4 px-5 border rounded shadow rounded bg-light',
-        }
-    ) do |f| %>
-        <div class='w-100 d-flex justify-content-center align-items-center mb-3'>
-            <div style='width: 150px; height: 150px' class='rounded-circle border border-muted bg-light'>
-            </div>
-        </div>
+  <%= form_for(
+    resource, as: resource_name,
+    url: session_path(resource_name),
+    html: {
+      class: 'w-50 py-4 px-5 border rounded shadow rounded bg-light',
+    }
+  ) do |f| %>
+  <div class='w-100 d-flex justify-content-center align-items-center mb-3'>
+    <div style='width: 150px; height: 150px' class='rounded-circle border border-muted bg-light'>
+    </div>
+  </div>
 
-        <div class="field form-label mb-3">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg', placeholder: 'Email' %>
-        </div>
+  <div class="field form-label mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg', placeholder: t('email') %>
+  </div>
 
-        <div class="field form-label mb-3">
-            <strong>
-                <%= f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-lg', placeholder: 'Password' %>
-            </strong>
-        </div>
+  <div class="field form-label mb-3">
+    <strong>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control form-control-lg', placeholder: t('password') %>
+    </strong>
+  </div>
 
-        <% if devise_mapping.rememberable? %>
-        <div class="field mb-3">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-        </div>
-        <% end %>
+  <% if devise_mapping.rememberable? %>
+    <div class="field mb-3">
+      <%= f.check_box :remember_me %>
+      <%= f.label t('remember_me') %>
+    </div>
+  <% end %>
 
-        <div class="actions d-flex flex-column my-4 w-25 mx-auto">
-            <%= f.submit "Log in", class: 'btn btn-primary' %>
-        </div>
+  <div class="actions d-flex flex-column my-4 w-25 mx-auto">
+    <%= f.submit t('login'), class: 'btn btn-primary' %>
+  </div>
 
-        <div class="mx-auto w-100 text-center">
-            <%= render "devise/shared/links" %>
-        </div>
+  <div class="mx-auto w-100 text-center">
+    <%= render "devise/shared/links" %>
+  </div>
 
-    <% end %>
+<% end %>
 
-    <!--  <form> -->
-    <!--   <div class="mb-3"> -->
-    <!--     <label for="exampleInputEmail1" class="form-label">Email address</label> -->
-    <!--     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
-    <!--     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-    <!--   </div> -->
-    <!--   <div class="mb-3"> -->
-    <!--     <label for="exampleInputPassword1" class="form-label">Password</label> -->
-    <!--     <input type="password" class="form-control" id="exampleInputPassword1"> -->
-    <!--   </div> -->
-    <!--   <div class="mb-3 form-check"> -->
-    <!--     <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
-    <!--     <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
-    <!--   </div> -->
-    <!--   <button type="submit" class="btn btn-primary">Submit</button> -->
-    <!-- </form> -->
+<!--  <form> -->
+<!--   <div class="mb-3"> -->
+<!--     <label for="exampleInputEmail1" class="form-label">Email address</label> -->
+<!--     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+<!--     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+<!--   </div> -->
+<!--   <div class="mb-3"> -->
+<!--     <label for="exampleInputPassword1" class="form-label">Password</label> -->
+<!--     <input type="password" class="form-control" id="exampleInputPassword1"> -->
+<!--   </div> -->
+<!--   <div class="mb-3 form-check"> -->
+<!--     <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+<!--     <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+<!--   </div> -->
+<!--   <button type="submit" class="btn btn-primary">Submit</button> -->
+<!-- </form> -->
 </div>

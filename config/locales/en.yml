@@ -1,31 +1,109 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  devise:
+    sessions:
+      new:
+        title: "Fotobook Signin (en)"
+    registrations:
+      new:
+        title: "Fotobook Signup (en)"
+
+  email: Email (en)
+  first_name: First Name (en)
+  last_name: Last Name (en)
+  last_login: Last login (en)
+  # password: Password (en)
+  # password_confirmation: Password confirmation (en)
+
+  admin:
+    manage_photos: Manage Photos (en)
+    manage_albums: Manage Albums (en)
+    manage_users: Manage Users (en)
+
+  search_box_placeholder: Search Photos / Albums (en)
+
+  photo: Photo (en)
+  album: Album (en)
+  my_photos: My Photos (en)
+  my_albums: My Albums (en)
+  photo: Photo (en)
+  album: Album (en)
+  feeds: Feeds (en)
+  search: Search (en)
+  add: Add (en)
+  edit: Edit (en)
+  save: Save (en)
+  update: Update (en)
+  delete: Delete (en)
+  remove: Remove (en)
+  back: Back (en)
+  add_new_photo: Add new photo (en)
+  edit_user_profile: Edit user profile (en)
+  add_new_album: Add new album (en)
+
+  login: Login in (en)
+  logout: Log out (en)
+  signup: Sign up (en)
+  password: Password (en)
+  remember_me: Remember me (en)
+  confirm_your_password: Confirm your password (en)
+  create_an_account: Create an account (en)
+  edit_user_account: Edit user account (en)
+
+  my_photos: My photos (en)
+  my_albums: My albums (en)
+
+  all: All (en)
+  public_mode: Public (en)
+  private_mode: Private (en)
+  sharing_mode: Sharing mode (en)
+
+  albums:
+    user_albums:
+      title: My albums (en)
+    edit:
+      title: Edit albums (en)
+      sharing_mode: Sharing mode (en)
+    new:
+      title: New albums (en)
+      sharing_mode: Sharing mode (en)
+    show:
+      photos: Photos in this album (en)
+
+  photos:
+    user_photos:
+      title: My photos (en)
+    edit:
+      title: Edit photo (en)
+      sharing_mode: Sharing mode (en)
+    new:
+      title: New photo (en)
+      sharing_mode: Sharing mode (en)
+
+  activerecord:
+    attributes:
+      user:
+        email: Email (en)
+        first_name: First Name (en)
+        last_name: Last Name (en)
+        password: Password (en)
+        new_password: New password (en)
+        current_password: Current password (en)
+        password_confirmation: Password confirmation (en)
+      photo:
+        title: Title (en)
+        description: Description (en)
+      album:
+        title: Title (en)
+        description: Description (en)
+
+  errors:
+    messages:
+      blank: 'cannot be blank (en)'
+
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+
