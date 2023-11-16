@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
       if current_user.is_admin
         Photo.where(album_id: nil).page(params[:page])
       else
-        current_user.albums.page(params[:page])
+        current_user.photos.page(params[:page])
       end
   end
 
@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     if @photo.save
       redirect_to '/u/photos', notice: 'New photo added'
     else
-      redirect_to new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
+      render new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
     end
   end
 
@@ -36,10 +36,10 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if @photo.update(photo_params)
+    if @photo.update(photo_params) && params[:photo][:image_url]
       redirect_to '/u/photos', notice: 'Photo was successfully updated.'
     else
-      redirect_to '/u/photos', notice: 'Something wrong!'
+      redirect_to edit_photo_path, notice: 'Something wrong!'
     end
   end
 
