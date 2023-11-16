@@ -24,7 +24,7 @@
 
         <div class='w-75 mx-auto shadow-sm bg-white rounded' style='height: 90%'>
           <%= render('shared/upper_options') %>
-          <div class='d-flex flex-column h-100'>
+          <div class='d-flex flex-column w-100 h-100'>
             <%= yield %>
 
             <div class='d-flex justify-content-center align-items-center' style='margin-top: auto'>
@@ -43,6 +43,8 @@
       <% if notice %>
         <%= render 'shared/alert' %>
       <% end %>
+
+      <%= render 'shared/locale_options' %>
     </div>
 
     <!-- Optional JavaScript -->

@@ -4,9 +4,12 @@ class User < ApplicationRecord
 
   # attr_accessor :first_name, :last_name
 
+  paginates_per 1
+
   mount_uploader :avatar, ImageUploader
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
+
   has_many :albums, dependent: :destroy
   has_many :photos, dependent: :destroy
 

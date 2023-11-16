@@ -5,11 +5,10 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(u) { u.is_admin } do
     namespace :admin do
-      resources :dashboard, only: [:index]
+      get 'dashboard', to: 'dashboard#index'
+      resources :user, only: %i[edit update], as: :user_account, path: 'user_account'
     end
   end
-
-  get '/home/index/', to: 'home#index'
 
   get '/u/albums(/m/:mode)', to: 'albums#user_albums'
   get '/u/photos(/m/:mode)', to: 'photos#user_photos'
@@ -20,18 +19,6 @@ Rails.application.routes.draw do
     resources :photos
   end
 
-  get '/', to: 'photos#index'
   get '/home', to: 'photos#index'
   get '/photos', to: 'photos#index'
-
-  # get '/u/albums', to: 'albums#user_index'
-  # get '/u/photos', to: 'photos#user_index'
-  #
-  # resources :albums do
-  #   resources :photos
-  # end
-  #
-  # get '/', to: 'photos#index'
-  # get '/home', to: 'photos#index'
-  # get '/photos', to: 'photos#index'
 end

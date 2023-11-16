@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class='d-flex align-items-center ml-auto'>
-    <% if current_user&.avatar %>
+    <% if !current_user&.avatar? %>
       <a
         href="<%= edit_user_registration_path %>",
         class='bg-white d-flex justify-content-center align-items-center text-decoration-none'
@@ -31,8 +31,10 @@
         <%= display_name %>
       </strong>
     </a>
-    <%= button_to "Log out", destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn text text-white', style: 'font-weight: bold' %>
+    <%= button_to t('logout'), destroy_user_session_path, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn text text-white', style: 'font-weight: bold' %>
   </div>
 <% else %>
-  <a href="/users/sign_in" class="ml-auto btn text-white" style='font-weight: bold'>Login</a>
+  <a href="/users/sign_in" class="ml-auto btn text-white" style='font-weight: bold'>
+    <%= t('login')  %>
+  </a>
 <% end %>
