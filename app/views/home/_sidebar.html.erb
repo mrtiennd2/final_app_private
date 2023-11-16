@@ -6,32 +6,31 @@
 
   <% set_hidden = current_user&.is_admin ? 'd-none' : 'd-block' %>
 
-  <nav id="sidebar" class="bg-light sidebar position-absolute top-0 start-0 bg-transparent">
-    <div class="position-sticky">
-      <ul class="nav flex-column px-0">
-        <li class="nav-item">
-          <a class="nav-link text <%= at_feeds %> <%= set_hidden %>" href="/">
-            <strong>
-              <%= t('feeds') %>
-            </strong>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text <%= at_my_photos %>" href="/u/photos">
-            <strong>
-              <%= !current_user&.is_admin ? t('my_photos') : t('admin.manage_photos') %>
-            </strong>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text <%= at_my_albums %>" href="/u/albums">
-            <strong>
-              <%= !current_user&.is_admin ? t('my_albums') : t('admin.manage_albums') %>
-            </strong>
-          </a>
-        </li>
+  <nav id="sidebar" class="bg-light sidebar bg-transparent">
+    <ul class="nav flex-column px-0">
+      <li class="nav-item">
+        <a class="nav-link text <%= at_feeds %> <%= set_hidden %>" href="/">
+          <strong>
+            <%= t('feeds') %>
+          </strong>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text <%= at_my_photos %>" href="/u/photos">
+          <strong>
+            <%= !current_user&.is_admin ? t('my_photos') : t('admin.manage_photos') %>
+          </strong>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text <%= at_my_albums %>" href="/u/albums">
+          <strong>
+            <%= !current_user&.is_admin ? t('my_albums') : t('admin.manage_albums') %>
+          </strong>
+        </a>
+      </li>
 
-        <% if current_user&.is_admin %>
+      <% if current_user&.is_admin %>
         <li class="nav-item">
           <a class="nav-link text <%= at_dashboard %>" href="<%= admin_dashboard_path %>">
             <strong>
@@ -41,7 +40,6 @@
         </li>
       <% end %>
 
-      </ul>
-    </div>
+    </ul>
   </nav>
 <% end %>
