@@ -1,10 +1,11 @@
 class Photo < ApplicationRecord
-  paginates_per 1
+  paginates_per 4
 
   mount_uploader :image_url, ImageUploader
 
   belongs_to :user
   belongs_to :album, optional: true
+  has_many :likes, as: :likeable
 
   default_scope { order(created_at: :desc) }
   scope :private_mode, -> { where(is_public: false) }

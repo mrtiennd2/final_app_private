@@ -1,10 +1,12 @@
 <div
   class="card d-flex flex-row flex-wrap bg-light shadow p-0 rounded m-2 me-auto"
-  data-toggle="modal"
-  data-target="<%= modal_data_target %>"
 >
   <div class="p-2", style="width: 200px; height: 200px; cursor: pointer">
-    <div class="w-100 h-100 border border-secondary">
+    <div
+      data-toggle="modal"
+      data-target="<%= modal_data_target %>"
+      class="w-100 h-100 border border-secondary"
+    >
       <% if model_image_url %>
         <img
         class="w-100 h-100"
@@ -16,7 +18,7 @@
 
   <div class="card-body d-flex p-2" style="width: 300px;">
     <div class="d-flex flex-column w-100 h-100">
-      <div class='border-bottom border-light d-flex aligns-items-center'>
+      <div class='border-bottom border-light d-flex aligns-items-center' style='margin-left: -5px;'>
         <% if !model.user.avatar? %>
           <a
             href="<%= edit_user_registration_path %>",
@@ -51,24 +53,49 @@
         </p>
       </div>
 
-      <div class='flex-grow-1 py-3'>
-        <p class='h5'>
+      <div class='d-flex flex-column flex-fill py-3'>
+        <p class='h5 m-0'>
         <strong>
           <%= model.title %>
         </strong>
         </p>
 
-        <div>
-          <%= model.description %>
+        <div
+          class='flex-fill'
+          style='max-height: 55px; overflow: hidden;'
+          >
+            <%= model.description %>
         </div>
       </div>
 
-      <div class="d-flex flex-row justify-content-end align-items-end">
+      <div class="d-flex flex-row justify-content-between align-items-center">
+        <% like_count = Like.where(likeable_id: model.id).size %>
+        <% has_likes = current_user && current_user.likes.find_by(likeable: model) && 'text-primary' %>
+        <%= link_to photo_like_path(model), remote: true, data: { 'turbo-method' => :post }, class: 'text-decoration-none' do %>
+          <button class="like__btn btn bg-light p-0 text <%= has_likes %>">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+          <span>
+            <small>
+              <%= like_count > 0 ? like_count : "" %>
+            </small>
+          </span>
+        <% end %>
         <small>
-          <%= model.created_at %>
+          <%= format_date(model.created_at) %>
         </small>
       </div>
+
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    const likeBtn = document.querySelector('.like__btn');
+    likeBtn.addEventListener('click', (e) => {
+      likeBtn.classList.toggle('text-primary');
+    });
+  })();
+</script>
 
