@@ -1,7 +1,9 @@
-<div class='h-100 w-100 bg-white mx-auto p-3'>
+<div class='mh-100 w-100 bg-white mx-auto p-3'>
   <div class='w-100 d-flex justify-content-between'>
     <p class='h4'>
-      <strong> <%= t('.title') %> </strong>
+      <strong>
+        <%= current_user.is_admin ? t('admin.manage_albums') : t('.title') %>
+      </strong>
     </p>
 
     <a href='/albums/new' class='ms-auto btn btn-success text text-white'>

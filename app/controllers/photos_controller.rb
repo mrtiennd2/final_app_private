@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   layout 'index_with_pagination', only: %i[index user_photos]
 
   before_action :set_photo, only: %i[edit update destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: %i[index]
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
       if current_user.is_admin
         Photo.where(album_id: nil).page(params[:page])
       else
-        current_user.albums.page(params[:page])
+        current_user.photos.page(params[:page])
       end
   end
 
@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     if @photo.save
       redirect_to '/u/photos', notice: 'New photo added'
     else
-      redirect_to new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
+      render new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
     end
   end
 
@@ -39,7 +39,19 @@ class PhotosController < ApplicationController
     if @photo.update(photo_params)
       redirect_to '/u/photos', notice: 'Photo was successfully updated.'
     else
-      redirect_to '/u/photos', notice: 'Something wrong!'
+      redirect_to edit_photo_path, notice: 'Something wrong!'
+    end
+  end
+
+  def like
+    photo = Photo.find(params[:photo_id])
+    like = current_user.likes.find_by(likeable: photo)
+    if like
+      like.destroy
+      redirect_to photos_path, notice: 'Unliked'
+    else
+      current_user.likes.create(likeable: photo)
+      redirect_to photos_path(locale: I18n.locale), notice: 'Liked'
     end
   end
 
