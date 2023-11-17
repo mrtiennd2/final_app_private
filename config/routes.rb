@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
+  resources :users, only: %i[show index]
+
   authenticate :user, ->(u) { u.is_admin } do
     namespace :admin do
       get 'dashboard', to: 'dashboard#index'

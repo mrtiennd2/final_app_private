@@ -3,7 +3,7 @@ class Album < ApplicationRecord
 
   belongs_to :user
   has_many :photos, dependent: :destroy
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable, dependent: :destroy
 
   validates :title, presence: true
 end

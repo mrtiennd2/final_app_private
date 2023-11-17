@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_many :albums, dependent: :destroy
   has_many :photos, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   validates :first_name, presence: true, length: { maximum: 25 },  on: %i[create update]
   validates :last_name,  presence: true, length: { maximum: 25 },  on: %i[create update]
