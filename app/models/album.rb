@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-  paginates_per 1
+  paginates_per 4
 
   belongs_to :user
   has_many :photos, dependent: :destroy
