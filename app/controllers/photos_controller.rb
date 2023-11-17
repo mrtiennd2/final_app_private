@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @photos = Photo.page(params[:page])
+    @photos = Photo.public_mode.where(album_id: nil).page(params[:page])
   end
 
   def user_photos

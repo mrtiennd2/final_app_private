@@ -60,28 +60,29 @@
         </strong>
         </p>
 
-        <div class='flex-fill'>
-          <%= model.description %>
+        <div
+          class='flex-fill'
+          style='max-height: 55px; overflow: hidden;'
+          >
+            <%= model.description %>
         </div>
       </div>
 
       <div class="d-flex flex-row justify-content-between align-items-center">
-        <% like_count = Like.where(user_id: model.user_id, likeable_id: model.id).size %>
-        <% has_likes = like_count > 0 && 'text-primary' %>
-        <%= link_to photo_like_path(model), data: { 'turbo-method' => :post }, class: 'text-decoration-none' do %>
+        <% like_count = Like.where(likeable_id: model.id).size %>
+        <% has_likes = current_user && current_user.likes.find_by(likeable: model) && 'text-primary' %>
+        <%= link_to photo_like_path(model), remote: true, data: { 'turbo-method' => :post }, class: 'text-decoration-none' do %>
           <button class="like__btn btn bg-light p-0 text <%= has_likes %>">
             <i class="fa-solid fa-heart"></i>
           </button>
-          <% if has_likes  %>
-            <span>
-              <small>
-                <%= like_count %>
-              </small>
-            </span>
-          <% end %>
+          <span>
+            <small>
+              <%= like_count > 0 ? like_count : "" %>
+            </small>
+          </span>
         <% end %>
         <small>
-          <%= model.created_at %>
+          <%= format_date(model.created_at) %>
         </small>
       </div>
 
