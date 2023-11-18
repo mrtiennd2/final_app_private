@@ -1,7 +1,7 @@
 <div
   class="card d-flex flex-row flex-wrap bg-light shadow p-0 rounded m-2 me-auto"
 >
-  <div class="p-2", style="width: 200px; height: 200px; cursor: pointer">
+  <div class="collection__item__size p-2">
     <div
       data-toggle="modal"
       data-target="<%= modal_data_target %>"
@@ -9,31 +9,28 @@
     >
       <% if model_image_url %>
         <img
-        class="w-100 h-100"
-        src="<%= model_image_url %>"
+          class="w-100 h-100 c-pointer"
+          src="<%= model_image_url %>"
         />
       <% end %>
     </div>
   </div>
 
-  <div class="card-body d-flex p-2" style="width: 300px;">
+  <div class="card-body d-flex p-2" style='width: 300px;'>
     <div class="d-flex flex-column w-100 h-100">
       <div class='border-bottom border-light d-flex aligns-items-center' style='margin-left: -5px;'>
         <% if !model.user.avatar? %>
           <a
             href="<%= edit_user_registration_path %>",
-            class='text-white d-flex justify-content-center align-items-center text-decoration-none'
-            style='width: 40px; height: 40px; border-radius: 100%; background-color: #3269a8;'
+            class='collection__item__size__sm text-white d-flex justify-content-center align-items-center text-decoration-none rounded-circle'
+            style='background-color: #3269a8;'
             >
             <strong>
-              <%  fst_char = model.user.first_name? ? model.user.first_name.first.upcase : "" %>
-              <%  snd_char = model.user.last_name? ? model.user.last_name.first.upcase : "" %>
-              <%  alt_str = fst_char + snd_char %>
-              <%= alt_str %>
+              <%= truncate_name(model.user) %>
             </strong>
           </a>
         <% else %>
-          <div style='width: 40px; height: 40px; border: 1px solid black; border-radius: 100%; overflow: hidden'>
+          <div class='collection__item__size__sm rounded-circle overflow-hidden border border-dark'>
             <%= link_to edit_user_registration_path do %>
               <img
               class="w-100 h-100"
@@ -45,10 +42,7 @@
 
         <p class="d-flex m-0 p-0 justiy-content-center align-items-center ml-2" style='color: #3269a8'>
           <strong>
-            <% fname = model.user.first_name || " " %>
-            <% lname = model.user.last_name || " " %>
-            <% display_name = fname + " " + lname %>
-            <%= display_name %>
+            <%= full_name(model.user) %>
           </strong>
         </p>
       </div>
@@ -61,9 +55,9 @@
         </p>
 
         <div
-          class='flex-fill'
-          style='max-height: 55px; overflow: hidden;'
-          >
+          class='flex-fill overflow-hidden'
+          style='max-height: 55px;'
+        >
             <%= model.description %>
         </div>
       </div>

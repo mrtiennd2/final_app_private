@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   authenticate :user, ->(u) { u.is_admin } do
     namespace :admin do
       get 'dashboard', to: 'dashboard#index'
-      resources :user, only: %i[edit update], as: :user_account, path: 'user_account'
+      resources :user, only: %i[edit update destroy], as: :user_account, path: 'user_account'
     end
   end
 

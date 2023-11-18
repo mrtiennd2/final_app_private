@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
       if current_user.is_admin
         Photo.where(album_id: nil).page(params[:page])
       else
-        current_user.photos.page(params[:page])
+        current_user.photos.where(album_id: nil).page(params[:page])
       end
   end
 
@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     if @photo.save
       redirect_to '/u/photos', notice: 'New photo added'
     else
-      render new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
+      render new_photo_path, status: :unprocessable_entity, notice: 'All fields are required'
     end
   end
 
@@ -39,7 +39,7 @@ class PhotosController < ApplicationController
     if @photo.update(photo_params)
       redirect_to '/u/photos', notice: 'Photo was successfully updated.'
     else
-      redirect_to edit_photo_path, notice: 'Something wrong!'
+      redirect_to edit_photo_path, notice: 'All fields are required'
     end
   end
 

@@ -29,10 +29,14 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = current_user.albums.build(album_params)
+    @album = current_user.albums.build(
+      album_params.merge(
+        photos_attributes: [{ user_id: current_user.id, image_url: params[:album][:photo_image] }]
+      )
+    )
+
     if @album.save
-      notice_msg = built_photo && !built_photo.save ? 'Failed to save image' : 'Album was successfully created.'
-      redirect_to edit_album_url(@album), notice: notice_msg
+      redirect_to edit_album_url(@album), notice: 'Album was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

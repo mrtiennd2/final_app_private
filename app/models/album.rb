@@ -6,4 +6,8 @@ class Album < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
 
   validates :title, presence: true
+  validates :description, presence: true
+
+  validates_associated :photos
+  accepts_nested_attributes_for :photos, allow_destroy: true
 end

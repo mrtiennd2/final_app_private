@@ -27,11 +27,11 @@
 
   <body class='bg-light' style='height: 100vh'>
     <div class='d-flex flex-column h-100'>
-      <%= render("home/header") %>
+      <%= render("shared/header") %>
 
       <div class="container-fluid position-relative flex-fill mb-3">
         <% if !controller_name.in?(['sessions', 'registrations']) %>
-          <%= render 'home/sidebar' %>
+          <%= render 'shared/sidebar' %>
         <% end %>
 
         <div class='w-75 mx-auto shadow-sm bg-white rounded h-100'>
@@ -39,7 +39,7 @@
             <%= render('shared/upper_options') %>
             <%= yield %>
 
-            <div class='d-flex justify-content-center align-items-center' style='margin-top: auto'>
+            <div class='d-flex justify-content-center align-items-center mt-auto'>
               <% if controller_name.in?(['albums']) && action_name.in?(['index', 'user_albums']) %>
                 <%= paginate @albums %>
               <% elsif controller_name.in?(['photos']) && action_name.in?(['index', 'user_photos']) %>

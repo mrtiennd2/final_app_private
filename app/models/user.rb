@@ -2,9 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  # attr_accessor :first_name, :last_name
-
-  paginates_per 1
+  paginates_per 4
 
   mount_uploader :avatar, ImageUploader
 
