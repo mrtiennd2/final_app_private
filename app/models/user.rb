@@ -2,9 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  # attr_accessor :first_name, :last_name
-
-  paginates_per 1
+  paginates_per 4
 
   mount_uploader :avatar, ImageUploader
 
@@ -12,12 +10,14 @@ class User < ApplicationRecord
 
   has_many :albums, dependent: :destroy
   has_many :photos, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
-  validates :first_name, presence: true, length: { maximum: 25 },  on: %i[create update]
-  validates :last_name,  presence: true, length: { maximum: 25 },  on: %i[create update]
-  validates :email,      presence: true, length: { maximum: 255 }, on: %i[create update]
-  validates :password,   presence: true, length: { maximum: 64 },  on: :create
+  has_many :followers,  foreign_key: :follower_id, class_name: 'Follower'
+  has_many :followings, foreign_key: :user_id,     class_name: 'Follower'
 
+  validates :first_name, presence: true, length: { maximum: 25 }
+  validates :last_name,  presence: true, length: { maximum: 25 }
+  validates :email,      presence: true, length: { maximum: 255 }
+  validates :password,   presence: true, length: { maximum: 64 }, on: :create
   # validates :current_password, presence: false
 end

@@ -1,0 +1,6 @@
+h1
+  | Albums collection
+
+div class='d-flex w-100'
+  - @albums.each do |album|
+    == render('item', model: album, model_image_url: album.photos.first.image_url)

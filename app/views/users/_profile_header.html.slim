@@ -1,0 +1,27 @@
+img src="#{image_path(@user.avatar)}" class="img-thumbnail collection__item__size rounded-circle"
+
+h3
+  |> Email:
+  = @user.email
+
+== button_to 'Follow', '/', class: 'btn btn-info'
+
+== link_to photos_user_path(@user) do
+  p
+    |> Photos:
+    == @user.photos.size
+
+== link_to albums_user_path(@user) do
+  p
+    |> Albums:
+    == @user.albums.size
+
+== link_to followings_user_path(@user) do
+  p
+    |> Followings:
+    == @user.followings.size
+
+== link_to followers_user_path(@user) do
+  p
+    |> Followers4:
+    == @user.followers.size

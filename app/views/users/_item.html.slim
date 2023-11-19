@@ -1,0 +1,17 @@
+/ <div class="card" style="width: 18rem;">
+/   <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+/   <div class="card-body">
+/     <h5 class="card-title">Card title</h5>
+/     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+/     <a href="#" class="btn btn-primary">Go somewhere</a>
+/   </div>
+/ </div>
+
+div class='card collection__item__size border border-dark'
+  img.card-img-top(src="#{image_path(model_image_url)}")
+  div
+    h5 class='card-title'
+      == model.title
+    p class='card-text'
+      == model.description
+

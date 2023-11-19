@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalApp</title>
+    <title>User profile</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,17 +13,24 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class='bg-light'>
-    <h1>Admin page</h1>
-    <div style='width: 100%; height: 100vh' class='d-flex flex-column'>
-      <%= render("home/header") %>
+  <body class='bg-light' style='height: 100vh'>
+    <div class='d-flex flex-column h-100'>
+      <%= render("shared/header") %>
 
-      <div class="container-fluid position-relative h-100">
+      <div class="container-fluid position-relative flex-fill mb-3">
         <% if !controller_name.in?(['sessions', 'registrations']) %>
-          <%= render 'home/sidebar' %>
+          <%= render 'shared/sidebar' %>
         <% end %>
 
-        <%= yield %>
+        <div class='w-75 mx-auto shadow-sm bg-white rounded h-100'>
+          <div class='d-flex flex-column w-100 h-100'>
+            <div class='d-flex flex-column w-100 flex-wrap justify-content-center'>
+              <%= render("users/profile_header") %>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+
 
       </div>
 

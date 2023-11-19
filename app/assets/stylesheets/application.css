@@ -20,9 +20,153 @@
     box-sizing: border-box;
 }
 
+@media (min-width: 1200px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateY(55%);
+    }
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
 .btn:focus,.btn:active {
    outline: none !important;
    box-shadow: none;
+}
+
+.layout__wrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+.top__right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.top__right__2 {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.top__right__3 {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.delete__image__btn {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    font-size: 1.5rem;
+    color: lightgray;
+    background: transparent;
+}
+
+.user__avatar {
+    width: 150px;
+    height: 150px;
+    color: lightgray;
+    border: 3px dashed gray;
+}
+
+.user__avatar__sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.p__overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lock__icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+.collection__item__size {
+  width: 200px;
+  height: 200px;
+}
+
+.collection__item__size__md {
+  width: 250px;
+  height: 250px;
+}
+
+.collection__item__size__sm {
+    width: 40px;
+    height: 40px;
+}
+
+.item__size__sm {
+  width: 30px;
+  height: 30px;
+}
+
+.alert__position {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    z-index: 3
+}
+
+.image__uploader__ff__transparent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    font-size: 1.5rem;
+    color: lightgray;
+    background: transparent;
+}
+
+.image__uploader__box {
+  color: lightgray;
+  border: 3px dashed gray;
+}
+
+.image__uploader__label__transparent {
+    select: none;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2
+}
+
+.locale__options__position {
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+}
+
+.image__uploader__remove__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    font-size: 1.5rem;
+    color: lightgray;
+    background: transparent;
 }
 
 /* .field_with_errors { */

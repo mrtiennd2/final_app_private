@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light sticky-top mb-3" style='background-color: #3269a8'>
   <div class='d-flex' style='margin-left: 8rem'>
     <strong>
-      <a class="navbar-brand text text-white" href="/">Fotobook<%= current_user&.is_admin ? ' Admin ' : '' %></a>
+      <a class="navbar-brand text text-white" href="<%= root_path %>">Fotobook<%= current_user&.is_admin ? ' Admin ' : '' %></a>
     </strong>
 
     <form class="form-inline my-2 my-lg-0">
@@ -12,6 +12,6 @@
     </form>
   </div>
 
-  <%= render('home/account_section') %>
+  <%= render('shared/account_section') %>
 </nav>
 

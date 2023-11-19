@@ -14,12 +14,12 @@
   </head>
 
   <body class='bg-light'>
-    <div style='width: 100%; height: 100vh' class='d-flex flex-column'>
-      <%= render("home/header") %>
+    <div class='wrapper__layout d-flex flex-column'>
+      <%= render("shared/header") %>
 
       <div class="container-fluid position-relative h-100">
         <% if !controller_name.in?(['sessions', 'registrations']) %>
-          <%= render 'home/sidebar' %>
+          <%= render 'shared/sidebar' %>
         <% end %>
 
         <%= yield %>

@@ -6,12 +6,12 @@
     <% in_albums = controller_name.in?('albums') ? active : inactive %>
 
     <div class='d-flex justify-content-center py-3'>
-      <a class="btn rounded-0 <%= in_photos %>" href="/photos">
+      <a class="btn rounded-0 <%= in_photos %>" href="<%= photos_path %>">
         <strong>
           <%= t('photo') %>
         </strong>
       </a>
-      <a class="btn rounded-0 <%= in_albums %>" href="/albums">
+      <a class="btn rounded-0 <%= in_albums %>" href="<%= albums_path %>">
         <strong>
           <%= t('album') %>
         </strong>
