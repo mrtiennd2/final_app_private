@@ -10,10 +10,7 @@ Rails.application.routes.draw do
       post 'follow'
       post 'unfollow'
       get 'followers'
-      get 'following'
-    end
-
-    collection do
+      get 'followings'
       get 'photos'
       get 'albums'
     end
