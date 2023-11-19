@@ -42,16 +42,10 @@
     <div class="d-flex flex-column">
       <div class="d-flex mb-3 flex-wrap">
         <% album.photos && album.photos.each do |photo| %>
-          <%= link_to edit_photo_path(photo) do  %>
-            <div style='width: 200px; height: 200px; position: relative' class='border border-secondary mr-4 mb-4 shadow rounded-lg overflow-hidden'>
+          <%= link_to photo do  %>
+            <div class='collection__item__size position-relative border border-secondary mr-4 mb-4 shadow rounded-lg overflow-hidden'>
               <img src="<%= photo.image_url %>" class="w-100 h-100" />
-              <%= link_to 'X', photo_path(photo), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn', style: 'position: absolute; top: 0; right: 0; z-index: 10; font-size: 1.5rem; color: lightgray; background: transparent;' %>
-                <!-- <button -->
-                <!--   type='button' -->
-                <!--   class="btn" -->
-                <!--   style='position: absolute; top: 0; right: 0; z-index: 10; font-size: 1.5rem; color: lightgray; background: transparent;' -->
-                <!-- > -->
-                <!-- </button> -->
+              <%= link_to 'X', photo, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'btn top__right delete__image__btn' %>
             </div>
           <% end %>
         <% end %>

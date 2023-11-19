@@ -1,10 +1,12 @@
-<div class='h-100 w-100 bg-white mx-auto p-3'>
+<div class='mh-100 w-100 bg-white mx-auto p-3'>
   <div class='w-100 d-flex justify-content-between'>
     <p class='h4'>
-      <strong> <%= t('.title') %> </strong>
+      <strong>
+        <%= current_user.is_admin ? t('admin.manage_albums') : t('.title') %>
+      </strong>
     </p>
 
-    <a href='/albums/new' class='ms-auto btn btn-success text text-white'>
+    <a href='<%= new_album_path %>' class='ms-auto btn btn-success text text-white'>
       <strong>
         <%= t('add_new_album') %>
       </strong>
@@ -16,10 +18,10 @@
   <div class='d-flex flex-column flex-wrap' >
     <div id="albums" class='d-flex flex-wrap justify-content-start'>
       <% @albums.each do |album| %>
-      <div class='bg-light mx-2 p-3 shadow bg-light rounded' style="width:250px; height: 250px">
+      <div class='collection__item__size__md bg-light mx-2 p-3 shadow bg-light rounded'>
         <%= link_to edit_album_path(album), class: 'position-relative' do %>
           <div class='position-absolute top-0 left-0 d-flex justify-content-between bg-dark text-white w-100 mw-100 p-1' style='opacity: 0.65'>
-            <p class='m-0 p-0' style='white-space: nowrap; overflow: hidden; text-overflow: ellipsis'>
+            <p class='m-0 p-0 p__overflow'>
             <%= album.title  %>
             </p>
             <span>
@@ -37,8 +39,3 @@
   </div>
 
 </div>
-
-<!-- <div class='absolute'> -->
-<!--     <%= link_to 'Add your new album', new_album_path, class: 'btn btn-dark'  %> -->
-<!-- </div> -->
-

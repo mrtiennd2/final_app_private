@@ -6,15 +6,16 @@ class Admin::UserController < ApplicationController
   end
 
   def update
-    puts params
     if @user.update(user_params)
-      redirect_to '/admin/dashboard', notice: 'Account updated'
+      redirect_to admin_dashboard_path, notice: 'Account updated'
     else
       redirect_to new_photo_path, status: :unprocessable_entity, notice: 'Something wrong!'
     end
   end
 
   def destroy
+    @user.destroy
+    redirect_to admin_dashboard_path
   end
 
   private

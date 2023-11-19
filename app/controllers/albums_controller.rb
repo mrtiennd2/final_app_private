@@ -6,7 +6,7 @@ class AlbumsController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
-    @albums = Album.where(is_public: true).page(params[:page])
+    @albums = Album.includes(:photos, :likes).where(is_public: true).page(params[:page])
   end
 
   def user_albums
@@ -20,6 +20,18 @@ class AlbumsController < ApplicationController
 
   def show; end
 
+  def like
+    album = Album.find(params[:album_id])
+    @like = current_user.likes.find_by(likeable: album)
+    if @like
+      @like.destroy
+      redirect_to albums_path, notice: 'Unliked'
+    else
+      current_user.likes.create(likeable: album)
+      redirect_to albums_path(locale: I18n.locale), notice: 'Liked'
+    end
+  end
+
   def new
     @album = current_user.albums.build
   end
@@ -30,19 +42,26 @@ class AlbumsController < ApplicationController
 
   def create
     @album = current_user.albums.build(album_params)
+
+    if params[:album][:photo_image].present?
+      @album.photos_attributes = [{ user_id: current_user.id, image_url: params[:album][:photo_image] }]
+    end
+
     if @album.save
-      notice_msg = built_photo && !built_photo.save ? 'Failed to save image' : 'Album was successfully created.'
-      redirect_to edit_album_url(@album), notice: notice_msg
+      redirect_to edit_album_url(@album), notice: 'Album was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
+    if params[:album][:photo_image].present?
+      @album.photos_attributes = [{ user_id: current_user.id, image_url: params[:album][:photo_image] }]
+    end
+
     respond_to do |format|
       if @album.update(album_params)
-        notice_msg = built_photo && !built_photo.save ? 'Failed to save image' : 'Album was successfully updated.'
-        format.html { redirect_to edit_album_url(@album), notice: notice_msg }
+        format.html { redirect_to edit_album_url(@album), notice: 'Album was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity, notice: 'Failed to save album' }
       end
@@ -64,10 +83,10 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
-  def built_photo
-    photo_image = params[:album][:photo_image]
-    photo_image && @album.photos.build(user_id: @album.user_id, is_public: @album.is_public, image_url: photo_image)
-  end
+  # def built_photo
+  #   photo_image = params[:album][:photo_image]
+  #   photo_image && @album.photos.build(user_id: @album.user_id, is_public: @album.is_public, image_url: photo_image)
+  # end
 
   def album_params
     params.require(:album).permit(:title, :description, :is_public)

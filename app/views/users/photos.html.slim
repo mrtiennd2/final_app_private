@@ -1,0 +1,6 @@
+h1
+  | Photos collection
+
+div class='d-flex w-100'
+  - @photos.each do |photo|
+    == render('item', model: photo, model_image_url: photo.image_url)

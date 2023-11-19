@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light sticky-top mb-3" style='background-color: #3269a8'>
+  <div class='d-flex' style='margin-left: 8rem'>
+    <strong>
+      <a class="navbar-brand text text-white" href="<%= root_path %>">Fotobook<%= current_user&.is_admin ? ' Admin ' : '' %></a>
+    </strong>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="<%= t('search_box_placeholder') %> " aria-label="Search">
+      <button class="btn btn-outline-secondary my-2 my-sm-0 d-none" type="submit">
+        <%= t('search') %>
+      </button>
+    </form>
+  </div>
+
+  <%= render('shared/account_section') %>
+</nav>
+

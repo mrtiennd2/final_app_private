@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table w-100">
   <thead>
     <tr>
       <th scope="col">
@@ -28,12 +28,11 @@
         <td>
           <%= el.email %>
         </td>
-        <td>
-          <%= el.last_sign_in_at %>
+        <td> <%= format_date(el.last_sign_in_at) %>
         </td>
         <td class='d-flex'>
-          <%= link_to t('edit'), edit_admin_user_account_path(el.id), class: 'mr-2 btn btn-sm btn-success text text-white', style: 'font-weight: bold' %>
-          <%= button_to t('delete'), '/', method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-sm btn-danger text text-white', style: 'font-weight: bold' %>
+          <%= link_to t('edit'), edit_admin_user_account_path(el.id), class: 'mr-2 btn btn-sm btn-success text text-white fw-bold' %>
+          <%= link_to t('delete'), admin_user_account_path(el.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger text text-white fw-bold' %>
         </td>
       </tr>
     <% end %>

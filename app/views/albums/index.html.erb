@@ -1,6 +1,6 @@
 <div class='d-flex w-100 flex-wrap justify-content-center'>
   <% @albums.each do |album|  %>
-    <%= render "home/collection_item", model: album, modal_data_target: "#albumModalCenter#{album.id}", model_image_url: album.photos.size > 0 && album.photos.first.image_url %>
+    <%= render "shared/collection_item", model: album, modal_data_target: "#albumModalCenter#{album.id}", model_image_url: album.photos.first.image_url %>
     <%= render 'albums/album_modal', model: album %>
   <% end %>
 </div>

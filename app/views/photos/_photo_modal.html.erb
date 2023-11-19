@@ -13,18 +13,17 @@
         </h5>
       </div>
       <div class="modal-body position-relative">
-        <%= image_tag(model.image_url.url, alt: model.title || "Image of @album > #{model.album.title}", class: 'mw-100 mh-100 h-auto') if model.image_url? %>
+        <%= image_tag(model.image_url.url, alt: model.title, class: 'mw-100 mh-100 h-auto') if model.image_url? %>
       </div>
 
-      <div class="modal-footer w-100">
+      <div class="modal-body w-100" style='overflow-wrap: break-word'>
         <p class='mr-auto'><%= model.description %></p>
       </div>
 
       <button
         data-dismiss="modal"
-        class="btn btn-white"
-        style="position: absolute; top: 0; right: 0"
-        >
+        class="btn btn-white top__right"
+      >
         <i class="fa-solid fa-xmark"></i>
       </button>
 

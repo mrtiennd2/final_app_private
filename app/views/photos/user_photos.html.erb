@@ -1,28 +1,12 @@
-<div class='h-100 w-100 bg-white mx-auto p-3'>
+<div class='mh-100 w-100 bg-white mx-auto p-3'>
     <div class='w-100 d-flex justify-content-between'>
         <p class='h4'>
-            <strong> <%= t('.title') %> </strong>
+          <strong>
+            <%= current_user.is_admin ? t('admin.manage_photos') : t('.title') %>
+          </strong>
         </p>
 
-        <!-- <div> -->
-        <!--     <a href='/u/photos/' class='ms-auto btn btn-primary text text-white'> -->
-        <!--         <strong> -->
-        <!--           <%= t('all') %> -->
-        <!--         </strong> -->
-        <!--     </a> -->
-        <!--     <a href='/u/photos/m/public' class='ms-auto btn btn-primary text text-white'> -->
-        <!--         <strong> -->
-        <!--           <%= t('public_mode') %> -->
-        <!--         </strong> -->
-        <!--     </a> -->
-        <!--     <a href='/u/photos/m/private' class='ms-auto btn btn-primary text text-white'> -->
-        <!--         <strong> -->
-        <!--           <%= t('private_mode') %> -->
-        <!--         </strong> -->
-        <!--     </a> -->
-        <!-- </div> -->
-
-        <a href='/photos/new' class='ms-auto btn btn-success text text-white'>
+        <a href='<%= new_photo_path %>' class='ms-auto btn btn-success text text-white'>
             <strong>
                 <%= t('add_new_photo') %>
             </strong>

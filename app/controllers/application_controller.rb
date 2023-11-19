@@ -20,11 +20,13 @@ class ApplicationController < ActionController::Base
   end
 
   def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
-  rescue StandardError => e
-    puts e.message
-  ensure
-    I18n.with_locale(I18n.default_locale, &action)
+    default_locale = I18n.default_locale
+    locale = params[:locale] || default_locale
+    if I18n.available_locales.include?(locale.to_sym)
+      I18n.default_locale = locale
+      I18n.with_locale(locale, &action)
+    else
+      I18n.with_locale(default_locale, &action)
+    end
   end
 end

@@ -1,0 +1,94 @@
+<div
+  class="card d-flex flex-row flex-wrap bg-light shadow p-0 rounded m-2 me-auto"
+>
+  <div class="collection__item__size p-2">
+    <div
+      data-toggle="modal"
+      data-target="<%= modal_data_target %>"
+      class="w-100 h-100 border border-secondary"
+    >
+      <% if model_image_url %>
+        <img
+          class="w-100 h-100 c-pointer"
+          src="<%= model_image_url %>"
+        />
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card-body d-flex p-2" style='width: 300px;'>
+    <div class="d-flex flex-column w-100 h-100">
+      <div class='border-bottom border-light d-flex aligns-items-center' style='margin-left: -5px;'>
+        <% if !model.user.avatar? %>
+          <a
+            href="<%= model.user %>",
+            class='collection__item__size__sm text-white d-flex justify-content-center align-items-center text-decoration-none rounded-circle'
+            style='background-color: #3269a8;'
+            >
+            <strong>
+              <%= truncate_name(model.user) %>
+            </strong>
+          </a>
+        <% else %>
+          <div class='collection__item__size__sm rounded-circle overflow-hidden border border-dark'>
+            <%= link_to model.user do %>
+              <img
+              class="w-100 h-100"
+              src="<%= model.user.avatar %>"
+              />
+            <% end %>
+          </div>
+        <% end %>
+
+        <p class="d-flex m-0 p-0 justiy-content-center align-items-center ml-2" style='color: #3269a8'>
+          <strong>
+            <%= full_name(model.user) %>
+          </strong>
+        </p>
+      </div>
+
+      <div class='d-flex flex-column flex-fill py-3'>
+        <p class='h5 m-0'>
+        <strong>
+          <%= model.title %>
+        </strong>
+        </p>
+
+        <div
+          class='flex-fill overflow-hidden'
+          style='max-height: 55px;'
+        >
+            <%= model.description %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row justify-content-between align-items-center">
+        <% has_likes = current_user && current_user.likes.find_by(likeable: model) && 'text-primary' %>
+        <%= link_to model.instance_of?(Photo) ? photo_like_path(model) : album_like_path(model), remote: true, data: { 'turbo-method' => :post }, class: 'text-decoration-none' do %>
+          <button class="like__btn btn bg-light p-0 text <%= has_likes %>">
+            <i class="fa-solid fa-heart"></i>
+          </button>
+          <span>
+            <small>
+              <%= model.likes.size %>
+            </small>
+          </span>
+        <% end %>
+        <small>
+          <%= format_date(model.created_at) %>
+        </small>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const likeBtn = document.querySelector('.like__btn');
+    likeBtn.addEventListener('click', (e) => {
+      likeBtn.classList.toggle('text-primary');
+    });
+  })();
+</script>
+
