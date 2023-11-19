@@ -5,7 +5,19 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :users, only: %i[show index]
+  resources :users, only: %i[show index] do
+    member do
+      post 'follow'
+      post 'unfollow'
+      get 'followers'
+      get 'following'
+    end
+
+    collection do
+      get 'photos'
+      get 'albums'
+    end
+  end
 
   authenticate :user, ->(u) { u.is_admin } do
     namespace :admin do

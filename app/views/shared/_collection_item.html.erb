@@ -21,7 +21,7 @@
       <div class='border-bottom border-light d-flex aligns-items-center' style='margin-left: -5px;'>
         <% if !model.user.avatar? %>
           <a
-            href="<%= edit_user_registration_path %>",
+            href="<%= model.user %>",
             class='collection__item__size__sm text-white d-flex justify-content-center align-items-center text-decoration-none rounded-circle'
             style='background-color: #3269a8;'
             >
@@ -31,7 +31,7 @@
           </a>
         <% else %>
           <div class='collection__item__size__sm rounded-circle overflow-hidden border border-dark'>
-            <%= link_to edit_user_registration_path do %>
+            <%= link_to model.user do %>
               <img
               class="w-100 h-100"
               src="<%= model.user.avatar %>"

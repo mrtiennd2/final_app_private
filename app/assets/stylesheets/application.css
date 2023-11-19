@@ -20,6 +20,15 @@
     box-sizing: border-box;
 }
 
+@media (min-width: 1200px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateY(55%);
+    }
+}
+
 .c-pointer {
     cursor: pointer;
 }

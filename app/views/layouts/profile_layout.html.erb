@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalApp</title>
+    <title>User profile</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +11,6 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
   </head>
 
   <body class='bg-light' style='height: 100vh'>
@@ -25,27 +24,19 @@
 
         <div class='w-75 mx-auto shadow-sm bg-white rounded h-100'>
           <div class='d-flex flex-column w-100 h-100'>
-            <%= render('shared/upper_options') %>
-            <%= yield %>
-
-            <div class='d-flex justify-content-center align-items-center mt-auto'>
-              <% if controller_name.in?(['albums']) && action_name.in?(['index', 'user_albums']) %>
-                <%= paginate @albums %>
-              <% elsif controller_name.in?(['photos']) && action_name.in?(['index', 'user_photos']) %>
-                <%= paginate @photos %>
-              <% end %>
+            <div class='d-flex flex-column w-100 flex-wrap justify-content-center'>
+              <%= render("users/profile_header") %>
+              <%= yield %>
             </div>
-
           </div>
         </div>
+
 
       </div>
 
       <% if notice %>
         <%= render 'shared/alert' %>
       <% end %>
-
-      <%= render 'shared/locale_options' %>
     </div>
 
     <!-- Optional JavaScript -->
