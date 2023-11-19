@@ -7,6 +7,7 @@ class Album < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :photos, presence: true
 
   validates_associated :photos
   accepts_nested_attributes_for :photos, allow_destroy: true

@@ -150,6 +150,16 @@
     z-index: 2;
 }
 
+.image__uploader__remove__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    font-size: 1.5rem;
+    color: lightgray;
+    background: transparent;
+}
+
 /* .field_with_errors { */
 /*     display: inline-block; */
 /* } */

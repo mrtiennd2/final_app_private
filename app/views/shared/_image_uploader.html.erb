@@ -11,11 +11,11 @@
   />
 
   <%= form.label file_field_name, "+", class: "image__uploader__label__transparent position-absolute h1 w-100 h-100 d-flex justify-content-center align-items-center" %>
-  <%= form.file_field file_field_name, multiple: false, class: "sr-only file__input" %>
+  <%= form.file_field file_field_name, multiple: false, class: "sr-only file__input", html: { autocomplete: "off" } %>
 
   <button
     type='button'
-    class="remove__image__btn btn d-none <%= display_check %>"
+    class="remove__image__btn image__uploader__remove__btn btn d-none <%= display_check %>"
   >
     <i class="fa-solid fa-xmark"></i>
   </button>

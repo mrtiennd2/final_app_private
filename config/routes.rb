@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'photos#index'
+  get '/home', to: 'photos#index'
+  get '/photos', to: 'photos#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
@@ -20,9 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :albums do
+    post 'like', member: true
     resources :photos
   end
-
-  get '/home', to: 'photos#index'
-  get '/photos', to: 'photos#index'
 end
