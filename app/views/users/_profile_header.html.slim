@@ -6,18 +6,22 @@ h3
 
 == button_to 'Follow', '/', class: 'btn btn-info'
 
-== link_to user_photos_path(@user) do
+== link_to photos_user_path(@user) do
   p
-    | Photos:
+    |> Photos:
     == @user.photos.size
 
-== link_to user_albums_path(@user) do
+== link_to albums_user_path(@user) do
   p
-    | Albums:
+    |> Albums:
     == @user.albums.size
 
-== link_to user_albums_path(@user) do
+== link_to followings_user_path(@user) do
   p
-    | Followings:
+    |> Followings:
     == @user.followings.size
 
+== link_to followers_user_path(@user) do
+  p
+    |> Followers4:
+    == @user.followers.size
