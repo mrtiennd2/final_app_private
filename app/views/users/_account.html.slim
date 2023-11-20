@@ -1,0 +1,8 @@
+div class='card collection__item__size border border-dark'
+  img.card-img-top(src="#{image_path(model_image_url)}")
+  div
+    h5 class='card-title'
+      == model.email
+    p class='card-text'
+      == full_name(model)
+

@@ -4,7 +4,9 @@ h3
   |> Email:
   = @user.email
 
-== button_to 'Follow', '/', class: 'btn btn-info'
+- unless current_user.id == @user.id
+  - followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
+  == link_to followed == nil ? 'Follow' : 'Unfollow', follow_user_path(@user), data: { 'turbo-method' => :post }, class: 'btn btn-info'
 
 == link_to photos_user_path(@user) do
   p
@@ -18,10 +20,10 @@ h3
 
 == link_to followings_user_path(@user) do
   p
-    |> Followings:
+    |> Followers:
     == @user.followings.size
 
 == link_to followers_user_path(@user) do
   p
-    |> Followers4:
+    |> Followings:
     == @user.followers.size
