@@ -9,11 +9,19 @@ class UsersController < ApplicationController
   def show; end
 
   def photos
-    @photos = @user.photos
+    @photos = if current_user.id == @user.id
+                @user.photos.unscoped.where(album_id: nil)
+              else
+                @user.photos
+              end
   end
 
   def albums
-    @albums = @user.albums.includes(:photos)
+    @albums = if current_user.id == @user.id
+                @user.albums.unscoped
+              else
+                @user.albums
+              end
   end
 
   def follow

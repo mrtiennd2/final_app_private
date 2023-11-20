@@ -15,14 +15,14 @@ div class='d-flex w-100 mb-5' style='height: 200px'
       == link_to photos_user_path(@user), class: "text-decoration-none #{in_photos}" do
         div
           span class='h4 fw-bold'
-            == @user.photos.size
+            == current_user.id != @user.id ? @user.photos.size : @user.photos.unscoped.where(album_id: nil).size
           span class='h6 text-uppercase'
             |< Photos
 
       div
         == link_to albums_user_path(@user), class: "text-decoration-none #{in_albums}"do
           span class='h4 text fw-bold'
-            == @user.albums.size
+            == current_user.id != @user.id ? @user.albums.size : @user.albums.unscoped.size
           span class='h6 text text-uppercase'
             |< Albums
 
