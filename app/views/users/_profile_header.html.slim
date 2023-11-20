@@ -1,27 +1,67 @@
-img src="#{image_path(@user.avatar)}" class="img-thumbnail collection__item__size rounded-circle"
+div class='d-flex w-100 mb-5' style='height: 200px'
+  img src="#{image_path(@user.avatar)}" class="img-thumbnail collection__item__size rounded-circle"
 
-h3
-  |> Email:
-  = @user.email
+  div class='d-flex flex-column flex-fill justify-content-start align-items-start py-3 px-3 position-relative'
+    - if current_user.id == @user.id
+      == link_to 'Edit', edit_user_registration_path(current_user), class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
+    - else
+      - followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
+      == link_to !followed ? 'Follow' : 'Unfollow', follow_user_path(@user), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
 
-== button_to 'Follow', '/', class: 'btn btn-info'
+    h1 class='my-2'
+      strong == full_name(@user)
 
-== link_to photos_user_path(@user) do
-  p
-    |> Photos:
-    == @user.photos.size
+    div class='d-flex' style='gap: 1rem'
+      == link_to photos_user_path(@user), class: "text-decoration-none #{in_photos}" do
+        div
+          span class='h4 fw-bold'
+            == current_user.id != @user.id ? @user.photos.size : @user.photos.unscoped.where(album_id: nil).size
+          span class='h6 text-uppercase'
+            |< Photos
 
 == link_to albums_user_path(@user) do
   p
     |> Albums:
     == @user.albums.size
 
-== link_to followings_user_path(@user) do
-  p
-    |> Followings:
-    == @user.followings.size
+      div
+        == link_to followers_user_path(@user), class: "text-decoration-none #{in_followers}" do
+          span class='h4 text fw-bold'
+            == @user.followers.size
+          span class='h6 text text-uppercase'
+            |< Followers
 
-== link_to followers_user_path(@user) do
-  p
-    |> Followers4:
-    == @user.followers.size
+      div
+        == link_to followings_user_path(@user), class: "text-decoration-none #{in_followings}" do
+          span class='h4 text fw-bold'
+            == @user.followings.size
+          span class='h6 text text-uppercase'
+            |< Followings
+/
+/ h3
+/   |> Email:
+/   = @user.email
+/
+/ - unless current_user.id == @user.id
+/   - followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
+/   == link_to followed == nil ? 'Follow' : 'Unfollow', follow_user_path(@user), data: { 'turbo-method' => :post }, class: 'btn btn-info'
+/
+/ == link_to photos_user_path(@user) do
+/   p
+/     |> Photos:
+/     == @user.photos.size
+/
+/ == link_to albums_user_path(@user) do
+/   p
+/     |> Albums:
+/     == @user.albums.size
+/
+/ == link_to followings_user_path(@user) do
+/   p
+/     |> Followers:
+/     == @user.followings.size
+/
+/ == link_to followers_user_path(@user) do
+/   p
+/     |> Followings:
+/     == @user.followers.size

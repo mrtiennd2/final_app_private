@@ -29,6 +29,23 @@
     }
 }
 
+.color-primary {
+    color: #3269a8
+}
+
+.bg-primary {
+    color: #3269a8
+}
+
+.p-pm-none {
+    padding: 0;
+    margin: 0;
+}
+
+.fs-sm {
+    font-size: 0.75rem;
+}
+
 .c-pointer {
     cursor: pointer;
 }
@@ -115,6 +132,11 @@
 .collection__item__size__sm {
     width: 40px;
     height: 40px;
+}
+
+.profile__image__size {
+    width: 100px;
+    height: 100px;
 }
 
 .item__size__sm {
