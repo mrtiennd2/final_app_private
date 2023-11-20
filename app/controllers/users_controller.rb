@@ -9,19 +9,21 @@ class UsersController < ApplicationController
   def show; end
 
   def photos
-    @photos = if current_user.id == @user.id
-                @user.photos.unscoped.where(album_id: nil)
-              else
-                @user.photos
-              end
+    @photos =
+      if current_user.id == @user.id
+        @user.photos.where(album_id: nil)
+      else
+        @user.photos.where(album_id: nil).public_mode
+      end
   end
 
   def albums
-    @albums = if current_user.id == @user.id
-                @user.albums.unscoped
-              else
-                @user.albums
-              end
+    @albums =
+      if current_user.id == @user.id
+        @user.albums
+      else
+        @user.albums.public_mode
+      end
   end
 
   def follow

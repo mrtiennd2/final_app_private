@@ -12,9 +12,9 @@ class PhotosController < ApplicationController
   def user_photos
     @photos =
       if current_user.is_admin
-        Photo.unscoped.where(album_id: nil).page(params[:page])
+        Photo.where(album_id: nil).page(params[:page])
       else
-        current_user.photos.page(params[:page])
+        current_user.photos.where(album_id: nil).page(params[:page])
       end
   end
 
@@ -39,7 +39,7 @@ class PhotosController < ApplicationController
     if @photo.update(photo_params)
       redirect_to '/u/photos', notice: 'Photo was successfully updated.'
     else
-      redirect_to edit_photo_path, notice: 'All fields are required'
+      redirect_to edit_photo_path(@photo), notice: 'Something went wrong'
     end
   end
 

@@ -7,11 +7,11 @@ class Photo < ApplicationRecord
   belongs_to :album, optional: true
   has_many :likes, as: :likeable, dependent: :destroy
 
-  default_scope { where(album_id: nil, is_public: true).order(created_at: :desc) }
+  default_scope { order(created_at: :desc) }
   scope :private_mode, -> { where(is_public: false) }
   scope :public_mode, -> { where(is_public: true) }
 
-  # validates :title, presence: true, unless: -> { album_id.present? }
-  # validates :description, presence: true, unless: -> { album_id.present? }
+  # validates :title, presence: true, if: -> { album_id.nil? }
+  # validates :description, presence: true, if: -> { album_id.nil? }
   validates :image_url, presence: true
 end

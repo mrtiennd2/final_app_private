@@ -9,7 +9,8 @@ class Album < ApplicationRecord
   validates :description, presence: true
   validates :photos, presence: true
 
-  default_scope { where(is_public: true).order(created_at: :desc) }
+  default_scope { order(created_at: :desc) }
+  scope :public_mode, -> { where(is_public: true) }
 
   validates_associated :photos
   accepts_nested_attributes_for :photos, allow_destroy: true

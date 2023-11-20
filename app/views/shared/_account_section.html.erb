@@ -2,7 +2,7 @@
   <div class='d-flex align-items-center ml-auto'>
     <% if !current_user&.avatar? %>
       <a
-        href="<%= current_user %>",
+        href="<%= user_path(current_user) %>",
         class='user__avatar__sm bg-white d-flex justify-content-center align-items-center text-decoration-none color-primary'
       >
         <strong>
@@ -19,7 +19,7 @@
         <% end %>
       </div>
     <% end %>
-    <a href="<%= current_user %>" class="btn mr-5 text-white">
+    <a href="<%= user_path(current_user) %>" class="btn mr-5 text-white">
       <strong>
         <%= full_name(current_user) %>
       </strong>

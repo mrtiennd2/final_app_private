@@ -1,22 +1,26 @@
-<div class="dropdown locale__options__position">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="localeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="locale__options__position position-relative">
+  <div class='btn btn-secondary lang__btn position-relative'>
     lang.
-  </button>
-  <div class="dropdown-menu" aria-labelledby="localeDropdown" id="localeDropdownMenu">
-    <a class="dropdown-item" href="?locale=en" data-locale="en">EN</a>
-    <a class="dropdown-item" href="?locale=fr" data-locale="fr">FR</a>
-    <a class="dropdown-item" href="?locale=ja" data-locale="ja">JA</a>
+   <div class="flex-column lang__dropdown top__right border border-dark flex-column d-none top__right w-100 fw-bold py-2" style='transform: translateY(-110%); gap: 0.5rem; display: flex'>
+      <a class='text-dark text-decoration-none' href="?locale=en" data-locale="en">EN</a>
+      <a class='text-dark text-decoration-none' href="?locale=fr" data-locale="fr">FR</a>
+      <a class='text-dark text-decoration-none' href="?locale=ja" data-locale="ja">JA</a>
+    </div>
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+<script defer>
+  (function() {
+    document.querySelector('.lang__btn').addEventListener('click', () => {
+      document.querySelector('.lang__dropdown').classList.toggle('d-none')
+    });
+
     document.querySelectorAll('#localeDropdownMenu .dropdown-item').forEach(function(item) {
       item.addEventListener('click', function(event) {
-        event.preventDefault();
+        console.log('click');
         var locale = this.getAttribute('data-locale');
         window.location.href = `?locale=${locale}`;
       });
     });
-  });
+  })();
 </script>

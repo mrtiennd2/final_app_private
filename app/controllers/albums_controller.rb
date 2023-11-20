@@ -50,7 +50,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to edit_album_url(@album), notice: 'Album was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_album_url, notice: @album.errors.full_messages
     end
   end
 

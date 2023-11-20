@@ -21,7 +21,7 @@
       <div class='border-bottom border-light d-flex aligns-items-center' style='margin-left: -5px;'>
         <% if !model.user.avatar? %>
           <a
-            href="<%= model.user %>",
+            href="<%= user_path(model.user) %>",
             class='collection__item__size__sm text-white d-flex justify-content-center align-items-center text-decoration-none rounded-circle'
             style='background-color: #3269a8;'
             >

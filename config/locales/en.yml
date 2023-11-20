@@ -45,6 +45,7 @@ en:
   signup: Sign up (en)
   password: Password (en)
   remember_me: Remember me (en)
+  new_password: New password (en)
   confirm_your_password: Confirm your password (en)
   create_an_account: Create an account (en)
   edit_user_account: Edit user account (en)

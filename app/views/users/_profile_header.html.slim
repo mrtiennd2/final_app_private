@@ -15,14 +15,14 @@ div class='d-flex w-100 mb-5' style='height: 200px'
       == link_to photos_user_path(@user), class: "text-decoration-none #{in_photos}" do
         div
           span class='h4 fw-bold'
-            == current_user.id != @user.id ? @user.photos.size : @user.photos.unscoped.where(album_id: nil).size
+            == current_user.id != @user.id ? @user.photos.where(album_id: nil).public_mode.size : @user.photos.where(album_id: nil).size
           span class='h6 text-uppercase'
             |< Photos
 
       div
         == link_to albums_user_path(@user), class: "text-decoration-none #{in_albums}"do
           span class='h4 text fw-bold'
-            == current_user.id != @user.id ? @user.albums.size : @user.albums.unscoped.size
+            == current_user.id != @user.id ? @user.albums.where(is_public: true).size : @user.albums.size
           span class='h6 text text-uppercase'
             |< Albums
 
@@ -39,31 +39,4 @@ div class='d-flex w-100 mb-5' style='height: 200px'
             == @user.followings.size
           span class='h6 text text-uppercase'
             |< Followings
-/
-/ h3
-/   |> Email:
-/   = @user.email
-/
-/ - unless current_user.id == @user.id
-/   - followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
-/   == link_to followed == nil ? 'Follow' : 'Unfollow', follow_user_path(@user), data: { 'turbo-method' => :post }, class: 'btn btn-info'
-/
-/ == link_to photos_user_path(@user) do
-/   p
-/     |> Photos:
-/     == @user.photos.size
-/
-/ == link_to albums_user_path(@user) do
-/   p
-/     |> Albums:
-/     == @user.albums.size
-/
-/ == link_to followings_user_path(@user) do
-/   p
-/     |> Followers:
-/     == @user.followings.size
-/
-/ == link_to followers_user_path(@user) do
-/   p
-/     |> Followings:
-/     == @user.followers.size
+
