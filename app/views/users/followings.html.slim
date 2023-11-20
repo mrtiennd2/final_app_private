@@ -1,0 +1,4 @@
+div class='d-flex w-100 flex-wrap' style='gap: 1rem'
+  - @followings.each do |f|
+    == render('users/item/account', model: f.user, model_image_url: f.user.avatar)
+

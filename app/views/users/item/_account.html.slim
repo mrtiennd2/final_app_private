@@ -1,0 +1,21 @@
+div class='border border-muted rounded p-3 shadow-sm bg-light d-flex flex-column align-items-center' style='width: 200px;'
+  div class='rounded-circle d-flex justify-content-center align-items-center'
+    == link_to model do
+      img src="#{image_path(model_image_url)}" class='profile__image__size rounded-circle'
+
+  div class='w-100'
+    p class='mx-auto card-title p-0 m-0 text-secondary mt-2 text-center fw-bold p__overflow'
+      == full_name(model)
+
+  div class='d-flex mb-3' style='gap: 1.5rem'
+    div class='d-flex flex-column align-items-center text color-primary'
+      span class='p-pm-none fw-bold' == model.photos.size
+      span class='p-pm-none text-uppercase' style='font-size: 0.75rem' photos
+
+    div class='d-flex flex-column align-items-center text color-primary'
+      span class='p-pm-none fw-bold' == model.albums.size
+      span class='p-pm-none text-uppercase' style='font-size: 0.75rem' albums
+
+  - followed = Follower.where(user_id: model.id, follower_id: current_user.id).first
+  == link_to !followed ? 'Follow' : 'Unfollow', follow_user_path(model), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
+

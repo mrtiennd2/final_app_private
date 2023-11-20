@@ -12,9 +12,9 @@ class PhotosController < ApplicationController
   def user_photos
     @photos =
       if current_user.is_admin
-        Photo.where(album_id: nil).page(params[:page])
+        Photo.unscoped.where(album_id: nil).page(params[:page])
       else
-        current_user.photos.where(album_id: nil).page(params[:page])
+        current_user.photos.page(params[:page])
       end
   end
 

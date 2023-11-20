@@ -2,16 +2,14 @@
   <% if !action_name.in?('user_photos') && !action_name.in?('user_albums') %>
     <% active = 'btn-primary text-white' %>
     <% inactive = 'btn-white border-1 border-primary text-primary' %>
-    <% in_photos = controller_name.in?('photos') ? active : inactive %>
-    <% in_albums = controller_name.in?('albums') ? active : inactive %>
 
     <div class='d-flex justify-content-center py-3'>
-      <a class="btn rounded-0 <%= in_photos %>" href="<%= photos_path %>">
+      <a class="btn rounded-0 <%= controller_name.in?('photos') ? active : inactive %>" href="<%= photos_path %>">
         <strong>
           <%= t('photo') %>
         </strong>
       </a>
-      <a class="btn rounded-0 <%= in_albums %>" href="<%= albums_path %>">
+      <a class="btn rounded-0 <%= controller_name.in?('albums') ? active : inactive %>" href="<%= albums_path %>">
         <strong>
           <%= t('album') %>
         </strong>
