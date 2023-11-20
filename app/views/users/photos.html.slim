@@ -1,6 +1,3 @@
-h1
-  | Photos collection
-
-div class='d-flex w-100'
+div class='d-flex w-100 flex-wrap' style='gap: 1rem'
   - @photos.each do |photo|
-    == render('item', model: photo, model_image_url: photo.image_url)
+    == render('users/item/photo', model: photo, model_image_url: photo.image_url)

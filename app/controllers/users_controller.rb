@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout 'profile_layout'
 
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_user, except: %i[index]
 
   def index; end
@@ -31,10 +31,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def unfollow
-    # ...
-  end
-
   def followers
     @followers = @user.followers
   end
@@ -44,10 +40,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    puts '...'
-  end
 
   def set_user
     user_id = params[:id]

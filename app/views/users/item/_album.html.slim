@@ -1,0 +1,13 @@
+div class='border border-muted rounded p-2 shadow-sm'
+  div class='collection__item__size position-relative'
+    img src="#{image_path(model_image_url)}" class='w-100 h-100'
+
+    div class='w-100 h-100 d-flex justify-content-center align-items-center position-absolute top__right' style='opacity: 0.5;'
+      div class='bg-dark profile__image__size rounded-circle d-flex flex-column justify-content-center align-items-center text text-light fw-bold'
+        span == model.photos.size
+        span class='text-uppercase' style='font-size: 0.75rem' photos
+
+  div class='w-100'
+    p class='mx-auto card-title p-0 m-0 text-secondary text-center mt-1 fw-bold p__overflow'
+      == model.title
+

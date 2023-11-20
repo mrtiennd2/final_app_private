@@ -1,10 +1,4 @@
-h1
-  | Followers
-
-/ follows > user_id follower_id
-/
-
-div class='d-flex w-100'
+div class='d-flex w-100 flex-wrap' style='gap: 1rem'
   - @followers.each do |f|
-    == render('account', model: f.user, model_image_url: f.user.avatar)
+    == render('users/item/account', model: f.following_user, model_image_url: f.following_user.avatar)
 
