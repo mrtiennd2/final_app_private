@@ -29,6 +29,10 @@
     }
 }
 
+img {
+    object-fit: cover !important;
+}
+
 .color-primary {
     color: #3269a8
 }
@@ -189,6 +193,18 @@
     font-size: 1.5rem;
     color: lightgray;
     background: transparent;
+}
+
+#flash_error {
+    color: red;
+}
+
+#flash_notice {
+    color: blue;
+}
+
+#flash_notice {
+    color: green;
 }
 
 /* .field_with_errors { */

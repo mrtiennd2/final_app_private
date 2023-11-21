@@ -29,6 +29,13 @@
       <% if notice %>
         <%= render 'shared/alert' %>
       <% end %>
+
+      <div class='mx-auto mt-3'>
+        <%= content_tag(:div, flash[:error], id: "flash_error", class: 'text text-danger') if flash[:error] %>
+        <%= content_tag(:div, flash[:alert], id: "flash_alert", class: 'text text-danger') if flash[:alert] %>
+      </div>
+
+      <%= render 'shared/locale_options' %>
     </div>
 
     <!-- Optional JavaScript -->

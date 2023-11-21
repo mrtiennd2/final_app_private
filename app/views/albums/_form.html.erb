@@ -1,16 +1,4 @@
 <%= form_with(model: album, class: 'custom-album-box-style mb-4') do |form| %>
-  <% if album.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-      <ul>
-        <% album.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class='container-fluid d-flex flex-column justify-content-between'>
     <div class='d-flex'>
 
@@ -19,6 +7,13 @@
           <strong>
             <%= form.label :title %>
           </strong>
+
+          <% if album.errors[:title].size > 0 %>
+            <span class='text text-danger'>
+              *<%= album.errors[:title].first %>
+            </span>
+          <% end %>
+
           <%= form.text_field :title, class: 'form-control form-control-lg' %>
         </div>
 
@@ -34,6 +29,13 @@
         <strong>
           <%= form.label :description %>
         </strong>
+
+        <% if album.errors[:description].size > 0 %>
+          <span class='text text-danger'>
+            *<%= album.errors[:description].first %>
+          </span>
+        <% end %>
+
         <%= form.text_area :description, rows: 4, class: 'form-control form-control-lg' %>
       </div>
 
@@ -51,6 +53,12 @@
         <% end %>
 
         <%= render("shared/image_uploader", form: form, file_field_name: :photo_image) %>
+
+        <% if album.errors[:photos].size > 0 %>
+          <span class='text text-danger ml-3'>
+            *<%= album.errors[:photos].first %>
+          </span>
+        <% end %>
 
       </div>
 

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def follow
     @follower = Follower.where(user_id: @user.id, follower_id: current_user.id).first_or_initialize
-    user_fname = full_name(@user)
+    user_fname = @user.full_name
     if !@follower.persisted?
       if @follower.save
         redirect_to @user, notice: "Now following #{user_fname}"
@@ -56,9 +56,4 @@ class UsersController < ApplicationController
     @user = User.includes(:photos, :albums).find(user_id)
   end
 
-  def full_name(user)
-    fst_char = user.first_name || ' '
-    snd_char = user.last_name || ' '
-    "#{fst_char} #{snd_char}"
-  end
 end

@@ -28,7 +28,7 @@
 
       <% if current_user&.is_admin %>
         <li class="nav-item">
-          <a class="nav-link text <%= at_dashboard %>" href="<%= admin_dashboard_path %>">
+          <a class="nav-link text <%= at_dashboard %>" href="<%= admin_users_path %>">
             <strong>
               <%= t('admin.manage_users') %>
             </strong>

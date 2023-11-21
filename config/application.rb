@@ -25,5 +25,7 @@ module FinalApp
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
+
+    config.time_zone = 'Hanoi'
   end
 end

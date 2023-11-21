@@ -10,12 +10,18 @@
       class: 'w-50 p-5 border rounded shadow rounded bg-light',
     }
   ) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field form-label mb-3">
     <strong>
         <%= f.label :first_name %><br />
     </strong>
+
+    <% if resource.errors[:first_name].size > 0 %>
+      <span class='text text-danger'>
+        *<%= resource.errors[:first_name].first %>
+      </span>
+    <% end %>
+
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",  class: 'form-control form-control-lg', placeholder: t('first_name') %>
   </div>
 
@@ -23,6 +29,13 @@
     <strong>
         <%= f.label :last_name %><br />
     </strong>
+
+    <% if resource.errors[:last_name].size > 0 %>
+      <span class='text text-danger'>
+        *<%= resource.errors[:last_name].first %>
+      </span>
+    <% end %>
+
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",  class: 'form-control form-control-lg', placeholder: t('last_name') %>
   </div>
 
@@ -30,6 +43,13 @@
     <strong>
         <%= f.label :email %><br />
     </strong>
+
+    <% if resource.errors[:email].size > 0 %>
+      <span class='text text-danger'>
+        *<%= resource.errors[:email].first %>
+      </span>
+    <% end %>
+
     <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control form-control-lg', placeholder: t('email') %>
   </div>
 
@@ -37,9 +57,11 @@
     <strong>
         <%= f.label :password %>
     </strong>
-    <!-- <% if @minimum_password_length %> -->
-      <!--     <em>(<%= @minimum_password_length %> characters minimum)</em> -->
-      <!-- <% end %> -->
+      <% if resource.errors[:password].size > 0 %>
+        <span class='text text-danger'>
+          *<%= resource.errors[:password].first %>
+        </span>
+      <% end %>
     <%= f.password_field :password, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('password') %>
   </div>
 
@@ -47,6 +69,11 @@
     <strong>
         <%= f.label :password_confirmation %><br />
     </strong>
+    <% if resource.errors[:password].size > 0 %>
+      <span class='text text-danger'>
+        *<%= resource.errors[:password].first %>
+      </span>
+    <% end %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('confirm_your_password') %>
   </div>
 

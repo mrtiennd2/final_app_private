@@ -1,4 +1,7 @@
-div class='d-flex w-100 flex-wrap' style='gap: 1rem'
+div class='d-flex w-100 flex-wrap position-relative' style='gap: 1rem'
+  - if current_user.id == @user.id
+    == link_to 'Add Album', new_album_path, class: 'top__right btn fw-bold btn-success rounded-pill', style: 'transform: translateY(-120%)'
+
   - @albums.each do |album|
     == render('users/item/album', model: album, model_image_url: album.photos.first.image_url || "", modal_data_target: "#albumModalCenter#{album.id}")
     == render 'albums/album_modal', model: album

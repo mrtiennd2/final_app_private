@@ -39,7 +39,7 @@ class PhotosController < ApplicationController
     if @photo.update(photo_params)
       redirect_to '/u/photos', notice: 'Photo was successfully updated.'
     else
-      redirect_to edit_photo_path(@photo), notice: 'Something went wrong'
+      render :edit, status: :unprocessable_entity, notice: 'Failed to save album'
     end
   end
 

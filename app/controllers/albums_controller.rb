@@ -1,8 +1,8 @@
 class AlbumsController < ApplicationController
   layout 'index_with_pagination', only: %i[index user_albums]
 
-  before_action :set_album, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_album, only: %i[edit update destroy]
+  before_action :authenticate_user!, except: %i[index]
   before_action :correct_user, only: %i[edit update destroy]
 
   def index
@@ -17,8 +17,6 @@ class AlbumsController < ApplicationController
         current_user.albums.page(params[:page])
       end
   end
-
-  def show; end
 
   def like
     album = Album.find(params[:album_id])
@@ -50,7 +48,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to edit_album_url(@album), notice: 'Album was successfully created.'
     else
-      redirect_to new_album_url, notice: @album.errors.full_messages
+      render new_album_path, status: :unprocessable_entity, notice: @album.errors.full_messages
     end
   end
 
@@ -83,11 +81,6 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
-  # def built_photo
-  #   photo_image = params[:album][:photo_image]
-  #   photo_image && @album.photos.build(user_id: @album.user_id, is_public: @album.is_public, image_url: photo_image)
-  # end
-
   def album_params
     params.require(:album).permit(:title, :description, :is_public)
   end
@@ -95,17 +88,5 @@ class AlbumsController < ApplicationController
   def correct_user
     @album = current_user.albums.find_by(id: params[:id]) unless current_user.is_admin
     redirect_to albums_path, notice: 'Not Authorized' if @album.nil?
-  end
-
-  def set_index_layout
-    if user_signed_in? == false
-      if current_user.is_admin
-        self.class.layout 'admin/main'
-      else
-        self.class.layout 'index_with_pagination'
-      end
-    else
-      self.class.layout 'index_with_pagination'
-    end
   end
 end

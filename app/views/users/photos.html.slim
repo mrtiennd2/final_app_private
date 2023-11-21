@@ -1,4 +1,7 @@
-div class='d-flex w-100 flex-wrap' style='gap: 1rem'
+div class='d-flex w-100 flex-wrap position-relative' style='gap: 1rem'
+  - if current_user.id == @user.id
+    == link_to 'Add Photos', new_photo_path, class: 'top__right btn btn-success fw-bold rounded-pill', style: 'transform: translateY(-120%)'
+
   - @photos.each do |photo|
     == render('users/item/photo', model: photo, model_image_url: photo.image_url, modal_data_target: "#photoModalCenter#{photo.id}")
     == render 'photos/photo_modal', model: photo

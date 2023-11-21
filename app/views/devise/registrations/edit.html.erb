@@ -1,11 +1,9 @@
 <div class='h-100 w-75 bg-white mx-auto p-3'>
-    <p class='h5'><strong> <%= t('edit_user_profile')  %> </strong></p>
+    <p class='h5'><strong> <%= t('edit_user_profile') %> </strong></p>
 
     <hr />
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'mx-auto' }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
       <div class="form-group row d-flex justify-content-center align-items-center">
         <div class="col-sm-3 col-form-label fw-bold"></div>
         <div class="col-sm-5">
@@ -23,21 +21,21 @@
       </div>
 
       <div class="form-group row d-flex justify-content-center">
-        <%= f.label :first_name, class: "col-sm-3 col-form-label fw-bold text-right" %>
+        <%= f.label :first_name, class: "col-sm-3 col-form-label fw-bold text-right #{resource.errors[:first_name].size > 0 && 'text-danger'}" %>
         <div class="col-sm-5">
           <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group row d-flex justify-content-center">
-        <%= f.label :last_name, class: 'col-sm-3 col-form-label fw-bold text-right' %>
+        <%= f.label :last_name, class: "col-sm-3 col-form-label fw-bold text-right #{resource.errors[:last_name].size > 0 && 'text-danger'}" %>
         <div class="col-sm-5">
           <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group row d-flex justify-content-center">
-        <%= f.label :email, class: 'col-sm-3 col-form-label fw-bold text-right' %>
+        <%= f.label :email, class: "col-sm-3 col-form-label fw-bold text-right #{resource.errors[:email].size > 0 && 'text-danger'}" %>
         <div class="col-sm-5">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
         </div>
@@ -48,16 +46,38 @@
       <% end %>
 
       <div class="form-group row d-flex justify-content-center">
-        <%= f.label :password, t('new_password'), class: 'col-sm-3 col-form-label fw-bold text-right' %>
+        <%= f.label :password, t('new_password'), class: "col-sm-3 col-form-label fw-bold text-right #{resource.errors[:password].size > 0 && 'text-danger'}" %>
         <div class="col-sm-5">
           <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+          <% if resource.errors[:password].size > 0 %>
+            <span class='text text-danger'>
+              *<%= resource.errors[:password].first %>
+            </span>
+          <% end %>
         </div>
       </div>
 
       <div class="form-group row d-flex justify-content-center">
-        <%= f.label :password_confirmation, class: 'col-sm-3 col-form-label fw-bold text-right' %>
+        <%= f.label :current_password, t('current_password'), class: "col-sm-3 col-form-label fw-bold text-right #{resource.errors[:current_password].size > 0 && 'text-danger'}" %>
+        <div class="col-sm-5">
+          <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+          <% if resource.errors[:current_password].size > 0 %>
+            <span class='text text-danger'>
+              *<%= resource.errors[:current_password].first %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group row d-flex justify-content-center">
+        <%= f.label :password_confirmation, class: "col-sm-3 col-form-label fw-bold text-right #{resource.errors[:password_confirmation].size > 0 && 'text-danger'}" %>
         <div class="col-sm-5">
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+          <% if resource.errors[:password_confirmation].size > 0 %>
+            <span class='text text-danger'>
+              *<%= resource.errors[:password_confirmation].first %>
+            </span>
+          <% end %>
         </div>
       </div>
 

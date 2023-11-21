@@ -40,11 +40,12 @@
           </div>
         <% end %>
 
-        <p class="d-flex m-0 p-0 justiy-content-center align-items-center ml-2" style='color: #3269a8'>
+        <%= link_to user_path(model.user), class: 'd-flex m-0 p-0 justiy-content-center align-items-center ml-2 text-decoration-none', style: 'color: #3269a8' do %>
           <strong>
             <%= full_name(model.user) %>
           </strong>
-        </p>
+        <% end %>
+
       </div>
 
       <div class='d-flex flex-column flex-fill py-3'>

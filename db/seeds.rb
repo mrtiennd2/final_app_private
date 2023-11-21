@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.where(email: 'testing_admin@gg.com').first_or_create(
+  first_name: 'Admin',
+  last_name: 'User',
+  email: 'testing_admin@gg.com',
+  password: '123456',
+  password_confirmation: '123456',
+  is_admin: true
+)
+
+puts 'Create testing_admin account'

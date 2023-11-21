@@ -1,22 +1,17 @@
 <%= form_with(model: photo, class: 'mb-4') do |form| %>
-  <% if photo.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this album from being saved:</h2>
-
-      <ul>
-        <% photo.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class='container-fluid d-flex justify-content-between'>
     <div class='w-50 mr-3'>
       <div class="field form-group mb-3">
         <strong>
           <%= form.label :title %>
         </strong>
+
+        <% if photo.errors[:title].size > 0 %>
+          <span class='text text-danger'>
+            *<%= photo.errors[:title].first %>
+          </span>
+        <% end %>
+
         <%= form.text_field :title, class: 'form-control form-control-lg w-100' %>
       </div>
 
@@ -27,7 +22,14 @@
         <%= form.collection_select(:is_public, [[t('private_mode'), false], [t('public_mode'), true]], :second, :first, {}, class: 'custom-select') %>
       </div>
 
-      <%= render("shared/image_uploader", form: form, file_field_name: :image_url, photo: photo) %>
+      <div class='d-flex'>
+        <%= render("shared/image_uploader", form: form, file_field_name: :image_url, photo: photo) %>
+        <% if photo.errors[:image_url].size > 0 %>
+          <span class='text text-danger ml-3'>
+            *<%= photo.errors[:image_url].first %>
+          </span>
+        <% end %>
+      </div>
 
     </div>
 
@@ -35,6 +37,13 @@
       <strong>
         <%= form.label :description %>
       </strong>
+
+      <% if photo.errors[:description].size > 0 %>
+        <span class='text text-danger'>
+          *<%= photo.errors[:description].first %>
+        </span>
+      <% end %>
+
       <%= form.text_area :description, rows: 4, class: 'form-control form-control-lg' %>
     </div>
 

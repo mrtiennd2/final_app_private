@@ -12,9 +12,6 @@ class User < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  # has_many :followers,  foreign_key: :follower_id, class_name: 'Follower'
-  # has_many :followings, foreign_key: :user_id,     class_name: 'Follower'
-
   has_many :followers,  foreign_key: :user_id,     class_name: 'Follower'
   has_many :followings, foreign_key: :follower_id, class_name: 'Follower'
 
@@ -22,5 +19,11 @@ class User < ApplicationRecord
   validates :last_name,  presence: true, length: { maximum: 25 }
   validates :email,      presence: true, length: { maximum: 255 }
   validates :password,   presence: true, length: { maximum: 64 }, on: :create
-  # validates :current_password, presence: false
+  # validates :current_password, presence: true, if: -> { password.present? }
+
+  def full_name
+    fst_char = first_name || ' '
+    snd_char = last_name || ' '
+    "#{fst_char} #{snd_char}"
+  end
 end
