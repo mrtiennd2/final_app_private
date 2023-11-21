@@ -19,7 +19,6 @@ class AlbumsController < ApplicationController
   end
 
   def like
-    album = Album.find(params[:album_id])
     @like = current_user.likes.find_by(likeable: album)
     if @like
       @like.destroy
@@ -78,7 +77,7 @@ class AlbumsController < ApplicationController
   private
 
   def set_album
-    @album = Album.find(params[:id])
+    @album = Album.find(params[:id] || params[:album_id])
   end
 
   def album_params
