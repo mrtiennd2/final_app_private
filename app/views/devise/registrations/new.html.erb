@@ -16,13 +16,12 @@
         <%= f.label :first_name %><br />
     </strong>
 
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",  class: 'form-control form-control-lg', placeholder: t('first_name') %>
     <% if resource.errors[:first_name].size > 0 %>
       <span class='text text-danger'>
         *<%= resource.errors[:first_name].first %>
       </span>
     <% end %>
-
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",  class: 'form-control form-control-lg', placeholder: t('first_name') %>
   </div>
 
   <div class="field form-label mb-3">
@@ -30,13 +29,12 @@
         <%= f.label :last_name %><br />
     </strong>
 
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",  class: 'form-control form-control-lg', placeholder: t('last_name') %>
     <% if resource.errors[:last_name].size > 0 %>
       <span class='text text-danger'>
         *<%= resource.errors[:last_name].first %>
-      </span>
-    <% end %>
-
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",  class: 'form-control form-control-lg', placeholder: t('last_name') %>
+    </span>
+  <% end %>
   </div>
 
   <div class="field form-label mb-3">
@@ -44,37 +42,36 @@
         <%= f.label :email %><br />
     </strong>
 
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control form-control-lg', placeholder: t('email') %>
     <% if resource.errors[:email].size > 0 %>
       <span class='text text-danger'>
         *<%= resource.errors[:email].first %>
       </span>
     <% end %>
-
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control form-control-lg', placeholder: t('email') %>
   </div>
 
   <div class="field form-label mb-3">
     <strong>
-        <%= f.label :password %>
+      <%= f.label :password %>
     </strong>
-      <% if resource.errors[:password].size > 0 %>
-        <span class='text text-danger'>
-          *<%= resource.errors[:password].first %>
-        </span>
-      <% end %>
     <%= f.password_field :password, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('password') %>
+    <% if resource.errors[:password].size > 0 %>
+      <span class='text text-danger'>
+        *<%= resource.errors[:password].first %>
+      </span>
+    <% end %>
   </div>
 
   <div class="field form-label mb-3">
     <strong>
         <%= f.label :password_confirmation %><br />
     </strong>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('confirm_your_password') %>
     <% if resource.errors[:password].size > 0 %>
       <span class='text text-danger'>
         *<%= resource.errors[:password].first %>
       </span>
     <% end %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control form-control-lg', placeholder: t('confirm_your_password') %>
   </div>
 
   <div class="actions d-flex flex-column mx-auto w-25">

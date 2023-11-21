@@ -18,7 +18,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name,  presence: true, length: { maximum: 25 }
   validates :email,      presence: true, length: { maximum: 255 }
-  validates :password,   presence: true, length: { maximum: 64 }, on: :create
+  validates :password,   presence: true, length: { maximum: 64 }, confirmation: true
+  validates :password_confirmation, presence: true
   # validates :current_password, presence: true, if: -> { password.present? }
 
   def full_name

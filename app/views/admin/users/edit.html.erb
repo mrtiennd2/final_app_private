@@ -1,23 +1,9 @@
 <div class='h-100 w-75 bg-white mx-auto p-3 position-relative'>
-  <p class='h5'> <strong>
-<%= t('.title')  %>
-  </strong> </p>
+  <p class='h5'> <strong> <%= t('.title') %> </strong> </p>
 
   <hr />
 
   <%= form_for @user, url: admin_user_path(@user.id) do |f| %>
-    <% if @user.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
-
-        <ul>
-          <% @user.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <div class="form-group row d-flex justify-content-center align-items-center">
       <div class="col-sm-3 col-form-label fw-bold"></div>
       <div class="col-sm-5">
@@ -25,8 +11,8 @@
           class='collection__item__size rounded-lg d-flex justify-content-center align-items-center position-relative bg-light'
         >
           <img
-          src="<%= current_user.avatar.url %>"
-          class="preview__image w-100 h-100 position-absolute"
+            src="<%= current_user.avatar.url %>"
+            class="preview__image w-100 h-100 position-absolute"
           />
           <%= f.label :avatar, "", class: "image__uploader__label__transparent position-absolute h1 w-100 h-100 d-flex justify-content-center align-items-center" %>
           <%= f.file_field :avatar, multiple: false, class: "sr-only file__input" %>
@@ -38,6 +24,11 @@
       <%= f.label :first_name, class: "col-sm-3 col-form-label fw-bold text-right" %>
       <div class="col-sm-5">
         <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'form-control' %>
+        <% if @user.errors[:first_name].size > 0 %>
+          <span class='text text-danger'>
+            *<%= @user.errors[:first_name].first %>
+          </span>
+        <% end %>
       </div>
     </div>
 
@@ -45,6 +36,11 @@
       <%= f.label :last_name, class: 'col-sm-3 col-form-label fw-bold text-right' %>
       <div class="col-sm-5">
         <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'form-control' %>
+        <% if @user.errors[:last_name].size > 0 %>
+          <span class='text text-danger'>
+            *<%= @user.errors[:last_name].first %>
+          </span>
+        <% end %>
       </div>
     </div>
 
@@ -52,6 +48,11 @@
       <%= f.label :email, class: 'col-sm-3 col-form-label fw-bold text-right' %>
       <div class="col-sm-5">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        <% if @user.errors[:email].size > 0 %>
+          <span class='text text-danger'>
+            *<%= @user.errors[:email].first %>
+          </span>
+        <% end %>
       </div>
     </div>
 
@@ -59,6 +60,23 @@
       <%= f.label :password, class: 'col-sm-3 col-form-label fw-bold text-right' %>
       <div class="col-sm-5">
         <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+        <% if @user.errors[:password].size > 0 %>
+          <span class='text text-danger'>
+            *<%= @user.errors[:password].first %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex justify-content-center">
+      <%= f.label :password_confirmation, class: 'col-sm-3 col-form-label fw-bold text-right' %>
+      <div class="col-sm-5">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+        <% if @user.errors[:password_confirmation].size > 0 %>
+          <span class='text text-danger'>
+            *<%= @user.errors[:password_confirmation].first %>
+          </span>
+        <% end %>
       </div>
     </div>
 

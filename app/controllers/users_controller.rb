@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 
   def index; end
 
-  def show; end
-
   def photos
     @photos =
       if current_user.id == @user.id
@@ -55,5 +53,4 @@ class UsersController < ApplicationController
     user_id = params[:id]
     @user = User.includes(:photos, :albums).find(user_id)
   end
-
 end
