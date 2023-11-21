@@ -12,8 +12,8 @@ class User < ApplicationRecord
   has_many :photos, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  has_many :followers,  foreign_key: :user_id,     class_name: 'Follower'
-  has_many :followings, foreign_key: :follower_id, class_name: 'Follower'
+  has_many :followers,  foreign_key: :user_id,     class_name: 'Follower', dependent: :destroy
+  has_many :followings, foreign_key: :follower_id, class_name: 'Follower', dependent: :destroy
 
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name,  presence: true, length: { maximum: 25 }
