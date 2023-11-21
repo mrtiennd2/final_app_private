@@ -11,7 +11,7 @@ class Photo < ApplicationRecord
   scope :private_mode, -> { where(is_public: false) }
   scope :public_mode, -> { where(is_public: true) }
 
-  # validates :title, presence: true, if: -> { album_id.nil? }
-  # validates :description, presence: true, if: -> { album_id.nil? }
+  validates :title, presence: true, unless: -> { album.present? }
+  validates :description, presence: true, unless: -> { album.present? }
   validates :image_url, presence: true
 end
