@@ -5,45 +5,67 @@
 
   <% display_check = (controller_name == "photos" && action_name == "new" && defined?(photo)) || controller_name == "albums" ? 'd-none' : 'd-block' %>
 
-  <img
-    src="<%= defined?(photo) && photo.image_url.url %>"
-    class="preview__image w-100 h-100 <%= display_check %> position-absolute"
-  />
-
   <%= form.label file_field_name, "+", class: "image__uploader__label__transparent position-absolute h1 w-100 h-100 d-flex justify-content-center align-items-center" %>
   <%= form.file_field file_field_name, multiple: true, class: "sr-only file__input", html: { autocomplete: "off" } %>
 
-  <button
-    type='button'
-    class="remove__image__btn image__uploader__remove__btn btn d-none <%= display_check %>"
-  >
-    <i class="fa-solid fa-xmark"></i>
-  </button>
+</div>
+
+<div class='w-100'>
+  Image Previewer
+  <div class='preview__images__wrapper d-flex'>
+  </div>
 </div>
 
 <script>
   (function() {
     const fileInput = document.querySelector('.file__input');
-    const image = document.querySelector('.preview__image');
-    const removeImageBtn = document.querySelector('.remove__image__btn');
 
     fileInput.addEventListener('change', (e) => {
       if (e.target.files.length) {
-        const src = URL.createObjectURL(e.target.files[0]);
-        image.src = src;
-        image.classList.remove('d-none');
-        removeImageBtn.classList.remove('d-none');
-      }
-    });
+        const wrapper = document.querySelector('.preview__images__wrapper');
+        const files = [...e.target.files];
 
-    removeImageBtn.addEventListener('click', () => {
-      fileInput.value = "";
-      fileInput.files = null;
-      image.src = "";
-      image.classList.remove('d-block');
-      image.classList.add('d-none');
-      removeImageBtn.classList.remove('d-block');
-      removeImageBtn.classList.add('d-none');
+        files.forEach((file, index) => {
+          const imageDiv = document.createElement('div');
+          imageDiv.classList = 'collection__item__size border border-dark position-relative mr-4 rounded-lg'
+
+          const previewImage = document.createElement('img');
+          const src = URL.createObjectURL(file);
+
+          previewImage.classList = 'w-100 h-100';
+          previewImage.src = src;
+
+          imageDiv.append(previewImage);
+
+          const removeButton = document.createElement('button');
+          const icon = document.createElement('i');
+          removeButton.classList = "remove__image__btn image__uploader__remove__btn btn";
+          removeButton.type = "button";
+
+          removeButton.addEventListener('click', () => {
+            removedIndex = Array.prototype.indexOf.call(imageDiv.parentNode, imageDiv);
+            imageDiv.parentNode.removeChild(imageDiv);
+
+            let newFiles = Array.from(fileInput.files);
+            newFiles.splice(removedIndex, 1);
+
+            let list = new DataTransfer();
+            newFiles.forEach(item => {
+              list.items.add(item);
+            });
+
+            let newFileList = list.files;
+            fileInput.files = newFileList;
+
+            console.log(fileInput.files);
+          });
+
+          icon.classList = "fa-solid fa-xmark";
+          removeButton.append(icon);
+          imageDiv.append(removeButton);
+          wrapper.append(imageDiv);
+        });
+      }
     });
   })();
 </script>

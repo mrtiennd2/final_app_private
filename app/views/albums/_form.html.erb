@@ -52,8 +52,7 @@
           <% end %>
         <% end %>
 
-        <%= form.label :photo_images %>
-        <%= form.file_field :photo_images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+        <%= render("shared/multi_image_uploader", form: form, file_field_name: :photo_images) %>
 
         <% if album.errors[:photos].size > 0 %>
           <span class='text text-danger ml-3'>

@@ -17,7 +17,6 @@
 
     document.querySelectorAll('#localeDropdownMenu .dropdown-item').forEach(function(item) {
       item.addEventListener('click', function(event) {
-        console.log('click');
         var locale = this.getAttribute('data-locale');
         window.location.href = `?locale=${locale}`;
       });
