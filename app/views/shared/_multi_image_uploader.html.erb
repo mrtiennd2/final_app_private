@@ -11,7 +11,7 @@
   />
 
   <%= form.label file_field_name, "+", class: "image__uploader__label__transparent position-absolute h1 w-100 h-100 d-flex justify-content-center align-items-center" %>
-  <%= form.file_field file_field_name, multiple: false, accept: "image/jpeg, image/jpg, image/gif, image/png", class: "sr-only file__input", html: { autocomplete: "off" } %>
+  <%= form.file_field file_field_name, multiple: true, class: "sr-only file__input", html: { autocomplete: "off" } %>
 
   <button
     type='button'
