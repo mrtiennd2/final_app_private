@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   layout 'index_with_pagination', only: %i[index user_albums]
 
-  before_action :set_album, only: %i[edit update destroy]
+  before_action :set_album, only: %i[edit update destroy like]
   before_action :authenticate_user!, except: %i[index]
   before_action :correct_user, only: %i[edit update destroy]
 
@@ -14,17 +14,18 @@ class AlbumsController < ApplicationController
       if current_user.is_admin
         Album.all.page(params[:page])
       else
-        current_user.albums.page(params[:page]).per(10)
+        default_n_per_page = 10
+        current_user.albums.page(params[:page]).per(default_n_per_page)
       end
   end
 
   def like
-    @like = current_user.likes.find_by(likeable: album)
+    @like = current_user.likes.find_by(likeable: @album)
     if @like
       @like.destroy
       redirect_to albums_path, notice: 'Unliked'
     else
-      current_user.likes.create(likeable: album)
+      current_user.likes.create(likeable: @album)
       redirect_to albums_path(locale: I18n.locale), notice: 'Liked'
     end
   end
