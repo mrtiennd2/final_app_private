@@ -51,9 +51,8 @@ class UsersController < ApplicationController
 
   def update_button_follow_status
     followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
-    btn_follow_status = !followed ? 'Follow' : 'Unfollow'
     render turbo_stream: turbo_stream.replace("follow_button_#{@user.id}", partial: 'users/item/follow_button',
-                                                                    locals: { model: @user, model_image_url: @user.avatar, follow_status: btn_follow_status })
+                                                                    locals: { model: @user, model_image_url: @user.avatar, follow_status: followed })
   end
 
   def should_redirect?

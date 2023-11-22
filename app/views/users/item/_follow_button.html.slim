@@ -1,1 +1,2 @@
-== link_to follow_status, follow_user_path(model), data: { "turbo-method" => :post, controller: "users", action: "users#follow" }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
+== turbo_frame_tag "follow_button_#{model.id}" do
+  == link_to follow_status ? 'Unfollow' : 'Follow', follow_user_path(model), data: { "turbo-method" => :post, controller: "users", action: "users#follow" }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'

@@ -26,7 +26,7 @@ class PhotosController < ApplicationController
   def create
     @photo = current_user.photos.build(photo_params)
     if @photo.save
-      redirect_to '/u/photos', notice: 'New photo added'
+      redirect_to edit_photo_path(@photo), notice: 'New photo added'
     else
       render new_photo_path, status: :unprocessable_entity, notice: 'All fields are required'
     end
