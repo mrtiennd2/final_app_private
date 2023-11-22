@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show index] do
     member do
       get '/', action: :photos
+      post 'follow_in_profile'
       post 'follow'
       post 'unfollow'
       get 'followers'

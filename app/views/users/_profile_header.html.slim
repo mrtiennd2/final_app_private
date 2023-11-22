@@ -6,7 +6,7 @@ div class='d-flex w-100 mb-5' style='height: 200px'
       == link_to 'Edit', edit_user_registration_path(current_user), class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
     - else
       - followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
-      == link_to !followed ? 'Follow' : 'Unfollow', follow_user_path(@user), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
+      == link_to !followed ? 'Follow' : 'Unfollow', follow_in_profile_user_path(@user), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
 
     h1 class='my-2'
       strong == full_name(@user)

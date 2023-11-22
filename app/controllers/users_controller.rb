@@ -26,6 +26,16 @@ class UsersController < ApplicationController
 
   def follow
     @follower = Follower.where(user_id: @user.id, follower_id: current_user.id).first_or_initialize
+    if !@follower.persisted?
+      @follower.save
+    else
+      @follower.destroy
+    end
+    update_button_follow_status
+  end
+
+  def follow_in_profile
+    @follower = Follower.where(user_id: @user.id, follower_id: current_user.id).first_or_initialize
     user_fname = @user.full_name
     if !@follower.persisted?
       if @follower.save
@@ -37,6 +47,17 @@ class UsersController < ApplicationController
       @follower.destroy
       redirect_to @user, notice: "Unfollow #{user_fname}"
     end
+  end
+
+  def update_button_follow_status
+    followed = Follower.where(user_id: @user.id, follower_id: current_user.id).first
+    btn_follow_status = !followed ? 'Follow' : 'Unfollow'
+    render turbo_stream: turbo_stream.replace("follow_button_#{@user.id}", partial: 'users/item/follow_button',
+                                                                    locals: { model: @user, model_image_url: @user.avatar, follow_status: btn_follow_status })
+  end
+
+  def should_redirect?
+    !request.fullpath.include?('followings') && !request.fullpath.include?('followers')
   end
 
   def followers

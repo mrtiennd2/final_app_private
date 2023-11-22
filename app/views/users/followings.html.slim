@@ -1,4 +1,6 @@
 div class='d-flex w-100 flex-wrap' style='gap: 1rem'
   - @followings.each do |f|
-    == render('users/item/account', model: f.user, model_image_url: f.user.avatar)
+    - followed = Follower.where(user_id: f.user.id, follower_id: current_user.id).first
+    - btn_follow_status = !followed ? 'Follow' : 'Unfollow'
+    == render(partial: 'users/item/account', locals: { model: f.user, model_image_url: f.user.avatar, follow_status: btn_follow_status })
 

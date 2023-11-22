@@ -51,7 +51,7 @@ class PhotosController < ApplicationController
       redirect_to photos_path, notice: 'Unliked'
     else
       current_user.likes.create(likeable: @photo)
-      redirect_to photos_path(locale: I18n.locale), notice: 'Liked'
+      redirect_to photos_path, notice: 'Liked'
     end
   end
 

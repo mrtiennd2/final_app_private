@@ -21,8 +21,9 @@ div class='border border-muted rounded p-3 shadow-sm bg-light d-flex flex-column
       span class='p-pm-none text-uppercase' style='font-size: 0.75rem' albums
 
   - if model.id == current_user.id
-    == link_to 'Edit', edit_user_registration_path(model), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
+      == link_to 'Edit', edit_user_registration_path(model), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
   - else
-    - followed = Follower.where(user_id: model.id, follower_id: current_user.id).first
-    == link_to !followed ? 'Follow' : 'Unfollow', follow_user_path(model), data: { 'turbo-method' => :post }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
+      == turbo_frame_tag "follow_button_#{model.id}" do
+        == render(partial: 'users/item/follow_button', locals: { model: model, follow_status: follow_status })
+        / == link_to follow_status, follow_user_path(model), data: { "turbo-method" => :post, controller: "users", action: "users#follow" }, class: 'btn btn-info rounded-pill fw-bold fs-sm py-1 px-4'
 

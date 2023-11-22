@@ -26,7 +26,7 @@ class AlbumsController < ApplicationController
       redirect_to albums_path, notice: 'Unliked'
     else
       current_user.likes.create(likeable: @album)
-      redirect_to albums_path(locale: I18n.locale), notice: 'Liked'
+      redirect_to albums_path, notice: 'Liked'
     end
   end
 
